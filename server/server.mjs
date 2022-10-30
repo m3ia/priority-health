@@ -22,3 +22,5 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
   res.json('Welcome to the API server!')
 })
+
+// app.get('/api/')
