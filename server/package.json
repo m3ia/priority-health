@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "concurrently 'npm start' 'cd .. && cd client && npm start'",
     "start": "nodemon server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
