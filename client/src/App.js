@@ -20,9 +20,9 @@ const App = () => {
       <NavBar />
       <div className="container flex-grow-1">
         <Routes>
-          <Route path="/" exact component={<Home />} />
-          <Route path="/profile" component={<Profile />} />
-          <Route path="/external-api" component={<ExternalApi />} />
+          <Route path="/" exact element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/external-api" element={<ExternalApi />} />
         </Routes>
       </div>
       <Footer />
