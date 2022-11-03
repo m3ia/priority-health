@@ -3,9 +3,9 @@
 import React from 'react';
 import AuthenticationButton from './authentication-button';
 
-const AuthNav = () => (
+const AuthNav = ({setSiteUser}) => (
   <div className="navbar-nav ml-auto">
-    <AuthenticationButton />
+    <AuthenticationButton setSiteUser={setSiteUser} />
   </div>
 );
 

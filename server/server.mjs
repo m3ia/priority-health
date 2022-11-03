@@ -25,6 +25,9 @@ app.get('/', (req, res) => {
   res.json('Welcome to the API server!')
 });
 
+let userId = 0;
+
+// GET for all users
 app.get('/api/users', async (req, res) => {
   try {
     const users = await db.any('SELECT * from users');
@@ -33,6 +36,19 @@ app.get('/api/users', async (req, res) => {
     return res.status(400).json({ e });
   }
 })
+
+// GET for the signed in user
+app.get('/api/me', cors(), async (req, res) => {
+
+  try {
+    const signedInUser = await db.one('SELECT * FROM users WHERE id = $1 ', [userId]);
+    res.send(signedInUser);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+  
+});
+
 // Check if user exists/add new user:
 app.post('/api/me', cors(), async (req, res) => {
   const newUser = {
@@ -42,15 +58,20 @@ app.post('/api/me', cors(), async (req, res) => {
     sub: req.body.sub
   }
   const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
-  const valuesEmail = [newUser.email]
-  const resultsEmail = await db.query(queryEmail, valuesEmail);
-  if (resultsEmail.length > 0) {
-    console.log(`Thank you ${resultsEmail.first_name} for coming back`)
+  const valuesEmail = [newUser.email];
+  const returningUser = await db.query(queryEmail, valuesEmail);
+  if (returningUser.length > 0) {
+    console.log('returningUser: ', returningUser);
+    console.log(`Thank you ${returningUser[0].first_name} for coming back`);
+    userId = returningUser[0].id;
+    res.send(returningUser);
   } else {
-  const query = 'INSERT INTO users(last_name, first_name, email) VALUES($1, $2, $3) RETURNING *'
-  const values = [newUser.lastname, newUser.firstname, newUser.email]
-  const result = await db.query(query, values);
-  console.log('result', result);
+    const query = 'INSERT INTO users(last_name, first_name, email) VALUES($1, $2, $3) RETURNING *';
+    const values = [newUser.lastname, newUser.firstname, newUser.email];
+    const result = await db.query(query, values);
+    console.log('New User Created: ', result);
+    userId = result[0].id;
+    res.send(result);
   }
 });
 

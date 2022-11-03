@@ -1,6 +1,6 @@
 import './App.css';
 import FoodList from './components/food-list/FoodList';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NavBar, Footer, Loading } from './components/home-login';
@@ -10,6 +10,7 @@ import './App.css';
 
 const App = () => {
   const { user, isLoading } = useAuth0();
+  const [siteUser, setSiteUser] = useState({});
   
   if (isLoading) {
     return <Loading />;
@@ -19,13 +20,24 @@ const App = () => {
     <div id="app" className="d-flex flex-column h-100">
       {user ? (
         <>
-            <NavBar />
+          <NavBar setSiteUser={setSiteUser} />
             <div className="container flex-grow-1">
             <Routes>
               <Route path="/" element={<Home user={user} />} />
               <Route path="/profile" element={<Profile user={user} />} />
             </Routes>
-            </div>
+          </div>
+          <div>
+            hi
+            {siteUser.id ? (
+              <div>
+                <p>id: {siteUser.id}</p>
+                <p>first name: {siteUser.first_name}</p>
+                <p>last name: {siteUser.last_name}</p>
+                <p>email: {siteUser.email}</p>
+              </div>
+            ) : (<p>user not found</p>)} 
+          </div>
             <Footer />
           </>
          ) :
