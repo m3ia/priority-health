@@ -1,12 +1,17 @@
 import React, { Fragment } from "react";
 
-import { Hero, HomeContent } from "../../../components/home-login";
+const Home = ({user}) => (
 
-const Home = () => (
   <Fragment>
-    <Hero />
-    <hr />
-    <HomeContent />
+  <div className="text-center hero">
+      {user ? (
+        <h1>user is signed in.</h1>
+      ) :
+        (
+          <h1>USER IS NOT SIGNED IN</h1>
+  )}
+      {/* <HomeContent /> */}
+  </div>
   </Fragment>
 );
 
