@@ -31,6 +31,7 @@ const App = () => {
     return <Loading />;
   }
 
+  console.log('user', user);
   return (
     <div id="app" className="d-flex flex-column h-100">
       {user ? (
@@ -39,32 +40,13 @@ const App = () => {
             <div className="container flex-grow-1">
             <Routes>
               <Route path="/" element={<Home user={user} />} />
-              <Route path="/profile" element={<Profile user={user} />} />
+              <Route path="/profile" element={<Profile siteUser={siteUser} foods={foods} />} />
+              <Route path="/foodList" element={<FoodList siteUser={siteUser} foods={foods} />} />
             </Routes>
           </div>
           <div>
-            hi
-            {siteUser.id ? (
-              <div style={{ border: '2px solid black' }}>
-                <>
-                  <p>id: {siteUser.id}</p>
-                  <p>first name: {siteUser.first_name}</p>
-                  <p>last name: {siteUser.last_name}</p>
-                  <p>email: {siteUser.email}</p>
-                  <p>foods: 
-                    <ul>
-                      {foods.map((foodItem, ind) => {
-                        return (
-                          <li key={ind}>{foodItem.food}</li>
-                        )
-                      })}
-                    </ul>
-                  </p>
-                </>
-              </div>
-            ) : (<p>user not found</p>)} 
+            
           </div>
-          <FoodList />
 
             <Footer />
           </>

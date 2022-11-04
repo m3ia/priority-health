@@ -1,7 +1,7 @@
 import {useState} from "react";
 import NutritionLabel from "../NutritionLabel";
 
-const FoodList = () => {
+const FoodList = ({siteUser}) => {
   const [nutritionLabel, setNutritionLabel] = useState({});
   const food = "1 tbsp honey";
 

@@ -19,6 +19,14 @@ const MainNav = () => (
     >
       Profile
     </NavLink>
+    <NavLink
+      to="/foodList"
+      exact
+      className="nav-link"
+      activeClassName="router-link-exact-active"
+    >
+      Food List
+    </NavLink>
   </div>
 );
 
