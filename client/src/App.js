@@ -11,27 +11,13 @@ import './App.css';
 const App = () => {
   const { user, isLoading } = useAuth0();
   const [siteUser, setSiteUser] = useState({});
-  const [foods, setFoods] = useState([]);
-  
-  const getFoods = async () => {
-  console.log()
-   await fetch('http://localhost:8080/api/myFoods')
-    .then((res) => res.json())
-    .then((res) => {
-      setFoods(([ ...res ]));
-      console.log('res here!', res);
-    });
-  }
-    // GET request that fetches everything from http://localhost:8080/api/myFoods
-  useEffect(() => {
-    getFoods();
-  }, []);
 
   if (isLoading) {
     return <Loading />;
   }
 
   console.log('user', user);
+  console.log('siteUser', siteUser);
   return (
     <div id="app" className="d-flex flex-column h-100">
       {user ? (
@@ -40,8 +26,8 @@ const App = () => {
             <div className="container flex-grow-1">
             <Routes>
               <Route path="/" element={<Home user={user} />} />
-              <Route path="/profile" element={<Profile siteUser={siteUser} foods={foods} />} />
-              <Route path="/foodList" element={<FoodList siteUser={siteUser} foods={foods} />} />
+              <Route path="/profile" element={<Profile siteUser={siteUser} />} />
+              <Route path="/foodList" element={<FoodList siteUser={siteUser} />} />
             </Routes>
           </div>
           <div>

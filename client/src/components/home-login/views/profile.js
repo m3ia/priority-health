@@ -2,7 +2,7 @@ import React from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import Loading from '../loading';
 
-const Profile = ({siteUser, foods}) => {
+const Profile = ({siteUser}) => {
   // const { name, picture, email } = user;
   return (
     <div>
@@ -14,15 +14,6 @@ const Profile = ({siteUser, foods}) => {
                   <p>first name: {siteUser.first_name}</p>
                   <p>last name: {siteUser.last_name}</p>
                   <p>email: {siteUser.email}</p>
-                  <p>foods: 
-                    <ul>
-                      {foods.map((foodItem, ind) => {
-                        return (
-                          <li key={ind}>{foodItem.food}</li>
-                        )
-                      })}
-                    </ul>
-                  </p>
                 </>
               </div>
             ) : (<p>user not found</p>)} 

@@ -97,7 +97,7 @@ app.get(`/api/example/:food`, async (req, res) => {
   const food1 = '1 tbsp honey';
   const food = req.params.food;
 
-  const url = `https://api.edamam.com/api/nutrition-data?app_id=${NUTRITIONAL_ANALYSIS_APP_ID}&app_key=${NUTRITIONAL_ANALYSIS_API_KEY}&nutrition-type=cooking&ingr=${food1}`;
+  const url = `https://api.edamam.com/api/nutrition-data?app_id=${NUTRITIONAL_ANALYSIS_APP_ID}&app_key=${NUTRITIONAL_ANALYSIS_API_KEY}&nutrition-type=cooking&ingr=1+serving+${food}`;
 
   try {
     const response = await fetch(url);

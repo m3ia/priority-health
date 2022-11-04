@@ -1,44 +1,40 @@
-import {useState} from "react";
-import NutritionLabel from "../NutritionLabel";
+import {useState, useEffect} from "react";
+import FoodItemView from "./FoodItemView";
+import FoodItem from "./FoodItem";
 
 const FoodList = ({siteUser}) => {
-  const [nutritionLabel, setNutritionLabel] = useState({});
-  const food = "1 tbsp honey";
+  const [foods, setFoods] = useState([]);
+  const [foodView, setFoodView] = useState("");
 
-  const getNutritionLabel = async () => {
-    await fetch(`http://localhost:8080/api/example/${food}`)
+  const getFoods = async () => {
+    console.log();
+    await fetch("http://localhost:8080/api/myFoods")
       .then((res) => res.json())
-      .then((data) => {
-        console.log("data", data);
-        setNutritionLabel((prev) => ({
-          ...prev,
-          dietLabels: data.dietLabels,
-          healthLabels: data.healthLabels,
-          calories: data.calories,
-        }));
+      .then((res) => {
+        setFoods([...res]);
+        console.log("res here!", res);
       });
   };
 
+  // GET request that fetches everything from http://localhost:8080/api/myFoods
+  useEffect(() => {
+    getFoods();
+  }, []);
+
   return (
-    <div>
-      <h1>Food weewsrser</h1>
-      <button onClick={getNutritionLabel}>1 tbsp honey</button>
-      {nutritionLabel.dietLabels && (
-        <NutritionLabel
-          nutritionLabel={nutritionLabel}
-          // setNutritionLabel={setNutritionLabel}
-          getNutritionLabel={getNutritionLabel}
-        />
+    <>
+      {foodView === "" ? (
+        <div className="food-list-div">
+          <h1>Food List</h1>
+          <p>food view: {foodView}</p>
+          {foods.map((food, ind) => {
+            return <FoodItem key={ind} food={food} setFoodView={setFoodView} />;
+          })}
+        </div>
+      ) : (
+        <FoodItemView foodView={foodView} setFoodView={setFoodView} />
       )}
-      <div>
-        {nutritionLabel.calories && (
-          <div>
-            <h3>{food}</h3>
-            <p>calories: {nutritionLabel.calories}</p>
-          </div>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 
