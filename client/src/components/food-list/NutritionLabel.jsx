@@ -17,6 +17,23 @@ const NutritionLabel = ({foodView}) => {
             dietLabels: data.dietLabels,
             healthLabels: data.healthLabels,
             calories: data.calories,
+            weight: data.ingredients[0].parsed[0].weight.toFixed(0) + "g",
+            fat:
+              data.totalNutrients.FAT.quantity.toFixed(2) +
+              data.totalNutrients.FAT.unit,
+            satFat:
+              data.totalNutrients.FASAT.quantity.toFixed(2) +
+              data.totalNutrients.FASAT.unit,
+            protein:
+              data.totalNutrients.PROCNT.quantity.toFixed(2) +
+              data.totalNutrients.PROCNT.unit,
+            carbs:
+              data.totalNutrients.CHOCDF.quantity.toFixed(2) +
+              data.totalNutrients.CHOCDF.unit,
+            chole:
+              data.totalNutrients.CHOLE.quantity.toFixed(2) +
+              data.totalNutrients.CHOLE.unit,
+            ingrts: data.ingredients[0].text,
           }));
         });
     };
@@ -27,34 +44,57 @@ const NutritionLabel = ({foodView}) => {
     <>
       <div className="nutrition-label-div">
         <h3>Nutrition Facts</h3>
-        <div>
+        <div className="nutrition-label-header">
           {nutritionLabelData.calories && (
             <div>
               <h3>1 serving: {food}</h3>
               <p>calories: {nutritionLabelData.calories}</p>
+              <p>weight: {nutritionLabelData.weight}</p>
             </div>
           )}
         </div>
-        diet labels:
-        {nutritionLabelData.dietLabels && (
-          <ul>
-            {nutritionLabelData.dietLabels.map((item, ind) => {
-              return <li key={ind}>{item.toLowerCase().replace(/_/, " ")}</li>;
-            })}
-          </ul>
-        )}
+        <div className="nutrition-body">
+          Fat: {nutritionLabelData.fat}
+          <br />
+          Saturated Fat: {nutritionLabelData.satFat}
+          <br />
+          Protein: {nutritionLabelData.protein}
+          <br />
+          Carbohydrates: {nutritionLabelData.carbs}
+          <br />
+          Cholesterol: {nutritionLabelData.chole}
+          <br />
+          Ingredients: {nutritionLabelData.ingrts}
+        </div>
+        <div className="diet-labels-div">
+          diet labels:
+          {nutritionLabelData.dietLabels && (
+            <ul>
+              {nutritionLabelData.dietLabels.map((item, ind) => {
+                return (
+                  <li key={ind}>{item.toLowerCase().replace(/_/, " ")}</li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
       </div>
-      <div>
+
+      <div className="health-labels-div">
         health labels:{" "}
-        {nutritionLabelData.healthLabels && (
-          <ul>
-            {nutritionLabelData.healthLabels.map((item, ind) => {
-              return <li key={ind}>{item.toLowerCase().replace(/_/g, " ")}</li>;
-            })}
-          </ul>
-        )}
+        <div className="health-labels-list">
+          {" "}
+          {nutritionLabelData.healthLabels && (
+            <ul>
+              {nutritionLabelData.healthLabels.map((item, ind) => {
+                return (
+                  <li key={ind}>{item.toLowerCase().replace(/_/g, " ")}</li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
       </div>
-      <div>calories: {nutritionLabelData.calories}</div>
     </>
   );
 };

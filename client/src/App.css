@@ -67,8 +67,15 @@
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  width: 300px;
 }
 
 .food-item-div {
+  width: 200px;
+}
+
+.health-labels-list {
+  max-height: 100px;
+  overflow-y: scroll;
   width: 200px;
 }
