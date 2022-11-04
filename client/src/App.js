@@ -11,7 +11,22 @@ import './App.css';
 const App = () => {
   const { user, isLoading } = useAuth0();
   const [siteUser, setSiteUser] = useState({});
+  const [foods, setFoods] = useState([]);
   
+  const getFoods = async () => {
+  console.log()
+   await fetch('http://localhost:8080/api/myFoods')
+    .then((res) => res.json())
+    .then((res) => {
+      setFoods(([ ...res ]));
+      console.log('res here!', res);
+    });
+  }
+    // GET request that fetches everything from http://localhost:8080/api/myFoods
+  useEffect(() => {
+    getFoods();
+  }, []);
+
   if (isLoading) {
     return <Loading />;
   }
@@ -30,14 +45,27 @@ const App = () => {
           <div>
             hi
             {siteUser.id ? (
-              <div>
-                <p>id: {siteUser.id}</p>
-                <p>first name: {siteUser.first_name}</p>
-                <p>last name: {siteUser.last_name}</p>
-                <p>email: {siteUser.email}</p>
+              <div style={{ border: '2px solid black' }}>
+                <>
+                  <p>id: {siteUser.id}</p>
+                  <p>first name: {siteUser.first_name}</p>
+                  <p>last name: {siteUser.last_name}</p>
+                  <p>email: {siteUser.email}</p>
+                  <p>foods: 
+                    <ul>
+                      {foods.map((foodItem, ind) => {
+                        return (
+                          <li key={ind}>{foodItem.food}</li>
+                        )
+                      })}
+                    </ul>
+                  </p>
+                </>
               </div>
             ) : (<p>user not found</p>)} 
           </div>
+          <FoodList />
+
             <Footer />
           </>
          ) :
@@ -57,7 +85,6 @@ export default App;
 // function App() {
 //   return (
 //     <div className="App">
-//       <FoodList />
 //       hiasdf;lkjasdfasdflaksdf';lkaf
 //     </div>
 //   );

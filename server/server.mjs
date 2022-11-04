@@ -27,6 +27,8 @@ app.get('/', (req, res) => {
 
 let userId = 0;
 
+// NOTE: Start all routes like so: app.get('/api/')
+//  ------- ------- ------- USERS ------- ------- -------
 // GET for all users
 app.get('/api/users', async (req, res) => {
   try {
@@ -49,7 +51,7 @@ app.get('/api/me', cors(), async (req, res) => {
   
 });
 
-// Check if user exists/add new user:
+// POST Check if user exists/add new user:
 app.post('/api/me', cors(), async (req, res) => {
   const newUser = {
     lastname: req.body.family_name,
@@ -75,18 +77,21 @@ app.post('/api/me', cors(), async (req, res) => {
   }
 });
 
-// First get with user auth:
-// app.get('/api/me', (req, res) => {
-//   console.log(req.oidc.isAuthenticated());
-//   if (req.oidc.isAuthenticated()) {
-//     console.log('oidc user from server', req.oidc.user);
-//     res.json(req.oidc.user);
-//   } else {
-//     res.status(401).json({ error: 'Error in the auth0' });
-//   }
-// });
 
-// Start all routes like so: app.get('/api/')
+//  ------- ------- ------- FOODS LIST ------- ------- -------
+
+// GET Get all foods for 1 user:
+app.get(`/api/myFoods`, cors(), async (req, res) => {
+  console.log('userId', userId, 'type: ', typeof userId);
+  try {
+    const response = await db.any('SELECT * FROM foods WHERE user_id = $1', [userId]);
+    res.send(response);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({ e });
+  }
+});
+
 // Get for Nutritional Analysis
 app.get(`/api/example/:food`, async (req, res) => {
   const food1 = '1 tbsp honey';
