@@ -74,3 +74,49 @@
 .result-block-container .result-block {
   opacity: 1;
 }
+
+/* logout btn hover effects */
+.logout-btn {
+  font-size: 1.8rem;
+  background:#000000;  
+  background: -webkit-linear-gradient(to right, #403D3D, #403D3D);  
+  background: linear-gradient(to right, #403D3D, #403D3D); 
+  padding: 20px 60px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 2rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.35s;
+  outline: none;
+  color:white;
+}
+
+.logout-btn a{
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-decoration: none;
+  
+}
+
+.logout-btn:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #e2ce18a5;
+  transition: all 0.35s;
+  border-radius: 4px;
+  color:white !important;
+}
+
+.logout-btn:hover{
+  color:white;
+}
+
+.logout-btn:hover:after {
+  width: 100%;
+}

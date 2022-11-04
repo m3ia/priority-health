@@ -31,7 +31,7 @@ const AuthenticationButton = ({setSiteUser}) => {
         .then((res) => {
           setSiteUser(prev => ({...prev, ...res}));
         })
-      
+      console.log('isUserAuthenticated? ', isAuthenticated);
   
     }
   }, [isAuthenticated, user, setSiteUser]);
