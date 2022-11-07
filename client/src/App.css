@@ -1,3 +1,59 @@
+/* 
+COLOR PALETTE
+Background Color: #FFF3E0
+Text: #2D2B2B
+Icons, buttons, other accents: #D39738, w #FFF text
+Secondary text: #9D968B
+
+ */
+/* --------------------- App --------------------- */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  /* justify-content: center; */
+  background-color: #FFF3E0;
+
+}
+
+/* Entire App */
+.App {
+  height: auto;
+  flex: none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  color: #2D2B2B;
+}
+/* --------------------- LOG-IN PAGE --------------------- */
+/* Logo */
+.log-in-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+}
+
+.log-in-div h1 {
+  font-family: 'Battambang';
+  font-weight: 100;
+  font-size: 80px;
+}
+/* --------------------- NAVBAR --------------------- */
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.nav-link {
+  font-family: 'Jost';
+  color: #2D2B2B;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nav-link:hover {
+  color: #9D968B;
+}
 /* --------------------- AUTH0 --------------------- */
 .spinner {
   position: absolute;
@@ -17,31 +73,32 @@
 }
 
 /* logout btn hover effects */
-.logout-btn, .login-btn {
+.login-btn {
   font-size: 1.8rem;
   background:#000000;  
   background: -webkit-linear-gradient(to right, #403D3D, #403D3D);  
   background: linear-gradient(to right, #403D3D, #403D3D); 
-  padding: 20px 60px;
+  padding: 20px 40px;
+  /* padding: 50% 100%; */
   border: none;
   border-radius: 4px;
-  margin-top: 2rem;
+  /* margin-top: 1rem; */
   cursor: pointer;
   position: relative;
   transition: all 0.35s;
   outline: none;
   color:white;
+  font-family: 'Jost';
+  font-weight: 700px;
 }
 
-.logout-btn a, .login-btn a{
+.login-btn span {
   position: relative;
-  z-index: 2;
+  z-index: 100;
   color: #fff;
   text-decoration: none;
-  
 }
 
-.logout-btn:after,
 .login-btn:after {
   position: absolute;
   content: '';
@@ -49,18 +106,13 @@
   left: 0;
   width: 0;
   height: 100%;
-  background: #e2ce18a5;
+  background: #D39738;
   transition: all 0.35s;
   border-radius: 4px;
   color:white !important;
 }
 
-.logout-btn:hover,
-.login-btn:hover {
-  color:white;
-}
-
-.logout-btn:hover:after, .login-btn:hover:after {
+.login-btn:hover:after {
   width: 100%;
 }
 

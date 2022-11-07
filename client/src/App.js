@@ -17,7 +17,7 @@ const App = () => {
     console.log('isUserAuthenticated? ', isAuthenticated);
 
   }, [user, isAuthenticated]);
-  
+
   if (isLoading) {
     return <Loading />;
   }
@@ -25,9 +25,11 @@ const App = () => {
   console.log('user', user);
   console.log('siteUser', siteUser);
   return (
-    <div id="app" className="d-flex flex-column h-100">
+    <div id="app" className="d-flex flex-column h-100 app">
       {user ? (
+        // What user sees if they're logged in
         <>
+          <h1>priorityHealth</h1>
           <NavBar />
             <div className="container flex-grow-1">
             <Routes>
@@ -43,9 +45,11 @@ const App = () => {
             <Footer />
           </>
          ) :
-          (
+        (
+          // Log in page
           <>
-            <div className="container flex-grow-1">
+            <div className="container flex-grow-1 log-in-div">
+              <h1>priorityHealth</h1>
               <AuthNav />
             </div>
         </>

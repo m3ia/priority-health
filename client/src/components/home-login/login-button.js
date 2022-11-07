@@ -8,7 +8,7 @@ const LoginButton = () => {
       className="btn btn-primary btn-block login-btn"
       onClick={() => loginWithRedirect({screen_hint: "signup"})}
     >
-      Log In
+      <span>Log In</span>
     </button>
   );
 };
