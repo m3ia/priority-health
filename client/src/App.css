@@ -13,25 +13,35 @@ body {
   margin: 0;
   /* justify-content: center; */
   background-color: #FFF3E0;
-
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around */
 }
 
 /* Entire App */
-.App {
+.app {
   height: auto;
   flex: none;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
   color: #2D2B2B;
+  /* border: 2px solid black; */
+  margin: 20px;
+}
+/* Logo */
+.logo {
+  font-family: 'Battambang';
+  font-weight: 100;
+  font-size: 50px;
+
 }
 /* --------------------- LOG-IN PAGE --------------------- */
-/* Logo */
 .log-in-div {
   display: flex;
   flex-direction: column;
   align-items: center;  
 }
-
+/* Log in logo */
 .log-in-div h1 {
   font-family: 'Battambang';
   font-weight: 100;

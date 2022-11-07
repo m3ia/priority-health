@@ -29,7 +29,7 @@ const App = () => {
       {user ? (
         // What user sees if they're logged in
         <>
-          <h1>priorityHealth</h1>
+          <h1 className="logo">priorityHealth</h1>
           <NavBar />
             <div className="container flex-grow-1">
             <Routes>
