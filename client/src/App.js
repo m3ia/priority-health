@@ -9,9 +9,15 @@ import AuthNav from './components/home-login/auth-nav';
 import './App.css';
 
 const App = () => {
-  const { user, isLoading } = useAuth0();
+  const { user, isLoading, isAuthenticated } = useAuth0();
   const [siteUser, setSiteUser] = useState({});
 
+  useEffect(() => {
+    setSiteUser(user);
+    console.log('isUserAuthenticated? ', isAuthenticated);
+
+  }, [user, isAuthenticated]);
+  
   if (isLoading) {
     return <Loading />;
   }
@@ -22,7 +28,7 @@ const App = () => {
     <div id="app" className="d-flex flex-column h-100">
       {user ? (
         <>
-          <NavBar setSiteUser={setSiteUser} />
+          <NavBar />
             <div className="container flex-grow-1">
             <Routes>
               <Route path="/" element={<Home user={user} />} />

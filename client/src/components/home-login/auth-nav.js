@@ -5,7 +5,7 @@ import AuthenticationButton from './authentication-button';
 
 const AuthNav = ({setSiteUser}) => (
   <div className="navbar-nav ml-auto">
-    <AuthenticationButton setSiteUser={setSiteUser} />
+    <AuthenticationButton />
   </div>
 );
 

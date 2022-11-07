@@ -10,7 +10,7 @@ const NavBar = ({setSiteUser}) => {
         <div className="container">
           <div className="navbar-brand logo" />
           <MainNav />
-          <AuthNav setSiteUser={setSiteUser} />
+          <AuthNav />
         </div>
       </nav>
     </div>

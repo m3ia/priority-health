@@ -17,7 +17,7 @@
 }
 
 /* logout btn hover effects */
-.logout-btn {
+.logout-btn, .login-btn {
   font-size: 1.8rem;
   background:#000000;  
   background: -webkit-linear-gradient(to right, #403D3D, #403D3D);  
@@ -33,7 +33,7 @@
   color:white;
 }
 
-.logout-btn a{
+.logout-btn a, .login-btn a{
   position: relative;
   z-index: 2;
   color: #fff;
@@ -41,7 +41,8 @@
   
 }
 
-.logout-btn:after{
+.logout-btn:after,
+.login-btn:after {
   position: absolute;
   content: '';
   top: 0;
@@ -54,11 +55,12 @@
   color:white !important;
 }
 
-.logout-btn:hover{
+.logout-btn:hover,
+.login-btn:hover {
   color:white;
 }
 
-.logout-btn:hover:after {
+.logout-btn:hover:after, .login-btn:hover:after {
   width: 100%;
 }
 
@@ -79,3 +81,4 @@
   overflow-y: scroll;
   width: 200px;
 }
+

@@ -20,21 +20,15 @@ const saveUser = (user) => {
 
 }
 
-const AuthenticationButton = ({setSiteUser}) => {
+const AuthenticationButton = () => {
   const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated) {
       saveUser(user);
-      fetch('http://localhost:8080/api/me')
-        .then((res) => res.json())
-        .then((res) => {
-          setSiteUser(prev => ({...prev, ...res}));
-        })
-      console.log('isUserAuthenticated? ', isAuthenticated);
-  
+      return fetch('http://localhost:8080/api/me');  
     }
-  }, [isAuthenticated, user, setSiteUser]);
+  }, [isAuthenticated, user]);
 
   return isAuthenticated ? <LogoutButton /> : <LoginButton />;
 };
