@@ -8,7 +8,7 @@ const FoodList = ({siteUser}) => {
 
   const getFoods = async () => {
     console.log();
-    await fetch("http://localhost:8080/api/myFoods")
+    await fetch("/api/myFoods")
       .then((res) => res.json())
       .then((res) => {
         setFoods([...res]);

@@ -8,7 +8,7 @@ const NutritionLabel = ({foodView}) => {
 
   useEffect(() => {
     const getNutritionLabelData = async () => {
-      await fetch(`http://localhost:8080/api/example/${food}`)
+      await fetch(`/api/example/${food}`)
         .then((res) => res.json())
         .then((data) => {
           console.log("data", data);
