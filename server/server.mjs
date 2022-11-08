@@ -3,26 +3,35 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import pgPromise from 'pg-promise';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 
 dotenv.config();
 
 const NUTRITIONAL_ANALYSIS_APP_ID = process.env.NUTRITIONAL_ANALYSIS_APP_ID;
 const NUTRITIONAL_ANALYSIS_API_KEY = process.env.NUTRITIONAL_ANALYSIS_API_KEY;
 
-const app = express();
-const PORT = 8080;
+// pgPromise
 const pgp = pgPromise({});
 const db = pgp('postgres://localhost:5432/priority_health');
 
+// 
+const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const REACT_BUILD_DIR = path.join(__dirname, "..", 'client', 'build');
+app.use(express.static(REACT_BUILD_DIR));
+const PORT = process.env.PORT || 8080;
+
 app.use(cors());
 app.use(bodyParser.json());
-
 app.listen(PORT, () => {
   console.log(`Hola this server is running on port ${PORT}`);
 });
-
 app.get('/', (req, res) => {
-  res.json('Welcome to the API server!')
+  // res.json('Welcome to the API server!')
+  res.sendFile(path.join(REACT_BUILD_DIR, 'server.mjs'));
 });
 
 let userId = 0;
