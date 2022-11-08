@@ -18,8 +18,9 @@ div {
 }
 
 h1 {
-  font-family: 
+  font-family: 'Battambang';
 }
+
 html,
 body {
   height: 100%;
@@ -153,6 +154,9 @@ body {
   /* border: 1px solid black; */
   /* background-color: #fde4bd; */
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .food-item-div {
   display: flex;
@@ -164,8 +168,16 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  max-width: 100%;
+  min-width: 50%;
+  max-width: 700px;
   flex-wrap: wrap;
+}
+
+/* Single Food View */
+.food-item-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .food-item-div {
@@ -181,9 +193,93 @@ body {
 }
 
 .health-labels-list {
-  max-height: 100px;
+  max-height: 170px;
   overflow-y: scroll;
-  width: 200px;
+  width: 100%;
+}
+
+/* Single Food View */
+.food-item-view-div {
+  border: 2px solid black;
+  max-width: 900px;
+  min-width: 50%;
+  padding: 20px;
+  border-radius: 20px;
+}
+.food-item-view-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.close-btn {
+  background-color: #9D968B;
+  border-radius: 4px;
+  color: #fff;
+  height: 100%;
+  font-size: 30px;
+}
+
+.close-btn:hover {
+  cursor: pointer;
+}
+
+/* Food Item Body with Notes and Nutrition Label */
+.food-item-view-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.foot-item-notes-box {
+  border: 1px solid black
+}
+/* Nutrition label */
+
+.nutrition-label-header {
+  border-bottom: 12px solid black;
+}
+.nutrition-label-div, .foot-item-notes-box {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 20px 20px 20px 20px;
+  font-size: 20px;
+  max-height: 500px;
+  overflow-y: scroll;
+  min-width: 50%;
+  max-width: 75%;
+}
+
+.nutrition-label-div {
+  padding: 0px 20px 20px 20px;
+}
+
+.nutrition-label-div p {
+  max-height: 50%;
+}
+.nutrition-label-div h2 {
+  border-bottom: 2px solid black;
+  line-height: 100%;
+}
+
+.nutrition-label-title {
+  font-size: 25px;
+  /* line-height: 100%; */
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+  padding-bottom: 20px;
+  line-height: 100%;
+}
+
+.calories {
+  font-size: 40px;
+  line-height: 2%;
+}
+
+.nutrition-body {
+  /* padding-top: 5px; */
 }
 
 /* Single Food View */
@@ -200,4 +296,9 @@ body {
   justify-content: space-between;
   align-items: center;
   /* width: 75%; */
+}
+.nutrition-line {
+  border-bottom: 1px solid black;
+  padding-bottom: 0px;
+  /* line-height: 100%; */
 }

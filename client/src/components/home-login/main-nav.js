@@ -3,7 +3,7 @@ import React from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 
 
-const MainNav = () => {
+const MainNav = ({setFoodView}) => {
   const { logout } = useAuth0();
 
   return (
@@ -18,6 +18,7 @@ const MainNav = () => {
       </NavLink>
       <NavLink
         to="/foodList"
+        onClick={() => setFoodView("")}
         exact
         className="nav-link"
         activeClassName="router-link-exact-active"
@@ -36,7 +37,7 @@ const MainNav = () => {
         exact
         className="nav-link"
         activeClassName="router-link-exact-active"
-        onClick={() =>
+        onClick={() => 
           logout({
             returnTo: window.location.origin,
           })

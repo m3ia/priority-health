@@ -2,10 +2,10 @@ import {useState, useEffect} from "react";
 import FoodItemView from "./FoodItemView";
 import FoodItem from "./FoodItem";
 
-const FoodList = () => {
+const FoodList = ({foodView, setFoodView}) => {
   const [foods, setFoods] = useState([]);
-  const [foodView, setFoodView] = useState("");
 
+  console.log("foods: ", foods);
   const getFoods = async () => {
     console.log();
     await fetch("/api/myFoods")
@@ -35,7 +35,13 @@ const FoodList = () => {
           </div>
         </div>
       ) : (
-        <FoodItemView foodView={foodView} setFoodView={setFoodView} />
+        <div className="food-item-view-container">
+          <FoodItemView
+            foodView={foodView}
+            food={foods.filter((item) => item.food === foodView)}
+            setFoodView={setFoodView}
+          />
+        </div>
       )}
     </>
   );

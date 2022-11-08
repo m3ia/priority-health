@@ -11,6 +11,7 @@ import './App.css';
 const App = () => {
   const { user, isLoading, isAuthenticated } = useAuth0();
   const [siteUser, setSiteUser] = useState({});
+  const [foodView, setFoodView] = useState("");
 
   useEffect(() => {
     setSiteUser(user);
@@ -30,12 +31,12 @@ const App = () => {
         // What user sees if they're logged in
         <>
           <h1 className="logo">priorityHealth</h1>
-          <NavBar />
+          <NavBar setFoodView={setFoodView} />
             <div className="container flex-grow-1">
             <Routes>
               <Route path="/" element={<Home user={user} />} />
               <Route path="/profile" element={<Profile siteUser={siteUser} />} />
-              <Route path="/foodList" element={<FoodList siteUser={siteUser} />} />
+              <Route path="/foodList" element={<FoodList siteUser={siteUser} foodView={foodView} setFoodView={setFoodView} />} />
             </Routes>
           </div>
           <div>
