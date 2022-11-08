@@ -42,31 +42,44 @@ const NutritionLabel = ({foodView}) => {
 
   return (
     <>
-      <h3>Nutrition Facts</h3>
       <div className="nutrition-label-header">
         {nutritionLabelData.calories && (
-          <div>
-            <h3>1 serving: {food}</h3>
-            <p>calories: {nutritionLabelData.calories}</p>
-            <p>weight: {nutritionLabelData.weight}</p>
-          </div>
+          <>
+            <h2>Nutrition Facts</h2>
+            <p className="nutrition-label-title">
+              Amount per serving
+              <br />
+              <strong>1 serving:</strong> {food} ({nutritionLabelData.weight})
+            </p>
+            <p className="calories">
+              <strong>Calories: </strong>
+              {nutritionLabelData.calories}
+            </p>
+          </>
         )}
       </div>
       <div className="nutrition-body">
-        Fat: {nutritionLabelData.fat}
-        <br />
-        Saturated Fat: {nutritionLabelData.satFat}
-        <br />
-        Protein: {nutritionLabelData.protein}
-        <br />
-        Carbohydrates: {nutritionLabelData.carbs}
-        <br />
-        Cholesterol: {nutritionLabelData.chole}
-        <br />
-        Ingredients: {nutritionLabelData.ingrts}
+        <p className="nutrition-line">
+          <strong>Fat:</strong> {nutritionLabelData.fat}
+        </p>
+        <p className="nutrition-line">
+          <strong>Saturated Fat:</strong> {nutritionLabelData.satFat}
+        </p>
+        <p className="nutrition-line">
+          <strong>Protein:</strong> {nutritionLabelData.protein}
+        </p>
+        <p className="nutrition-line">
+          <strong>Carbohydrates:</strong> {nutritionLabelData.carbs}
+        </p>
+        <p className="nutrition-line">
+          <strong>Cholesterol:</strong> {nutritionLabelData.chole}
+        </p>
+        <p className="nutrition-line">
+          <strong>Ingredients:</strong> {nutritionLabelData.ingrts}
+        </p>
       </div>
-      <div className="diet-labels-div">
-        diet labels:
+      <div className="diet-labels-div nutrition-line">
+        <strong>Diet Labels:</strong>
         {nutritionLabelData.dietLabels && (
           <ul>
             {nutritionLabelData.dietLabels.map((item, ind) => {
@@ -76,8 +89,8 @@ const NutritionLabel = ({foodView}) => {
         )}
       </div>
 
-      <div className="health-labels-div">
-        health labels:{" "}
+      <div className="health-labels-div nutrition-line">
+        <strong>Health Labels:</strong>{" "}
         <div className="health-labels-list">
           {" "}
           {nutritionLabelData.healthLabels && (

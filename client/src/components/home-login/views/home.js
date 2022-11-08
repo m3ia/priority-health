@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 
 const Home = ({user}) => (
-
   <Fragment>
   <div className="text-center hero">
       {user ? (
