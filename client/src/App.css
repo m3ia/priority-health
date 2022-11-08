@@ -134,8 +134,16 @@ body {
   width: 300px;
 }
 
+.foods-btns-div {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
 .food-item-div {
   width: 200px;
+  margin: 10px;
 }
 
 .health-labels-list {

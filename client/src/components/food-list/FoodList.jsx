@@ -12,7 +12,6 @@ const FoodList = ({siteUser}) => {
       .then((res) => res.json())
       .then((res) => {
         setFoods([...res]);
-        console.log("res here!", res);
       });
   };
 
@@ -27,9 +26,13 @@ const FoodList = ({siteUser}) => {
         <div className="food-list-div">
           <h1>Food List</h1>
           <p>food view: {foodView}</p>
-          {foods.map((food, ind) => {
-            return <FoodItem key={ind} food={food} setFoodView={setFoodView} />;
-          })}
+          <div className="foods-btns-div">
+            {foods.map((food, ind) => {
+              return (
+                <FoodItem key={ind} food={food} setFoodView={setFoodView} />
+              );
+            })}
+          </div>
         </div>
       ) : (
         <FoodItemView foodView={foodView} setFoodView={setFoodView} />
