@@ -1,4 +1,10 @@
-/* 
+/*
+
+FONT/TEXT: 
+h1: Battambang
+Text: Jost 100
+Links: Jost (bolder)
+
 COLOR PALETTE
 Background Color: #FFF3E0
 Text: #2D2B2B
@@ -7,6 +13,13 @@ Secondary text: #9D968B
 
  */
 /* --------------------- App --------------------- */
+div {
+  font-family: 'Jost';
+}
+
+h1 {
+  font-family: 
+}
 html,
 body {
   height: 100%;
@@ -127,23 +140,44 @@ body {
 }
 
 /* --------------------- FOOD LIST --------------------- */
-.nutrition-label-div, .food-item-div {
+.nutrition-label-div {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.food-list-div {
+  /* border: 1px solid black; */
+  /* background-color: #fde4bd; */
+  width: 100%;
+}
+.food-item-div {
+  display: flex;
+  flex-direction: column;
   width: 300px;
 }
 
 .foods-btns-div {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   max-width: 100%;
   flex-wrap: wrap;
 }
 
 .food-item-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: 'Jost';
+  color: white;
+  text-shadow: 1px 1px black;
   width: 200px;
   margin: 10px;
+  border-radius: 4px;
 }
 
 .health-labels-list {
@@ -152,3 +186,18 @@ body {
   width: 200px;
 }
 
+/* Single Food View */
+.food-item-view-div {
+  border: 2px solid black;
+  width: 600px;
+  min-width: 50%;
+  padding: 20px;
+  border-radius: 20px;
+}
+.food-item-view-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 75%; */
+}

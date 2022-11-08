@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import FoodItemView from "./FoodItemView";
 import FoodItem from "./FoodItem";
 
-const FoodList = ({siteUser}) => {
+const FoodList = () => {
   const [foods, setFoods] = useState([]);
   const [foodView, setFoodView] = useState("");
 
@@ -24,7 +24,7 @@ const FoodList = ({siteUser}) => {
     <>
       {foodView === "" ? (
         <div className="food-list-div">
-          <h1>Food List</h1>
+          <h1>Food Tolerance List</h1>
           <p>food view: {foodView}</p>
           <div className="foods-btns-div">
             {foods.map((food, ind) => {
