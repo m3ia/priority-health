@@ -21,7 +21,7 @@ const FoodItemView = ({foodView, setFoodView, food}) => {
           </span>
         </h1>{" "}
         <span
-          class="material-symbols-outlined close-btn"
+          className="material-symbols-outlined close-btn"
           onClick={() => setFoodView("")}>
           close
         </span>
