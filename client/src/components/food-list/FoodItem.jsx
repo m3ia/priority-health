@@ -11,11 +11,12 @@ const FoodItem = ({food, setFoodView}) => {
           // (food.status === "mod" && "#fcb508")
           // (food.status === "mod" && "#fab102")
           // (food.status === "mod" && "#FFD635")
-          (food.status === "mod" && "#f9e04f")
+          (food.status === "mod" && "#f9e04f") ||
           // (food.status === "mod" && "#e0c52f")
           // (food.status === "mod" && "#f7ef62")
           // (food.status === "mod" && "#f7ec27")
           // (food.status === "mod" && "#f2ec85")
+          (!food.status && "#FFF")
         }`,
       }}>
       <h3>{food.food}</h3>

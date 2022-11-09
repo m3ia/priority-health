@@ -11,11 +11,12 @@ const FoodItemView = ({foodView, setFoodView, food}) => {
               backgroundColor: `${
                 (food[0].status === "ok" && "#309F77") ||
                 (food[0].status === "avoid" && "#C41817") ||
-                (food[0].status === "mod" && "#f9e04f")
+                (food[0].status === "mod" && "#f9e04f") ||
+                (!food.status && "#FFF")
               }`,
               padding: "7px",
             }}>
-            {food[0].status.toUpperCase()}
+            {food[0].status ? food[0].status.toUpperCase() : "Not yet labeled"}
           </span>
         </h1>{" "}
         <span

@@ -110,7 +110,7 @@ const NutritionLabel = ({foodView}) => {
             )}
           </div>
 
-          <div className="health-labels-div nutrition-line">
+          <div className="health-labels-div">
             <strong>Health Labels:</strong>{" "}
             <div className="health-labels-list">
               {" "}
