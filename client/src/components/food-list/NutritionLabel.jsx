@@ -1,7 +1,10 @@
 import {useState, useEffect} from "react";
+import spinner from "../../../src/spinner.svg";
+import {ReactSVG} from "react-svg";
 
 const NutritionLabel = ({foodView}) => {
   const [nutritionLabelData, setNutritionLabelData] = useState({});
+  const [loadExpired, setLoadExpired] = useState(false);
 
   // const food = "1 tbsp honey";
   const food = foodView;
@@ -40,70 +43,90 @@ const NutritionLabel = ({foodView}) => {
     getNutritionLabelData();
   }, [food]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (Object.keys(nutritionLabelData).length === 0) {
+        setLoadExpired(true);
+      }
+    }, 3000);
+  }, [nutritionLabelData]);
   return (
     <>
-      <div className="nutrition-label-header">
-        {nutritionLabelData.calories && (
-          <>
-            <h2>Nutrition Facts</h2>
-            <p className="nutrition-label-title">
-              Amount per serving
-              <br />
-              <strong>1 serving:</strong> {food} ({nutritionLabelData.weight})
+      {Object.keys(nutritionLabelData).length === 0 ? (
+        !loadExpired ? (
+          <ReactSVG src={spinner} />
+        ) : (
+          "No nutritional info was fetched, sorry =/."
+        )
+      ) : (
+        <>
+          <div className="nutrition-label-header">
+            {Object.keys(nutritionLabelData).length > 0 && (
+              <>
+                <h2>Nutrition Facts</h2>
+                <p className="nutrition-label-title">
+                  Amount per serving
+                  <br />
+                  <strong>1 serving:</strong> {food} (
+                  {nutritionLabelData.weight})
+                </p>
+                <p className="calories">
+                  <strong>Calories: </strong>
+                  {nutritionLabelData.calories}
+                </p>
+              </>
+            )}
+          </div>
+          <div className="nutrition-body">
+            <p className="nutrition-line">
+              <strong>Fat:</strong> {nutritionLabelData.fat}
             </p>
-            <p className="calories">
-              <strong>Calories: </strong>
-              {nutritionLabelData.calories}
+            <p className="nutrition-line">
+              <strong>Saturated Fat:</strong> {nutritionLabelData.satFat}
             </p>
-          </>
-        )}
-      </div>
-      <div className="nutrition-body">
-        <p className="nutrition-line">
-          <strong>Fat:</strong> {nutritionLabelData.fat}
-        </p>
-        <p className="nutrition-line">
-          <strong>Saturated Fat:</strong> {nutritionLabelData.satFat}
-        </p>
-        <p className="nutrition-line">
-          <strong>Protein:</strong> {nutritionLabelData.protein}
-        </p>
-        <p className="nutrition-line">
-          <strong>Carbohydrates:</strong> {nutritionLabelData.carbs}
-        </p>
-        <p className="nutrition-line">
-          <strong>Cholesterol:</strong> {nutritionLabelData.chole}
-        </p>
-        <p className="nutrition-line">
-          <strong>Ingredients:</strong> {nutritionLabelData.ingrts}
-        </p>
-      </div>
-      <div className="diet-labels-div nutrition-line">
-        <strong>Diet Labels:</strong>
-        {nutritionLabelData.dietLabels && (
-          <ul>
-            {nutritionLabelData.dietLabels.map((item, ind) => {
-              return <li key={ind}>{item.toLowerCase().replace(/_/, " ")}</li>;
-            })}
-          </ul>
-        )}
-      </div>
+            <p className="nutrition-line">
+              <strong>Protein:</strong> {nutritionLabelData.protein}
+            </p>
+            <p className="nutrition-line">
+              <strong>Carbohydrates:</strong> {nutritionLabelData.carbs}
+            </p>
+            <p className="nutrition-line">
+              <strong>Cholesterol:</strong> {nutritionLabelData.chole}
+            </p>
+            <p className="nutrition-line">
+              <strong>Ingredients:</strong> {nutritionLabelData.ingrts}
+            </p>
+          </div>
+          <div className="diet-labels-div nutrition-line">
+            <strong>Diet Labels:</strong>
+            {nutritionLabelData.dietLabels && (
+              <ul>
+                {nutritionLabelData.dietLabels.map((item, ind) => {
+                  return (
+                    <li key={ind}>{item.toLowerCase().replace(/_/, " ")}</li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
 
-      <div className="health-labels-div nutrition-line">
-        <strong>Health Labels:</strong>{" "}
-        <div className="health-labels-list">
-          {" "}
-          {nutritionLabelData.healthLabels && (
-            <ul>
-              {nutritionLabelData.healthLabels.map((item, ind) => {
-                return (
-                  <li key={ind}>{item.toLowerCase().replace(/_/g, " ")}</li>
-                );
-              })}
-            </ul>
-          )}
-        </div>
-      </div>
+          <div className="health-labels-div nutrition-line">
+            <strong>Health Labels:</strong>{" "}
+            <div className="health-labels-list">
+              {" "}
+              {nutritionLabelData.healthLabels && (
+                <ul>
+                  {nutritionLabelData.healthLabels.map((item, ind) => {
+                    return (
+                      <li key={ind}>{item.toLowerCase().replace(/_/g, " ")}</li>
+                    );
+                  })}
+                </ul>
+              )}
+            </div>
+          </div>
+        </>
+      )}{" "}
     </>
   );
 };

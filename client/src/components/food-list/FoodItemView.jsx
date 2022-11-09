@@ -1,8 +1,6 @@
 import NutritionLabel from "./NutritionLabel";
-import {useState} from "react";
+
 const FoodItemView = ({foodView, setFoodView, food}) => {
-  const [isLoading, setIsLoading] = useState(true);
-  console.log("food: ", food[0]);
   return (
     <div className="food-item-view-div">
       <div className="food-item-view-header">
