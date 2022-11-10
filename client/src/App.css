@@ -313,21 +313,30 @@ body {
 
 /* --------------------- COLLECTIONS --------------------- */
 
-.collections-div {
+.recipes-collections-div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   /* align-items: flex-start; */
 }
 
+/* Collections Section */
+/* All Recipes and Uncategorized Recipes Buttons */
+.recipes-btn {
+  border: 1px solid black;
+  padding: 5px;
+  font-weight: 700;
+}
 /* Collections Search Scroll */
-
 .collections-searchbar {
   border: solid black;
   border-width: px 2px 0px 2px;
+  padding: 10px;
 }
 .collections-searchbar input {
   background: transparent;
   border: none;
+  width: 100%;
+  height: 100%;
 }
 .collections-scroll-section {
   border: 1px solid black;
@@ -338,11 +347,20 @@ body {
   border-bottom: 1px solid black;
 }
 
+/* Recipes Section */
+.recipes-div {
+  border: 2px solid black;
+  width: 120%;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
 /* Going to delete this */
-.collections-cards-div {
+.collections-div {
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
+
 .collections-card-div {
   border: 2px solid black;
   display: flex;
