@@ -49,6 +49,10 @@ body {
   font-size: 50px;
 
 }
+
+.vector-icons {
+  height: 150px;
+}
 /* --------------------- LOG-IN PAGE --------------------- */
 .log-in-div {
   display: flex;
@@ -308,6 +312,7 @@ body {
 
 
 /* --------------------- COLLECTIONS --------------------- */
+
 .collections-div {
   display: flex;
   flex-direction: column;
