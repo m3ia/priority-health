@@ -319,6 +319,26 @@ body {
   /* align-items: flex-start; */
 }
 
+/* Collections Search Scroll */
+
+.collections-searchbar {
+  border: solid black;
+  border-width: px 2px 0px 2px;
+}
+.collections-searchbar input {
+  background: transparent;
+  border: none;
+}
+.collections-scroll-section {
+  border: 1px solid black;
+  max-height: 170px;
+  overflow-y: scroll;
+}
+.collection-bar {
+  border-bottom: 1px solid black;
+}
+
+/* Going to delete this */
 .collections-cards-div {
   display: flex;
   flex-direction: column;
