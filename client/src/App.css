@@ -305,3 +305,26 @@ body {
   padding-bottom: 0px;
   /* line-height: 100%; */
 }
+
+
+/* --------------------- COLLECTIONS --------------------- */
+.collections-div {
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+}
+
+.collections-cards-div {
+  display: flex;
+  flex-direction: column;
+}
+.collections-card-div {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+/* .collections-card-body {
+
+} */

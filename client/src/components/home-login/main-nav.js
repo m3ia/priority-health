@@ -26,6 +26,14 @@ const MainNav = ({setFoodView}) => {
         Food List
       </NavLink>
       <NavLink
+        to="/recipes"
+        exact
+        className="nav-link"
+        activeClassName="router-link-exact-active"
+      >
+        Recipes
+      </NavLink>
+      <NavLink
         to="/profile"
         exact
         className="nav-link"

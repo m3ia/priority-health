@@ -25,7 +25,6 @@ const AuthenticationButton = () => {
   useEffect(() => {
     if (isAuthenticated) {
       saveUser(user);
-      return fetch('/api/me');  
     }
   }, [isAuthenticated, user]);
 

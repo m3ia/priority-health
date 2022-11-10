@@ -72,7 +72,6 @@ app.post('/api/me', cors(), async (req, res) => {
   const valuesEmail = [newUser.email];
   const returningUser = await db.query(queryEmail, valuesEmail);
   if (returningUser.length > 0) {
-    console.log('returningUser: ', returningUser);
     console.log(`Thank you ${returningUser[0].first_name} for coming back`);
     userId = returningUser[0].id;
     res.send(returningUser);
@@ -91,7 +90,6 @@ app.post('/api/me', cors(), async (req, res) => {
 
 // GET Get all foods for 1 user:
 app.get(`/api/myFoods`, cors(), async (req, res) => {
-  console.log('userId', userId, 'type: ', typeof userId);
   try {
     const response = await db.any('SELECT * FROM foods WHERE user_id = $1', [userId]);
     res.send(response);
@@ -112,6 +110,17 @@ app.get(`/api/example/:food`, async (req, res) => {
     const response = await fetch(url);
     const data = await response.json();
     res.send(data);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({ e });
+  }
+});
+
+// GET all collections
+app.get(`/api/collections`, cors(), async (req, res) => {
+  try {
+    const response = await db.any('SELECT * FROM collections WHERE user_id = $1', [userId]);
+    res.send(response);
   } catch (e) {
     console.log(e);
     res.status(400).send({ e });
