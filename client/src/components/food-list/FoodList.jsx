@@ -5,9 +5,7 @@ import FoodItem from "./FoodItem";
 const FoodList = ({foodView, setFoodView}) => {
   const [foods, setFoods] = useState([]);
 
-  console.log("foods: ", foods);
   const getFoods = async () => {
-    console.log();
     await fetch("/api/myFoods")
       .then((res) => res.json())
       .then((res) => {

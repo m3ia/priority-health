@@ -1,4 +1,5 @@
 import NutritionLabel from "./NutritionLabel";
+import {foodStatusToColor} from "./FoodItem";
 
 const FoodItemView = ({foodView, setFoodView, food}) => {
   return (
@@ -9,10 +10,7 @@ const FoodItemView = ({foodView, setFoodView, food}) => {
           <span
             style={{
               backgroundColor: `${
-                (food[0].status === "ok" && "#309F77") ||
-                (food[0].status === "avoid" && "#C41817") ||
-                (food[0].status === "mod" && "#f9e04f") ||
-                (!food.status && "#FFF")
+                !food[0].status ? "#FFF" : foodStatusToColor(food[0]?.status)
               }`,
               padding: "7px",
             }}>
