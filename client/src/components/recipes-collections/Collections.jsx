@@ -1,5 +1,4 @@
 import {useState, useEffect} from "react";
-import CollectionsCard from "./CollectionsCard";
 import CollectionsSearchScroll from "./CollectionsSearchScroll";
 import Recipes from "./Recipes";
 
@@ -35,10 +34,6 @@ const Collections = () => {
             Uncategorized Recipes
           </div>
           <CollectionsSearchScroll collectionsData={collectionsData} />
-          {collectionsData.length > 0 &&
-            collectionsData.map((collection, ind) => {
-              return <CollectionsCard key={ind} collection={collection} />;
-            })}
         </div>
         <div className="recipes-div">
           <h2>Recipes</h2>
