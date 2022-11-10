@@ -1,44 +1,47 @@
-import {useState} from "react";
-import NutritionLabel from "../NutritionLabel";
+import {useState, useEffect} from "react";
+import FoodItemView from "./FoodItemView";
+import FoodItem from "./FoodItem";
 
-const FoodList = () => {
-  const [nutritionLabel, setNutritionLabel] = useState({});
-  const food = "1 tbsp honey";
+const FoodList = ({foodView, setFoodView}) => {
+  const [foods, setFoods] = useState([]);
 
-  const getNutritionLabel = async () => {
-    await fetch(`http://localhost:8080/api/example/${food}`)
+  const getFoods = async () => {
+    await fetch("/api/myFoods")
       .then((res) => res.json())
-      .then((data) => {
-        console.log("data", data);
-        setNutritionLabel((prev) => ({
-          ...prev,
-          dietLabels: data.dietLabels,
-          healthLabels: data.healthLabels,
-          calories: data.calories,
-        }));
+      .then((res) => {
+        setFoods([...res]);
       });
   };
 
+  // GET request that fetches everything from http://localhost:8080/api/myFoods
+  useEffect(() => {
+    getFoods();
+  }, []);
+
   return (
-    <div>
-      <h1>Food weewsrser</h1>
-      <button onClick={getNutritionLabel}>1 tbsp honey</button>
-      {nutritionLabel.dietLabels && (
-        <NutritionLabel
-          nutritionLabel={nutritionLabel}
-          // setNutritionLabel={setNutritionLabel}
-          getNutritionLabel={getNutritionLabel}
-        />
-      )}
-      <div>
-        {nutritionLabel.calories && (
-          <div>
-            <h3>{food}</h3>
-            <p>calories: {nutritionLabel.calories}</p>
+    <>
+      {foodView === "" ? (
+        <div className="food-list-div">
+          <h1>Food Tolerance List</h1>
+          <p>food view: {foodView}</p>
+          <div className="foods-btns-div">
+            {foods.map((food, ind) => {
+              return (
+                <FoodItem key={ind} food={food} setFoodView={setFoodView} />
+              );
+            })}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      ) : (
+        <div className="food-item-view-container">
+          <FoodItemView
+            foodView={foodView}
+            food={foods.filter((item) => item.food === foodView)}
+            setFoodView={setFoodView}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

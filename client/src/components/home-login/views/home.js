@@ -1,11 +1,10 @@
 import React, { Fragment } from "react";
 
 const Home = ({user}) => (
-
   <Fragment>
   <div className="text-center hero">
       {user ? (
-        <h1>user is signed in.</h1>
+        <h1>Welcome, {user.given_name}!</h1>
       ) :
         (
           <h1>USER IS NOT SIGNED IN</h1>

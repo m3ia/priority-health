@@ -1,6 +1,6 @@
 import './App.css';
 import FoodList from './components/food-list/FoodList';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NavBar, Footer, Loading } from './components/home-login';
@@ -9,29 +9,48 @@ import AuthNav from './components/home-login/auth-nav';
 import './App.css';
 
 const App = () => {
-  const { user, isLoading } = useAuth0();
-  
+  const { user, isLoading, isAuthenticated } = useAuth0();
+  const [siteUser, setSiteUser] = useState({});
+  const [foodView, setFoodView] = useState("");
+
+  useEffect(() => {
+    setSiteUser(user);
+    console.log('isUserAuthenticated? ', isAuthenticated);
+
+  }, [user, isAuthenticated]);
+
   if (isLoading) {
     return <Loading />;
   }
 
+  console.log('user', user);
+  console.log('siteUser', siteUser);
   return (
-    <div id="app" className="d-flex flex-column h-100">
+    <div id="app" className="d-flex flex-column h-100 app">
       {user ? (
+        // What user sees if they're logged in
         <>
-            <NavBar />
+          <h1 className="logo">priorityHealth</h1>
+          <NavBar setFoodView={setFoodView} />
             <div className="container flex-grow-1">
             <Routes>
               <Route path="/" element={<Home user={user} />} />
-              <Route path="/profile" element={<Profile user={user} />} />
+              <Route path="/profile" element={<Profile siteUser={siteUser} />} />
+              <Route path="/foodList" element={<FoodList siteUser={siteUser} foodView={foodView} setFoodView={setFoodView} />} />
             </Routes>
-            </div>
+          </div>
+          <div>
+            
+          </div>
+
             <Footer />
           </>
          ) :
-          (
+        (
+          // Log in page
           <>
-            <div className="container flex-grow-1">
+            <div className="container flex-grow-1 log-in-div">
+              <h1>priorityHealth</h1>
               <AuthNav />
             </div>
         </>
@@ -45,7 +64,6 @@ export default App;
 // function App() {
 //   return (
 //     <div className="App">
-//       <FoodList />
 //       hiasdf;lkjasdfasdflaksdf';lkaf
 //     </div>
 //   );

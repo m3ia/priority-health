@@ -1,63 +1,84 @@
-.App {
-  text-align: center;
+/*
+
+FONT/TEXT: 
+h1: Battambang
+Text: Jost 100
+Links: Jost (bolder)
+
+COLOR PALETTE
+Background Color: #FFF3E0
+Text: #2D2B2B
+Icons, buttons, other accents: #D39738, w #FFF text
+Secondary text: #9D968B
+
+ */
+/* --------------------- App --------------------- */
+div {
+  font-family: 'Jost';
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  font-family: 'Battambang';
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  /* justify-content: center; */
+  background-color: #FFF3E0;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Entire App */
+.app {
+  height: auto;
+  flex: none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  color: #2D2B2B;
+  /* border: 2px solid black; */
+  margin: 20px;
+}
+/* Logo */
+.logo {
+  font-family: 'Battambang';
+  font-weight: 100;
+  font-size: 50px;
+
+}
+/* --------------------- LOG-IN PAGE --------------------- */
+.log-in-div {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;  
+}
+/* Log in logo */
+.log-in-div h1 {
+  font-family: 'Battambang';
+  font-weight: 100;
+  font-size: 80px;
+}
+/* --------------------- NAVBAR --------------------- */
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.nav-link {
+  font-family: 'Jost';
+  color: #2D2B2B;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-link:hover {
+  color: #9D968B;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Auth0 */
-
-.next-steps .fa-link {
-  margin-right: 5px;
-}
-
-/* Fix for use only flexbox in content area */
-.next-steps .row {
-  margin-bottom: 0;
-}
-
-.next-steps .col-md-5 {
-  margin-bottom: 3rem;
-}
-
-@media (max-width: 768px) {
-  .next-steps .col-md-5 {
-    margin-bottom: 0;
-  }
-}
-
+/* --------------------- AUTH0 --------------------- */
 .spinner {
   position: absolute;
   display: flex;
@@ -73,4 +94,214 @@
 
 .result-block-container .result-block {
   opacity: 1;
+}
+
+/* logout btn hover effects */
+.login-btn {
+  font-size: 1.8rem;
+  background:#000000;  
+  background: -webkit-linear-gradient(to right, #403D3D, #403D3D);  
+  background: linear-gradient(to right, #403D3D, #403D3D); 
+  padding: 20px 40px;
+  /* padding: 50% 100%; */
+  border: none;
+  border-radius: 4px;
+  /* margin-top: 1rem; */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.35s;
+  outline: none;
+  color:white;
+  font-family: 'Jost';
+  font-weight: 700px;
+}
+
+.login-btn span {
+  position: relative;
+  z-index: 100;
+  color: #fff;
+  text-decoration: none;
+}
+
+.login-btn:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #D39738;
+  transition: all 0.35s;
+  border-radius: 4px;
+  color:white !important;
+}
+
+.login-btn:hover:after {
+  width: 100%;
+}
+
+/* --------------------- FOOD LIST --------------------- */
+.nutrition-label-div {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.food-list-div {
+  /* border: 1px solid black; */
+  /* background-color: #fde4bd; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.food-item-div {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.foods-btns-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-width: 50%;
+  max-width: 700px;
+  flex-wrap: wrap;
+}
+
+/* Single Food View */
+.food-item-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.food-item-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: 'Jost';
+  color: white;
+  text-shadow: 1px 1px black;
+  width: 200px;
+  margin: 10px;
+  border-radius: 4px;
+}
+
+.health-labels-list {
+  max-height: 170px;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+/* Single Food View */
+.food-item-view-div {
+  border: 2px solid black;
+  max-width: 900px;
+  min-width: 50%;
+  padding: 20px;
+  border-radius: 20px;
+}
+.food-item-view-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.close-btn {
+  background-color: #9D968B;
+  border-radius: 4px;
+  color: #fff;
+  height: 100%;
+  font-size: 30px;
+}
+
+.close-btn:hover {
+  cursor: pointer;
+}
+
+/* Food Item Body with Notes and Nutrition Label */
+.food-item-view-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.foot-item-notes-box {
+  border: 1px solid black;
+  width: 220px;
+  min-height: 150px;
+  background-color: #fff;
+}
+/* Nutrition label */
+
+.nutrition-label-header {
+  border-bottom: 12px solid black;
+}
+.nutrition-label-div, .foot-item-notes-box {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 20px 20px 20px 20px;
+  font-size: 20px;
+  max-height: 500px;
+  overflow-y: scroll;
+  /* min-width: 50%; */
+  max-width: 75%;
+}
+
+.nutrition-label-div {
+  padding: 0px 20px 20px 20px;
+}
+
+.nutrition-label-div p {
+  max-height: 50%;
+}
+.nutrition-label-div h2 {
+  border-bottom: 2px solid black;
+  line-height: 100%;
+}
+
+.nutrition-label-title {
+  font-size: 25px;
+  /* line-height: 100%; */
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+  padding-bottom: 20px;
+  line-height: 100%;
+}
+
+.calories {
+  font-size: 40px;
+  line-height: 2%;
+}
+
+.nutrition-body {
+  /* padding-top: 5px; */
+}
+
+/* Single Food View */
+.food-item-view-div {
+  border: 2px solid black;
+  width: 800px;
+  min-width: 50%;
+  padding: 20px;
+  border-radius: 20px;
+}
+.food-item-view-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 75%; */
+}
+.nutrition-line {
+  border-bottom: 1px solid black;
+  padding-bottom: 0px;
+  /* line-height: 100%; */
 }
