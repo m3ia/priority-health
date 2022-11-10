@@ -354,6 +354,41 @@ body {
   margin-left: 3rem;
   margin-right: 3rem;
 }
+
+/* Recipes search bar + recipe form div */
+.recipes-search-form-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.recipes-searchbar {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  width: 80%;
+  border:dotted;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.recipes-form-btn {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  border: dotted;
+  align-items: center;
+  justify-content: center;
+  background-color: #D39738;
+  color: white;
+  border-radius: 4px;
+}
+
+.recipes-form-btn:hover {
+  cursor: pointer;
+  background-color: #d39738e3;
+}
 /* Going to delete this */
 .collections-div {
   display: flex;
