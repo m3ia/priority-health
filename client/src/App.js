@@ -7,13 +7,15 @@ import { NavBar, Footer, Loading } from './components/home-login';
 import { Home, Profile } from './components/home-login/views';
 import Collections from './components/recipes-collections/Collections';
 import NewRecipeForm from './components/recipes-collections/NewRecipeForm';
+import SingleRecipeView from './components/recipes-collections/SingleRecipeView';
 
 import AuthNav from './components/home-login/auth-nav';
 import './App.css';
 
 const App = () => {
   const { user, isLoading, isAuthenticated } = useAuth0();
-  const [siteUser, setSiteUser] = useState({userId: 0});
+  const [siteUser, setSiteUser] = useState({ userId: 0 });
+  
   
   const getUser = async (siteUser) => {
     // setSiteUser(prev => ({ ...prev, ...user }))
@@ -44,8 +46,7 @@ const App = () => {
     return <Loading />;
   }
 
-  console.log('user', user);
-  console.log('siteUser', siteUser);
+  console.log('siteUser', siteUser.userId);
   return (
     <div id="app" className="d-flex flex-column h-100 app">
       {user ? (
@@ -60,6 +61,7 @@ const App = () => {
               <Route path="/recipes" element={<Collections siteUser={siteUser} />} />
               <Route path="/food-list" element={<FoodList siteUser={siteUser} foodView={foodView} setFoodView={setFoodView} />} />
               <Route path="/add-new-recipe" element={<NewRecipeForm siteUser={siteUser} />} />
+              <Route path="/recipe/:recipeId" element={<SingleRecipeView siteUser={siteUser} />} />
             </Routes>
           </div>
           <div>

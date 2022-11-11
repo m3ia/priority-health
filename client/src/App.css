@@ -311,7 +311,7 @@ body {
 }
 
 
-/* --------------------- COLLECTIONS --------------------- */
+/* --------------------- MY RECIPE COLLECTIONS PAGE --------------------- */
 
 .recipes-collections-div {
   display: flex;
@@ -319,8 +319,14 @@ body {
   /* align-items: flex-start; */
 }
 
-/* Collections Section */
+/* COLLECTIONS SECTION ---------------------*/
 /* All Recipes and Uncategorized Recipes Buttons */
+.collections-div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
 .recipes-btn {
   border: 1px solid black;
   padding: 5px;
@@ -347,7 +353,7 @@ body {
   border-bottom: 1px solid black;
 }
 
-/* Recipes Section */
+/* RECIPES SECTION ---------------------*/
 .recipes-div {
   border: 2px solid black;
   width: 120%;
@@ -389,20 +395,38 @@ body {
   cursor: pointer;
   background-color: #d39738e3;
 }
-/* Going to delete this */
-.collections-div {
+
+
+/* Recipe List Card Section  */
+.recipe-list-card-container {
   display: flex;
-  flex-direction: column;
-  width: 50%;
+  flex-direction: row;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
-.collections-card-div {
+.recipe-list-card-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.recipe-list-card-details {
+  display: flex;
+  flex-direction: column; 
+}
+
+/* Single Recipe ---------------------*/
+.single-recipe-container {
+  
+}
+
+/* .collections-card-div {
   border: 2px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-}
+} */
 /* .collections-card-body {
 
 } */

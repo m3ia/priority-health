@@ -130,6 +130,17 @@ app.get(`/api/collections`, cors(), async (req, res) => {
   }
 });
 
+// GET All Recipes
+app.get('/api/recipes', async (req, res) => {
+  try {
+    const response = await db.any('SELECT * FROM recipes WHERE user_id = $1', [userId]);
+    res.send(response);
+  } catch (e) {
+    console.log('GET /api/recipes error: ', e);
+    res.status(400).send({ e });
+  }
+});
+
 // POST - Add a new recipe
 app.post('/api/new-recipe', cors(), async (req, res, next) => {
   
@@ -176,3 +187,17 @@ app.post('/api/new-recipe', cors(), async (req, res, next) => {
     res.status(400).send({ e });
   }
 });
+
+// GET A Single Recipe
+app.get('/api/recipe/:id', async (req, res) => {
+  const recipeId = req.params.id;
+  try {
+    const response = await db.any('SELECT * FROM recipes WHERE id = $1', [recipeId]);
+    res.send(response);
+  } catch (e) {
+    console.log('GET /api/recipe/:id');
+    res.status(400).send({ e });
+  }
+})
+
+
