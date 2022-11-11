@@ -6,7 +6,11 @@ const CollectionsSearchScroll = ({collectionsData}) => {
       </div>
       <div className="collections-scroll-section">
         {collectionsData.map((collection, ind) => {
-          return <div className="collection-bar">{collection.name}</div>;
+          return (
+            <div className="collection-bar" key={ind}>
+              {collection.name}
+            </div>
+          );
         })}
       </div>
     </div>

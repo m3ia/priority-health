@@ -15,8 +15,6 @@ const saveUser = (user) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   })
-
-
 }
 
 const AuthenticationButton = () => {

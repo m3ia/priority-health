@@ -13,14 +13,32 @@ import './App.css';
 
 const App = () => {
   const { user, isLoading, isAuthenticated } = useAuth0();
-  const [siteUser, setSiteUser] = useState({});
+  const [siteUser, setSiteUser] = useState({userId: 0});
+  
+  const getUser = async (siteUser) => {
+    // setSiteUser(prev => ({ ...prev, ...user }))
+    await fetch("/api/me")
+      .then((res) => res.json())
+      .then((res) => setSiteUser(prev => ({...prev, userId: res.id})));
+  };
+  /* 
+  
+  siteUser object: 
+  {
+    
+  }
+
+  */
   const [foodView, setFoodView] = useState("");
 
   useEffect(() => {
     setSiteUser(user);
     console.log('isUserAuthenticated? ', isAuthenticated);
-
   }, [user, isAuthenticated]);
+
+  useEffect(() => {
+    getUser();
+  }, [user]);
 
   if (isLoading) {
     return <Loading />;

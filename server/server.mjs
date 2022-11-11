@@ -73,7 +73,10 @@ app.post('/api/me', cors(), async (req, res) => {
   const returningUser = await db.query(queryEmail, valuesEmail);
   if (returningUser.length > 0) {
     console.log(`Thank you ${returningUser[0].first_name} for coming back`);
+    console.log('prev userId: ', userId);
     userId = returningUser[0].id;
+    console.log('current userId: ', userId);
+
     res.send(returningUser);
   } else {
     const query = 'INSERT INTO users(last_name, first_name, email) VALUES($1, $2, $3) RETURNING *';
@@ -123,6 +126,53 @@ app.get(`/api/collections`, cors(), async (req, res) => {
     res.send(response);
   } catch (e) {
     console.log(e);
+    res.status(400).send({ e });
+  }
+});
+
+// POST - Add a new recipe
+app.post('/api/new-recipe', cors(), async (req, res, next) => {
+  
+  const newRecipe = {
+    userId: req.body.userId,
+    name: req.body.name,
+    summary: req.body.summary,
+    ingredients: req.body.ingredients,
+    instructions: req.body.instructions,
+    image: req.body.image,
+    url: req.body.url,
+    // user_id:req.body.user_id,
+    prep_time: req.body.prep_time,
+    cook_time: req.body.cook_time,
+    yield: req.body.yield
+  }
+
+  userId = newRecipe.userId;
+  try {
+        console.log('userId: ', userId, typeof userId);
+
+    const recipeQuery = 'INSERT INTO recipes (name, summary, ingredients, instructions, image, url, user_id, prep_time, cook_time, yield) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *';
+
+    const values = [
+      newRecipe.name, 
+      newRecipe.summary,
+      newRecipe.ingredients,
+      newRecipe.instructions,
+      newRecipe.image,
+      newRecipe.url,
+      userId,
+      newRecipe.prep_time,
+      newRecipe.cook_time,
+      newRecipe.yield
+    ];
+
+    const result = await db.query(recipeQuery, values);
+    console.log('New Recipe Added: ', result);
+    console.log('userId: ', userId, typeof userId);
+    res.status(201);
+    res.send();
+  } catch (e) {
+    console.log('Recipe Post Req Handler Error: ', e);
     res.status(400).send({ e });
   }
 });
