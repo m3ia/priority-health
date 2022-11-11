@@ -20,7 +20,7 @@ const Collections = () => {
 
   return (
     <div className="recipes-collections-container">
-      <h1>Recipes + Recipe Collections</h1>
+      <h1>My Recipe Collections</h1>
       <div className="recipes-collections-div">
         <div className="collections-div">
           <div
