@@ -63,7 +63,7 @@ const SingleRecipeView = ({siteUser}) => {
             <div className="recipe-body-left">
               <div className="recipe-instructions">
                 <h2>Instructions</h2>
-                <Interweave content={selectedRecipe.instructions} />;
+                <Interweave content={selectedRecipe.instructions} />
               </div>
             </div>
             <div className="recipe-body-right">
