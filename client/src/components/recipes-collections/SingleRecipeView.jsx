@@ -22,12 +22,39 @@ const SingleRecipeView = ({siteUser}) => {
 
   return (
     <div className="single-recipe-container">
-      Single Recipe Div
-      <div className="recipe-header">{selectedRecipe.name}</div>
-      <div className="recipe-">
-        <div className="recipe-body">
-          <div className="recipe-body-l;eft">left</div>
-          <div className="recipe-body-right">right</div>
+      <div className="recipe-header">
+        <div className="recipe-name">Name: {selectedRecipe.name}</div>
+        <div className="recipe-photo">
+          {" "}
+          Image: {selectedRecipe.image}
+          <br />
+          Source link: {selectedRecipe.url}
+        </div>
+      </div>
+      <div className="recipe-body">
+        <div className="recipe-body-left">
+          <div className="recipe-summary">
+            Summary: {selectedRecipe.summary}
+          </div>
+
+          <div className="recipe-instructions">
+            Instructions: {selectedRecipe.instructions}
+          </div>
+        </div>
+        <div className="recipe-body-right">
+          <div className="recipe-servings-info">
+            <h2>Ingredients</h2>
+            Prep Time: {selectedRecipe.prep_time}
+            <br />
+            Cook Time: {selectedRecipe.cook_time}
+            <br /> Yields: {selectedRecipe.yield}
+            <div className="recipe-ingredients">
+              Ingredients: {selectedRecipe.ingredients}
+            </div>
+          </div>
+          <div className="recipe-nutrition-label">
+            <h2>nutrition label</h2>
+          </div>
         </div>
       </div>
     </div>
