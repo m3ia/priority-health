@@ -52,8 +52,9 @@ const App = () => {
       {user ? (
         // What user sees if they're logged in
         <>
-          <h1 className="logo">priorityHealth</h1>
-          <NavBar setFoodView={setFoodView} />
+          <div className="app-header"><h1 className="logo">priorityHealth</h1>
+            <NavBar setFoodView={setFoodView} />
+            </div>
             <div className="container flex-grow-1">
             <Routes>
               <Route path="/" element={<Home user={user} />} />
@@ -63,9 +64,10 @@ const App = () => {
               <Route path="/add-new-recipe" element={<NewRecipeForm siteUser={siteUser} />} />
               <Route path="/recipe/:recipeId" element={<SingleRecipeView siteUser={siteUser} />} />
             </Routes>
-          </div>
+            </div>
+                        
+
           <div>
-            
           </div>
 
             <Footer />

@@ -1,5 +1,9 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {Interweave} from "interweave";
+import {parseIngredient} from "parse-ingredient";
+import spinner from "./spinner.svg";
+import {ReactSVG} from "react-svg";
 
 const SingleRecipeView = ({siteUser}) => {
   const {recipeId} = useParams();
@@ -12,9 +16,10 @@ const SingleRecipeView = ({siteUser}) => {
       await fetch(`/api/recipe/${recipeId}`)
         .then((res) => res.json())
         .then((res) => {
+          const parsedIngredients = [...parseIngredient(res[0].ingredients)];
           console.log("recipeId: ", recipeId);
           console.log("ressssy: ", res);
-          setSelectedRecipe({...res[0]});
+          setSelectedRecipe({...res[0], ingredients: parsedIngredients});
         });
     };
     viewRecipe(recipeId);
@@ -22,41 +27,72 @@ const SingleRecipeView = ({siteUser}) => {
 
   return (
     <div className="single-recipe-container">
-      <div className="recipe-header">
-        <div className="recipe-name">Name: {selectedRecipe.name}</div>
-        <div className="recipe-photo">
-          {" "}
-          Image: {selectedRecipe.image}
-          <br />
-          Source link: {selectedRecipe.url}
-        </div>
-      </div>
-      <div className="recipe-body">
-        <div className="recipe-body-left">
-          <div className="recipe-summary">
-            Summary: {selectedRecipe.summary}
-          </div>
-
-          <div className="recipe-instructions">
-            Instructions: {selectedRecipe.instructions}
-          </div>
-        </div>
-        <div className="recipe-body-right">
-          <div className="recipe-servings-info">
-            <h2>Ingredients</h2>
-            Prep Time: {selectedRecipe.prep_time}
-            <br />
-            Cook Time: {selectedRecipe.cook_time}
-            <br /> Yields: {selectedRecipe.yield}
-            <div className="recipe-ingredients">
-              Ingredients: {selectedRecipe.ingredients}
+      {Object.keys(selectedRecipe).length === 0 ? (
+        <ReactSVG src={spinner} />
+      ) : (
+        <>
+          <div className="recipe-header">
+            <span className="recipe-name">{selectedRecipe.name}</span>
+            <div className="recipe-header-details">
+              <div className="recipe-photo">
+                {" "}
+                <figure>
+                  <img
+                    src={selectedRecipe.image}
+                    alt="recipe-hero-img"
+                    width="500"
+                  />
+                  <br />
+                  <figcaption>
+                    Source link:{" "}
+                    <a
+                      href={selectedRecipe.url}
+                      target="_blank"
+                      rel="noreferrer">
+                      {selectedRecipe.url}
+                    </a>
+                  </figcaption>
+                </figure>
+              </div>
+              <div className="recipe-summary">
+                <h2>{selectedRecipe.summary}</h2>
+              </div>
             </div>
           </div>
-          <div className="recipe-nutrition-label">
-            <h2>nutrition label</h2>
+          <div className="recipe-body">
+            <div className="recipe-body-left">
+              <div className="recipe-instructions">
+                <h2>Instructions</h2>
+                <Interweave content={selectedRecipe.instructions} />;
+              </div>
+            </div>
+            <div className="recipe-body-right">
+              <div className="recipe-servings-info">
+                <h2>Ingredients</h2>
+                Prep Time: {selectedRecipe.prep_time}
+                <br />
+                Cook Time: {selectedRecipe.cook_time}
+                <br /> Yields: {selectedRecipe.yield}
+                <div className="recipe-ingredients">
+                  {selectedRecipe.ingredients.map((ing, ind) => {
+                    return ing.isGroupHeader ? (
+                      <h3>{ing.description}</h3>
+                    ) : (
+                      <li key={ind}>
+                        {ing.quantity} {ing.quantity2 && `- ${ing.qauntity2}`}
+                        {ing.unitOfMeasure} {ing.description}
+                      </li>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="recipe-nutrition-label">
+                <h2>nutrition label</h2>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

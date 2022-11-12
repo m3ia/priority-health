@@ -33,6 +33,9 @@ body {
   justify-content: space-around */
 }
 
+.app-header {
+  border-bottom: .5px solid #9D968B;
+}
 /* Entire App */
 .app {
   height: auto;
@@ -71,6 +74,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding: 10px;
 }
 .nav-link {
   font-family: 'Jost';
@@ -81,7 +85,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #9D968B;
+  color: #D39738;
 }
 /* --------------------- AUTH0 --------------------- */
 .spinner {
@@ -418,37 +422,65 @@ body {
 
 /* Single Recipe ---------------------*/
 .single-recipe-container {
-  
+  margin: 50px 10px 50px 10px;
 }
 
 .recipe-header {
-  border: 1px black solid;
+  margin-top: 25px;
 }
 
-.recipe-header {
-  border: 1px black solid;
+.recipe-header-details {
+  display: flex;
+  flex-direction: row;
+}
+.recipe-header span {
+  font-family: 'Battambang';
+  font-weight: 500;
+  font-size: 47px;
+}
+
+.recipe-header h2 {
+  font-family: 'Battambang';
+  font-weight: 300;
+  font-size: 25px;
+}
+
+
+.recipe-header figcaption {
+  font-size: 12px;
+}
+
+.recipe-name {
+  background-color: white;
+  width: auto;
+  font-size: 26px;
 }
 
 .recipe-body {
   display: flex; 
   flex-direction: row;
+  margin: 25px 0px 25px 0px;
 }
 .recipe-body-left {
     border: 1px black solid;
     width: 70%;
     /* margin-right: %; */
+    border-radius: 15px;
 }
 
 .recipe-body-right {
   /* border: 1px black solid; */
   width: 30%;
   margin-left: 2.5%;
+  border-radius: 10px;
 }
 
 .recipe-servings-info {
   border: 1px #FDF2E2;
   background-color: #FDF2E2;
   color: #2D2B2B;
+  padding: 15px;
+  border-radius: 15px;
 }
 
 .recipe-ingredients {
@@ -459,4 +491,5 @@ body {
   border: 1px solid black;
   background-color: white;
   margin-top: 10%;
+  border-radius: 15px;
 }
