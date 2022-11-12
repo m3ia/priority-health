@@ -423,6 +423,10 @@ body {
 /* Single Recipe ---------------------*/
 .single-recipe-container {
   margin: 50px 10px 50px 10px;
+<<<<<<< HEAD
+=======
+  padding-bottom: 25px;
+>>>>>>> 14d64b5 (Style Single Recipe Page)
 }
 
 .recipe-header {
@@ -461,12 +465,24 @@ body {
   flex-direction: row;
   margin: 25px 0px 25px 0px;
 }
+
 .recipe-body-left {
-    border: 1px black solid;
+    border-top: 1px solid #9D968B;
+    border-bottom: 1px solid #9D968B;
     width: 70%;
     /* margin-right: %; */
+<<<<<<< HEAD
     border-radius: 15px;
+=======
+    /* border-radius: 15px; */
+>>>>>>> 14d64b5 (Style Single Recipe Page)
 }
+
+.recipe-instructions {
+  padding: 5px 25px 5px 25px;
+}
+
+
 
 .recipe-body-right {
   /* border: 1px black solid; */
@@ -479,7 +495,11 @@ body {
   border: 1px #FDF2E2;
   background-color: #FDF2E2;
   color: #2D2B2B;
+<<<<<<< HEAD
   padding: 15px;
+=======
+  padding: 5px 25px 5px 25px;
+>>>>>>> 14d64b5 (Style Single Recipe Page)
   border-radius: 15px;
 }
 
