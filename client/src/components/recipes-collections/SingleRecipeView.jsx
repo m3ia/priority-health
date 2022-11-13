@@ -21,16 +21,16 @@ const SingleRecipeView = ({siteUser}) => {
           console.log("recipeId: ", recipeId);
           console.log("ressssy: ", res);
           setSelectedRecipe({...res[0], ingredients: parsedIngredients});
-          // setIngredients(
-          //   parsedIngredients.map((ing) => {
-          //     return (
-          //       `${ing.quantity} ` +
-          //       `${ing.quantity2 ? "- " + ing.quantity2 : null} ${
-          //         ing.unitOfMeasure
-          //       } ${ing.description}`
-          //     ).replaceAll("null", null);
-          //   })
-          // );
+          setIngredients(
+            parsedIngredients.map((ing) => {
+              return (
+                `${ing.quantity} ` +
+                `${ing.quantity2 ? "- " + ing.quantity2 : null} ${
+                  ing.unitOfMeasure
+                } ${ing.description}`
+              ).replaceAll("null", null);
+            })
+          );
         });
     };
     viewRecipe(recipeId);
