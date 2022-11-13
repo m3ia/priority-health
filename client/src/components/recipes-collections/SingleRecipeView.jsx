@@ -25,10 +25,13 @@ const SingleRecipeView = ({siteUser}) => {
             parsedIngredients.map((ing) => {
               return (
                 `${ing.quantity} ` +
-                `${ing.quantity2 ? "- " + ing.quantity2 : null} ${
+                `${ing.quantity2 ? "- " + ing.quantity2 : null}${
                   ing.unitOfMeasure
                 } ${ing.description}`
-              ).replaceAll("null", null);
+              )
+                .replaceAll("null", "")
+                .replaceAll("  ", " ")
+                .trim();
             })
           );
         });
