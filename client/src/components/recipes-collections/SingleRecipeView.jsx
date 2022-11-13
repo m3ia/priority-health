@@ -8,6 +8,7 @@ import {ReactSVG} from "react-svg";
 const SingleRecipeView = ({siteUser}) => {
   const {recipeId} = useParams();
   const [selectedRecipe, setSelectedRecipe] = useState({});
+  const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
     // Fetch data for a single recipe
@@ -20,6 +21,16 @@ const SingleRecipeView = ({siteUser}) => {
           console.log("recipeId: ", recipeId);
           console.log("ressssy: ", res);
           setSelectedRecipe({...res[0], ingredients: parsedIngredients});
+          // setIngredients(
+          //   parsedIngredients.map((ing) => {
+          //     return (
+          //       `${ing.quantity} ` +
+          //       `${ing.quantity2 ? "- " + ing.quantity2 : null} ${
+          //         ing.unitOfMeasure
+          //       } ${ing.description}`
+          //     ).replaceAll("null", null);
+          //   })
+          // );
         });
     };
     viewRecipe(recipeId);
