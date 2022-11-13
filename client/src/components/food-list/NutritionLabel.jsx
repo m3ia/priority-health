@@ -14,7 +14,6 @@ const NutritionLabel = ({foodView}) => {
       await fetch(`/api/example/${food}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("data", data);
           setNutritionLabelData((prev) => ({
             ...prev,
             dietLabels: data.dietLabels,

@@ -13,13 +13,10 @@ const SingleRecipeView = ({siteUser}) => {
   useEffect(() => {
     // Fetch data for a single recipe
     const viewRecipe = async (recipeId) => {
-      console.log("im in there");
       await fetch(`/api/recipe/${recipeId}`)
         .then((res) => res.json())
         .then((res) => {
           const parsedIngredients = [...parseIngredient(res[0].ingredients)];
-          console.log("recipeId: ", recipeId);
-          console.log("ressssy: ", res);
           setSelectedRecipe({...res[0], ingredients: parsedIngredients});
           setIngredients(
             parsedIngredients.map((ing) => {

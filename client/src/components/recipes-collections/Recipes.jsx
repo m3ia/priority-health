@@ -12,7 +12,6 @@ const Recipes = ({siteUser}) => {
     await fetch("/api/recipes")
       .then((res) => res.json())
       .then((res) => {
-        // console.log("res: ", res);
         setRecipes([...res]);
       });
   };

@@ -46,7 +46,6 @@ const NewRecipeForm = ({siteUser}) => {
 
     // TODO: redirect user to single recipe view
     navigate("/recipes");
-    console.log("passed navigate");
   };
 
   useEffect(() => {}, []);
