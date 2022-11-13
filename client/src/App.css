@@ -428,6 +428,9 @@ body {
 
 /* Single Recipe ---------------------*/
 .single-recipe-container {
+  display: flex;
+  flex-direction: column;
+
   margin: 35px 10px 35px 10px;
   padding-bottom: 10px;
   width: 80%;
@@ -438,10 +441,6 @@ body {
   /* margin-top: 10px; */
 }
 
-.recipe-header-details {
-  display: flex;
-  flex-direction: row;
-}
 .recipe-header span {
   font-family: 'Battambang';
   font-weight: 500;
@@ -454,6 +453,9 @@ body {
   font-size: 25px;
 }
 
+.recipe-photo {
+  float: left;
+}
 
 .recipe-header figcaption {
   font-size: 12px;
@@ -475,7 +477,6 @@ body {
     border-top: 1px solid #9D968B;
     border-bottom: 1px solid #9D968B;
     width: 70%;
-    /* margin-right: %; */
 }
 
 .recipe-instructions {
