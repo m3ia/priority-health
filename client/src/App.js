@@ -16,32 +16,42 @@ const App = () => {
   const {user, isLoading, isAuthenticated} = useAuth0();
   const [siteUser, setSiteUser] = useState({userId: 3});
 
-  const getUser = async (siteUser) => {
-    // setSiteUser(prev => ({ ...prev, ...user }))
-    await fetch("/api/me")
-      .then((res) => res.json())
-      .then((res) => setSiteUser((prev) => ({...prev, userId: res.id})));
-  };
+  // const getUser = async (siteUser) => {
+  //   // setSiteUser(prev => ({ ...prev, ...user }))
+  //   await fetch("/api/me")
+  //     .then((res) => res.json())
+  //     .then((res) => setSiteUser((prev) => ({...prev, userId: res.id})));
+  // };
   const [foodView, setFoodView] = useState("");
 
   useEffect(() => {
-    setSiteUser(user);
+    setSiteUser(prev => ({...prev, ...user}));
     console.log("isUserAuthenticated? ", isAuthenticated);
+    console.log('siteUser: ', siteUser);
   }, [user, isAuthenticated]);
 
-  useEffect(() => {
-    getUser();
-  }, [user]);
+  // useEffect(() => {
+  //   console.log('siteuser l;akdsjfl;akjsdf;lasjkf', siteUser)
+  //   getUser();
+  // }, [user]);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  console.log("siteUser", siteUser.userId);
+  // console.log("siteUser", siteUser.userId);
   return (
     <div id="app" className="d-flex flex-column h-100 app">
-      {user ? (
-        // What user sees if they're logged in
+      {!user ? (
+                // Log in page
+        <>
+          <div className="container flex-grow-1 log-in-div">
+            <h1>priorityHealth</h1>
+            <AuthNav />
+          </div>
+        </>
+      ) : (
+// What user sees if they're logged in
         <>
           <div className="app-header">
             <h1 className="logo">priorityHealth</h1>
@@ -83,15 +93,8 @@ const App = () => {
 
           <Footer />
         </>
-      ) : (
-        // Log in page
-        <>
-          <div className="container flex-grow-1 log-in-div">
-            <h1>priorityHealth</h1>
-            <AuthNav />
-          </div>
-        </>
-      )}
+      )
+      }
     </div>
   );
 };
