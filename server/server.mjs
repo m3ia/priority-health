@@ -200,4 +200,19 @@ app.get('/api/recipe/:id', async (req, res) => {
   }
 })
 
+// GET all recipe-collections-memberships (For viewing recipe collections)
+app.get(`/api/recipe-collections/:userId`, cors(), async (req, res) => {
+  const currUserId = req.params.userId;
 
+  try {
+    const response = await db.any('SELECT * FROM recipe_collection_membership LEFT JOIN collections ON recipe_collection_membership.collection_id = collections.id WHERE collections.user_id = $1', [currUserId]);
+    console.log('/api/recipe-collections userId: ', currUserId);
+    res.send(response);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send({ e });
+  }
+});
+
+// TODO: create a POST for recipe-collections-memberships
+// TODO: create a DELETE for recipe-collections-memberships
