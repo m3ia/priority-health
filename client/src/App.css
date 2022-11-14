@@ -248,7 +248,7 @@ body {
 
 }
 
-.foot-item-notes-box {
+.food-item-notes-box {
   border: 1px solid black;
   width: 220px;
   min-height: 150px;
@@ -414,6 +414,12 @@ body {
   flex-direction: row;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  background-color: rgb(253, 211, 85);
+}
+
+.recipe-list-card-container:hover {
+  cursor: pointer;
+  background-color: rgb(246, 213, 117);
 }
 
 .recipe-list-card-img {
@@ -483,8 +489,6 @@ body {
   padding: 5px 25px 5px 25px;
 }
 
-
-
 .recipe-body-right {
   /* border: 1px black solid; */
   width: 30%;
@@ -497,16 +501,60 @@ body {
   background-color: #FDF2E2;
   color: #2D2B2B;
   padding: 5px 25px 25px 25px;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .recipe-ingredients {
   border-top: 1px gray solid;
 }
 
-.recipe-nutrition-label {
+.recipe-nutrition-label-container {
   border: 1px solid black;
   background-color: white;
   margin-top: 10%;
-  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.nutrition-label-header {
+  border-bottom: 12px solid black;
+}
+
+.recipe-nutrition-label-container {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 20px 20px 20px 20px;
+  font-size: 20px;
+  max-height: 500px;
+  overflow-y: scroll;
+  /* min-width: 50%; */
+  max-width: 75%;
+}
+
+.recipe-nutrition-label-container {
+  padding: 0px 20px 20px 20px;
+}
+
+.recipe-nutrition-label-container p {
+  max-height: 50%;
+}
+
+.recipe-nutrition-label-container h2 {
+  border-bottom: 2px solid black;
+  line-height: 100%;
+}
+
+.nutrition-label-title {
+  font-size: 25px;
+  /* line-height: 100%; */
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+  padding-bottom: 20px;
+  line-height: 100%;
+}
+
+.calories {
+  font-size: 40px;
+  line-height: 2%;
 }

@@ -133,7 +133,7 @@ app.get(`/api/collections`, cors(), async (req, res) => {
 // GET All Recipes
 app.get('/api/recipes', async (req, res) => {
   try {
-    const response = await db.any('SELECT * FROM recipes WHERE user_id = $1', [userId]);
+    const response = await db.any('SELECT * FROM recipes WHERE user_id = $1 ORDER BY id DESC', [userId]);
     res.send(response);
   } catch (e) {
     console.log('GET /api/recipes error: ', e);

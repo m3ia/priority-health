@@ -4,6 +4,7 @@ import {Interweave} from "interweave";
 import {parseIngredient} from "parse-ingredient";
 import spinner from "./spinner.svg";
 import {ReactSVG} from "react-svg";
+import RecipeNutritionLabel from "./RecipeNutritionLabel";
 
 const SingleRecipeView = ({siteUser}) => {
   const {recipeId} = useParams();
@@ -97,8 +98,8 @@ const SingleRecipeView = ({siteUser}) => {
                   })}
                 </div>
               </div>
-              <div className="recipe-nutrition-label">
-                <h2>nutrition label</h2>
+              <div className="recipe-nutrition-label-container">
+                <RecipeNutritionLabel ingredients={ingredients} />
               </div>
             </div>
           </div>
