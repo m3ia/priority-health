@@ -81,9 +81,7 @@ const RecipeNutritionLabel = ({ingredients, selectedRecipe}) => {
               <>
                 <h2>Nutrition Facts</h2>
                 <p className="nutrition-label-title">
-                  Amount per serving
-                  <br />
-                  {/* <strong>1 serving:</strong> {food} */}(
+                  <strong>Dish:</strong> {selectedRecipe.name} (
                   {nutritionLabelData.weight})
                 </p>
                 <p className="nutrition-calories">
