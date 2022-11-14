@@ -1,28 +1,4 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 14.5 (Homebrew)
--- Dumped by pg_dump version 14.5 (Homebrew)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: collections; Type: TABLE; Schema: public; Owner: melissanatividad
---
+/* Replace with your SQL commands */
 
 CREATE TABLE public.collections (
     id integer NOT NULL,
@@ -31,69 +7,11 @@ CREATE TABLE public.collections (
     notes text
 );
 
-
-ALTER TABLE public.collections OWNER TO melissanatividad;
-
---
--- Name: collections_id_seq; Type: SEQUENCE; Schema: public; Owner: melissanatividad
---
-
-CREATE SEQUENCE public.collections_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.collections_id_seq OWNER TO melissanatividad;
-
---
--- Name: collections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: melissanatividad
---
-
-ALTER SEQUENCE public.collections_id_seq OWNED BY public.collections.id;
-
-
---
--- Name: diet; Type: TABLE; Schema: public; Owner: melissanatividad
---
-
 CREATE TABLE public.diet (
     id integer NOT NULL,
     type text NOT NULL,
     user_id integer
 );
-
-
-ALTER TABLE public.diet OWNER TO melissanatividad;
-
---
--- Name: diet_id_seq; Type: SEQUENCE; Schema: public; Owner: melissanatividad
---
-
-CREATE SEQUENCE public.diet_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.diet_id_seq OWNER TO melissanatividad;
-
---
--- Name: diet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: melissanatividad
---
-
-ALTER SEQUENCE public.diet_id_seq OWNED BY public.diet.id;
-
-
---
--- Name: foods; Type: TABLE; Schema: public; Owner: melissanatividad
---
 
 CREATE TABLE public.foods (
     id integer NOT NULL,
@@ -103,69 +21,11 @@ CREATE TABLE public.foods (
     notes text
 );
 
-
-ALTER TABLE public.foods OWNER TO melissanatividad;
-
---
--- Name: foods_id_seq; Type: SEQUENCE; Schema: public; Owner: melissanatividad
---
-
-CREATE SEQUENCE public.foods_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.foods_id_seq OWNER TO melissanatividad;
-
---
--- Name: foods_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: melissanatividad
---
-
-ALTER SEQUENCE public.foods_id_seq OWNED BY public.foods.id;
-
-
---
--- Name: recipe_collection_membership; Type: TABLE; Schema: public; Owner: melissanatividad
---
-
 CREATE TABLE public.recipe_collection_membership (
     id integer NOT NULL,
     collection_id integer,
     recipe_id integer
 );
-
-
-ALTER TABLE public.recipe_collection_membership OWNER TO melissanatividad;
-
---
--- Name: recipe_collection_membership_id_seq; Type: SEQUENCE; Schema: public; Owner: melissanatividad
---
-
-CREATE SEQUENCE public.recipe_collection_membership_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.recipe_collection_membership_id_seq OWNER TO melissanatividad;
-
---
--- Name: recipe_collection_membership_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: melissanatividad
---
-
-ALTER SEQUENCE public.recipe_collection_membership_id_seq OWNED BY public.recipe_collection_membership.id;
-
-
---
--- Name: recipes; Type: TABLE; Schema: public; Owner: melissanatividad
---
 
 CREATE TABLE public.recipes (
     id integer NOT NULL,
@@ -181,46 +41,10 @@ CREATE TABLE public.recipes (
     yield integer
 );
 
-
-ALTER TABLE public.recipes OWNER TO melissanatividad;
-
---
--- Name: recipes_id_seq; Type: SEQUENCE; Schema: public; Owner: melissanatividad
---
-
-CREATE SEQUENCE public.recipes_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.recipes_id_seq OWNER TO melissanatividad;
-
---
--- Name: recipes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: melissanatividad
---
-
-ALTER SEQUENCE public.recipes_id_seq OWNED BY public.recipes.id;
-
-
---
--- Name: saved_recipes; Type: TABLE; Schema: public; Owner: melissanatividad
---
-
 CREATE TABLE public.saved_recipes (
     recipe integer,
     user_id integer
 );
-
-
-ALTER TABLE public.saved_recipes OWNER TO melissanatividad;
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: melissanatividad
---
 
 CREATE TABLE public.users (
     id integer NOT NULL,
@@ -229,91 +53,13 @@ CREATE TABLE public.users (
     email text NOT NULL
 );
 
+SELECT pg_catalog.setval('public.users_id_seq', 5, true);
 
-ALTER TABLE public.users OWNER TO melissanatividad;
-
---
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: melissanatividad
---
-
-CREATE SEQUENCE public.users_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.users_id_seq OWNER TO melissanatividad;
-
---
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: melissanatividad
---
-
-ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
-
-
---
--- Name: collections id; Type: DEFAULT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.collections ALTER COLUMN id SET DEFAULT nextval('public.collections_id_seq'::regclass);
-
-
---
--- Name: diet id; Type: DEFAULT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.diet ALTER COLUMN id SET DEFAULT nextval('public.diet_id_seq'::regclass);
-
-
---
--- Name: foods id; Type: DEFAULT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.foods ALTER COLUMN id SET DEFAULT nextval('public.foods_id_seq'::regclass);
-
-
---
--- Name: recipe_collection_membership id; Type: DEFAULT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.recipe_collection_membership ALTER COLUMN id SET DEFAULT nextval('public.recipe_collection_membership_id_seq'::regclass);
-
-
---
--- Name: recipes id; Type: DEFAULT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.recipes ALTER COLUMN id SET DEFAULT nextval('public.recipes_id_seq'::regclass);
-
-
---
--- Name: users id; Type: DEFAULT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
-
-
---
--- Data for Name: collections; Type: TABLE DATA; Schema: public; Owner: melissanatividad
---
-
+-- INSERTS:
 INSERT INTO public.collections (id, name, user_id, notes) VALUES (1, 'Autumn Recipes', 3, 'Lots of squash, pomegranates, and Japanese cuisine.');
 INSERT INTO public.collections (id, name, user_id, notes) VALUES (2, 'Low Acid Recipes', 3, 'Mostly basic foods that include white rice, bread, and low-fat meals.');
 INSERT INTO public.collections (id, name, user_id, notes) VALUES (3, 'Asian Recipes', 3, 'Mainly Filipino, Indian, and Japanese dishes.');
 
-
---
--- Data for Name: diet; Type: TABLE DATA; Schema: public; Owner: melissanatividad
---
-
-
-
---
--- Data for Name: foods; Type: TABLE DATA; Schema: public; Owner: melissanatividad
---
 
 INSERT INTO public.foods (id, food, user_id, status, notes) VALUES (1, 'tomatoes', 3, 'avoid', 'can have if no flare-ups in 2 weeks, but generally avoid');
 INSERT INTO public.foods (id, food, user_id, status, notes) VALUES (2, 'jasmine rice', 3, 'ok', NULL);
@@ -328,11 +74,6 @@ INSERT INTO public.foods (id, food, user_id, status, notes) VALUES (10, '2% milk
 INSERT INTO public.foods (id, food, user_id, status, notes) VALUES (11, 'grapeseed oil', 3, 'avoid', 'never, but very little if you have to');
 INSERT INTO public.foods (id, food, user_id, status, notes) VALUES (13, 'chicken', 3, NULL, 'not sure yet');
 
-
---
--- Data for Name: recipe_collection_membership; Type: TABLE DATA; Schema: public; Owner: melissanatividad
---
-
 INSERT INTO public.recipe_collection_membership (id, collection_id, recipe_id) VALUES (1, 1, 24);
 INSERT INTO public.recipe_collection_membership (id, collection_id, recipe_id) VALUES (2, 1, 23);
 INSERT INTO public.recipe_collection_membership (id, collection_id, recipe_id) VALUES (3, 1, 22);
@@ -341,11 +82,6 @@ INSERT INTO public.recipe_collection_membership (id, collection_id, recipe_id) V
 INSERT INTO public.recipe_collection_membership (id, collection_id, recipe_id) VALUES (6, 2, 24);
 INSERT INTO public.recipe_collection_membership (id, collection_id, recipe_id) VALUES (7, 2, 23);
 INSERT INTO public.recipe_collection_membership (id, collection_id, recipe_id) VALUES (8, 1, 24);
-
-
---
--- Data for Name: recipes; Type: TABLE DATA; Schema: public; Owner: melissanatividad
---
 
 INSERT INTO public.recipes (id, name, summary, ingredients, instructions, image, url, user_id, prep_time, cook_time, yield) VALUES (1, 'a', 'a', 'a', 'a', 'a', 'a', 3, 'a', 'a', 1);
 INSERT INTO public.recipes (id, name, summary, ingredients, instructions, image, url, user_id, prep_time, cook_time, yield) VALUES (2, '2', '2', '2', '2', '2', '2', 3, '2', '2', 2);
@@ -433,179 +169,20 @@ For assembling
 <br />Serve or cover and store at room temperature for up to 4 hours. Before serving, taste and season with a splash of vinegar, a drizzle of olive oil, and salt and black pepper.', 'https://www.simplyrecipes.com/thmb/yskXndR2ccbkI9aCAKGPIdD_PLw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Roasted-Root-Panzanella-LEAD-5-defab282522e4aa3aedd70706a485cf5.jpg', 'https://www.simplyrecipes.com/roasted-root-vegetable-panzanella-recipe-6823042', 3, '20 mins', '50 mins', 6);
 INSERT INTO public.recipes (id, name, summary, ingredients, instructions, image, url, user_id, prep_time, cook_time, yield) VALUES (25, '', '', '', '', '', '', NULL, '', '', 0);
 
-
---
--- Data for Name: saved_recipes; Type: TABLE DATA; Schema: public; Owner: melissanatividad
---
-
-
-
---
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: melissanatividad
---
-
 INSERT INTO public.users (id, first_name, last_name, email) VALUES (1, 'alpha', 'alphalast', 'alpha@gmail.com');
 INSERT INTO public.users (id, first_name, last_name, email) VALUES (2, 'betx', 'betalast', 'beta@gmail.com');
 INSERT INTO public.users (id, first_name, last_name, email) VALUES (3, 'Melissa', 'Natividad', 'meianatividad@gmail.com');
 INSERT INTO public.users (id, first_name, last_name, email) VALUES (4, 'Melissa', 'Nat', 'melissanat510@gmail.com');
 INSERT INTO public.users (id, first_name, last_name, email) VALUES (5, 'Melissa', 'Natividad', 'meiamayi@gmail.com');
 
-
---
--- Name: collections_id_seq; Type: SEQUENCE SET; Schema: public; Owner: melissanatividad
---
-
 SELECT pg_catalog.setval('public.collections_id_seq', 3, true);
-
-
---
--- Name: diet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: melissanatividad
---
 
 SELECT pg_catalog.setval('public.diet_id_seq', 1, false);
 
-
---
--- Name: foods_id_seq; Type: SEQUENCE SET; Schema: public; Owner: melissanatividad
---
-
 SELECT pg_catalog.setval('public.foods_id_seq', 13, true);
-
-
---
--- Name: recipe_collection_membership_id_seq; Type: SEQUENCE SET; Schema: public; Owner: melissanatividad
---
 
 SELECT pg_catalog.setval('public.recipe_collection_membership_id_seq', 8, true);
 
-
---
--- Name: recipes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: melissanatividad
---
-
 SELECT pg_catalog.setval('public.recipes_id_seq', 25, true);
 
-
---
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: melissanatividad
---
-
 SELECT pg_catalog.setval('public.users_id_seq', 5, true);
-
-
---
--- Name: collections collections_pkey; Type: CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.collections
-    ADD CONSTRAINT collections_pkey PRIMARY KEY (id);
-
-
---
--- Name: diet diet_pkey; Type: CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.diet
-    ADD CONSTRAINT diet_pkey PRIMARY KEY (id);
-
-
---
--- Name: foods foods_pkey; Type: CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.foods
-    ADD CONSTRAINT foods_pkey PRIMARY KEY (id);
-
-
---
--- Name: recipe_collection_membership recipe_collection_membership_pkey; Type: CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.recipe_collection_membership
-    ADD CONSTRAINT recipe_collection_membership_pkey PRIMARY KEY (id);
-
-
---
--- Name: recipes recipes_pkey; Type: CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.recipes
-    ADD CONSTRAINT recipes_pkey PRIMARY KEY (id);
-
-
---
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: collections collections_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.collections
-    ADD CONSTRAINT collections_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-
---
--- Name: diet diet_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.diet
-    ADD CONSTRAINT diet_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-
---
--- Name: foods foods_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.foods
-    ADD CONSTRAINT foods_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-
---
--- Name: recipe_collection_membership recipe_collection_membership_collection_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.recipe_collection_membership
-    ADD CONSTRAINT recipe_collection_membership_collection_id_fkey FOREIGN KEY (collection_id) REFERENCES public.collections(id);
-
-
---
--- Name: recipe_collection_membership recipe_collection_membership_recipe_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.recipe_collection_membership
-    ADD CONSTRAINT recipe_collection_membership_recipe_id_fkey FOREIGN KEY (recipe_id) REFERENCES public.recipes(id);
-
-
---
--- Name: recipes recipes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.recipes
-    ADD CONSTRAINT recipes_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-
---
--- Name: saved_recipes saved_recipes_recipe_fkey; Type: FK CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.saved_recipes
-    ADD CONSTRAINT saved_recipes_recipe_fkey FOREIGN KEY (recipe) REFERENCES public.recipes(id);
-
-
---
--- Name: saved_recipes saved_recipes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: melissanatividad
---
-
-ALTER TABLE ONLY public.saved_recipes
-    ADD CONSTRAINT saved_recipes_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-
---
--- PostgreSQL database dump complete
---
-
