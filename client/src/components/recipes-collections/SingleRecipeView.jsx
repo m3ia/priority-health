@@ -19,18 +19,21 @@ const SingleRecipeView = ({siteUser}) => {
         .then((res) => {
           const parsedIngredients = [...parseIngredient(res[0].ingredients)];
           setSelectedRecipe({...res[0], ingredients: parsedIngredients});
+          console.log("parsed ingredients: ", parsedIngredients);
           setIngredients(
-            parsedIngredients.map((ing) => {
-              return (
-                `${ing.quantity} ` +
-                `${ing.quantity2 ? "- " + ing.quantity2 : null}${
-                  ing.unitOfMeasure
-                } ${ing.description}`
-              )
-                .replaceAll("null", "")
-                .replaceAll("  ", " ")
-                .trim();
-            })
+            parsedIngredients
+              .filter((item) => item.isGroupHeader === false)
+              .map((ing) => {
+                return (
+                  `${ing.quantity ? ing.quantity : null} ` +
+                  `${ing.quantity2 ? "- " + ing.quantity2 : null}${
+                    ing.unitOfMeasure ? ing.unitOfMeasure : null
+                  } ${ing.description ? ing.description : null}`
+                )
+                  .replaceAll("null", "")
+                  .replaceAll("  ", " ")
+                  .trim();
+              })
           );
         });
     };
@@ -88,7 +91,7 @@ const SingleRecipeView = ({siteUser}) => {
                 <div className="recipe-ingredients">
                   {selectedRecipe.ingredients.map((ing, ind) => {
                     return ing.isGroupHeader ? (
-                      <h3>{ing.description}</h3>
+                      <h3 key={ind}>{ing.description}</h3>
                     ) : (
                       <li key={ind}>
                         {ing.quantity} {ing.quantity2 && `- ${ing.qauntity2}`}
@@ -99,7 +102,10 @@ const SingleRecipeView = ({siteUser}) => {
                 </div>
               </div>
               <div className="recipe-nutrition-label-container">
-                <RecipeNutritionLabel ingredients={ingredients} />
+                <RecipeNutritionLabel
+                  ingredients={ingredients}
+                  selectedRecipe={selectedRecipe}
+                />
               </div>
             </div>
           </div>

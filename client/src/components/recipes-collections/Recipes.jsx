@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import RecipeListCard from "./RecipeListCard";
 import {useNavigate} from "react-router-dom";
 
-const Recipes = ({siteUser}) => {
+const Recipes = ({collectionFilter, setCollectionFilter}) => {
   const [recipes, setRecipes] = useState([]);
   const [searchString, setSearchString] = useState("");
 
@@ -37,7 +37,9 @@ const Recipes = ({siteUser}) => {
         </div>
         <div className="recipes-form-btn">+</div>
       </div>
-      <div className="recipes-view-info">recipes-view-info</div>
+      <div className="recipes-view-info">
+        <h2>{collectionFilter === "all-recipes" && "All Recipes"}</h2>
+      </div>
       <div className="recipe-list-cards-div">
         {searchString.length > 0
           ? recipes

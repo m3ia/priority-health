@@ -37,7 +37,10 @@ const Collections = () => {
         </div>
         <div className="recipes-div">
           <h2>Recipes</h2>
-          <Recipes />
+          <Recipes
+            collectionFilter={collectionFilter}
+            setCollectionFilter={setCollectionFilter}
+          />
         </div>
       </div>
     </div>

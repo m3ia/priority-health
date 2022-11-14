@@ -546,7 +546,7 @@ body {
 }
 
 .nutrition-label-title {
-  font-size: 25px;
+  font-size: 20px;
   /* line-height: 100%; */
   border-bottom: 2px solid black;
   padding-bottom: 20px;
@@ -554,7 +554,7 @@ body {
   line-height: 100%;
 }
 
-.calories {
-  font-size: 40px;
+.nutrition-calories {
+  font-size: 20px;
   line-height: 2%;
 }
