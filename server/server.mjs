@@ -158,7 +158,7 @@ app.post('/api/new-recipe', cors(), async (req, res, next) => {
     yield: req.body.yield
   }
 
-  userId = newRecipe.userId;
+  // userId = newRecipe.userId;
   try {
         console.log('userId: ', userId, typeof userId);
 

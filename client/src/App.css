@@ -558,3 +558,17 @@ body {
   font-size: 20px;
   line-height: 2%;
 }
+
+/* RECIPE-COLLECTIONS SELECTION ---------------------*/
+
+.new-recipe-form-div {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+}
+
+.collections-selection {
+  border: 1px solid black;
+}
+
+
