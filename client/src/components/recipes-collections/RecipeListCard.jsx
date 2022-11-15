@@ -1,17 +1,11 @@
 import recipeIcon from "./menu.png";
 
-const getDefaultImg = () => {
-  return recipeIcon;
-};
-
 const RecipeListCard = ({
   recipe,
   viewRecipe,
   navToSingleRecipeView,
   collectionsData,
 }) => {
-  console.log("rec image", recipe.image);
-  console.log("function call: ", getDefaultImg());
   return (
     <div
       className="recipe-list-card-container"

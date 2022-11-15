@@ -27,10 +27,26 @@ const parseIngredients = (recipeFromDB, setSelectedRecipe, setIngredients) => {
   setIngredients(filteredParsedIngredients);
 };
 
-const SingleRecipeView = ({siteUser, setSingleRecipeID, recipeCollections}) => {
+const SingleRecipeView = ({siteUser}) => {
   const {recipeId} = useParams();
   const [selectedRecipe, setSelectedRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
+  const [recipeCollectionsForView, setRecipeCollectionsForView] = useState([]);
+
+  const [singleRecipeID, setSingleRecipeID] = useState(0);
+
+  const getRecipeCollections = async (recipeId) => {
+    const recipeCollections = [];
+    await fetch(`/api/recipe-collections/${recipeId}`)
+      .then((res) => res.json())
+      .then((res) => {
+        // TODO remove test line when done testing recipe-collections mult selection
+        console.log("resssy", res);
+        recipeCollections.push(...res);
+      });
+
+    setRecipeCollectionsForView([...recipeCollections]);
+  };
 
   useEffect(() => {
     // Fetch data for a single recipe
@@ -45,6 +61,11 @@ const SingleRecipeView = ({siteUser, setSingleRecipeID, recipeCollections}) => {
     viewRecipe(recipeId);
     setSingleRecipeID(recipeId);
   }, [recipeId, setSingleRecipeID]);
+
+  // useEffect for capturing recipe-collections from DB after user is signed in
+  useEffect(() => {
+    getRecipeCollections(singleRecipeID, setRecipeCollectionsForView);
+  }, [singleRecipeID]);
 
   return (
     <div className="single-recipe-container">
@@ -90,8 +111,8 @@ const SingleRecipeView = ({siteUser, setSingleRecipeID, recipeCollections}) => {
               <div className="recipe-collections-list-div">
                 <h2>Current Collections:</h2>
                 <div className="recipe-collections-list-cards-div">
-                  {recipeCollections.length > 0 &&
-                    recipeCollections.map((item, ind) => (
+                  {recipeCollectionsForView.length > 0 &&
+                    recipeCollectionsForView.map((item, ind) => (
                       // <li key={ind}>{item.name}</li>
                       <div key={ind} className="collections-cards-view">
                         {item.name}
