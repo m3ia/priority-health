@@ -1,5 +1,9 @@
 import recipeIcon from "./menu.png";
 
+const getDefaultImg = () => {
+  return recipeIcon;
+};
+
 const RecipeListCard = ({
   recipe,
   viewRecipe,
