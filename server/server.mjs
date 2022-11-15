@@ -14,7 +14,7 @@ const NUTRITIONAL_ANALYSIS_API_KEY = process.env.NUTRITIONAL_ANALYSIS_API_KEY;
 
 // pgPromise
 const pgp = pgPromise({});
-const db = pgp('postgres://localhost:5432/priority_health');
+const db = pgp(process.env.DATABASE_URL);
 
 // 
 const app = express();
