@@ -14,6 +14,21 @@ Secondary text: #9D968B
 
  */
 /* --------------------- App --------------------- */
+:root {
+  /* 1 */
+  /* --bg-color: #FFF3E0;
+  --darker-bg-color: #D39738; */
+
+  /* 2 */
+  --bg-color: #FEFBF7;
+  --darker-bg-color: #FDF2E2;
+
+  --alt-darker-bg-color: #FDF2E2;
+  --text-color: #2D2B2B;
+  --accent-color: #D39738;
+  --accent-text-color: #FFF;
+  --secondary-text-color: #9D968B;
+}
 div {
   font-family: 'Jost';
 }
@@ -23,26 +38,42 @@ h1 {
 }
 
 html,
-body {
-  height: 100%;
+body, :root {
+  height: 0%;
   margin: 0;
   /* justify-content: center; */
-  background-color: #FEFBF7;
+  /* background-color: #FEFBF7; */
+  background-color: var(--bg-color);
   /* display: flex;
   flex-direction: column;
   justify-content: space-around */
 }
-
+/* 
 .app-header {
-  border-bottom: .5px solid #9D968B;
+  border-bottom: .5px solid var(--secondary-text-color);
+  background-color: var(--darker-bg-color);
+} */
+
+header {
+  border-bottom: .5px solid var(--secondary-text-color);
+  background-color: var(--darker-bg-color);
+  margin: -27px;
+  padding: 10px;
+  /* width: 100%; */
 }
+
+.logo {
+  background-color: var(--darker-bg-color);
+  margin-left: 28px;
+}
+
 /* Entire App */
 .app {
   height: auto;
   flex: none;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
-  color: #2D2B2B;
+  color: var(--text-color);
   /* border: 2px solid black; */
   margin: 20px;
 }
@@ -76,22 +107,25 @@ body {
   font-size: 80px;
 }
 /* --------------------- NAVBAR --------------------- */
+
+
 .navbar-nav {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   padding: 10px;
 }
+
 .nav-link {
   font-family: 'Jost';
-  color: #2D2B2B;
+  color: var(--text-color);
   font-weight: 400;
   text-decoration: none;
   font-size: 20px;
 }
 
 .nav-link:hover {
-  color: #D39738;
+  color: var(--accent-color);
 }
 /* --------------------- AUTH0 --------------------- */
 .spinner {
@@ -134,7 +168,7 @@ body {
 .login-btn span {
   position: relative;
   z-index: 100;
-  color: #fff;
+  color: var(--accent-text-color);
   text-decoration: none;
 }
 
@@ -145,10 +179,10 @@ body {
   left: 0;
   width: 0;
   height: 100%;
-  background: #D39738;
+  background: var(--accent-color);
   transition: all 0.35s;
   border-radius: 4px;
-  color:white !important;
+  color:var(--accent-text-color) !important;
 }
 
 .login-btn:hover:after {
@@ -161,7 +195,7 @@ body {
   flex-direction: column;
   border: 1px solid black;
   width: 300px;
-  background-color: white;
+  background-color: #FFF;
   border-radius: 10px;
 }
 
@@ -200,8 +234,8 @@ body {
   flex-direction: row;
   justify-content: center;
   font-family: 'Jost';
-  color: white;
-  text-shadow: 1px 1px #2D2B2B;
+  color: var(--accent-text-color);
+  text-shadow: 1px 1px var(--text-color);
   width: 200px;
   margin: 10px;
   border-radius: 4px;
@@ -229,9 +263,9 @@ body {
 }
 
 .close-btn {
-  background-color: #9D968B;
+  background-color: var(--secondary-text-color);
   border-radius: 4px;
-  color: #fff;
+  color: var(--accent-text-color);
   height: 100%;
   font-size: 30px;
 }
@@ -252,7 +286,7 @@ body {
   border: 1px solid black;
   width: 220px;
   min-height: 150px;
-  background-color: #fff;
+  background-color: #FFF;
 }
 /* Nutrition label */
 
@@ -397,14 +431,14 @@ body {
   border: dotted;
   align-items: center;
   justify-content: center;
-  background-color: #D39738;
+  background-color: var(--accent-color);
   color: white;
   border-radius: 4px;
 }
 
 .recipes-form-btn:hover {
   cursor: pointer;
-  background-color: #d39738e3;
+  background-color: var(--accent-color)e3;
 }
 
 
@@ -468,7 +502,7 @@ body {
 }
 
 .recipe-name {
-  background-color: white;
+  background-color: #FFF;
   width: auto;
   font-size: 26px;
 }
@@ -480,8 +514,8 @@ body {
 }
 
 .recipe-body-left {
-    border-top: 1px solid #9D968B;
-    border-bottom: 1px solid #9D968B;
+    border-top: 1px solid var(--secondary-text-color);
+    border-bottom: 1px solid var(--secondary-text-color);
     width: 70%;
 }
 
@@ -497,15 +531,15 @@ body {
 }
 
 .recipe-servings-info {
-  border: 1px #FDF2E2;
-  background-color: #FDF2E2;
-  color: #2D2B2B;
+  border: 1px var(--darker-bg-color);
+  background-color: var(--darker-bg-color);
+  color: var(--text-color);
   padding: 5px 25px 25px 25px;
   border-radius: 10px;
 }
 
 .recipe-ingredients {
-  border-top: 1px gray solid;
+  border-top: 3px #D39738 solid;
 }
 
 .recipe-nutrition-label-container {

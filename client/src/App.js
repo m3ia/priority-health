@@ -43,10 +43,12 @@ const App = () => {
       {user ? (
         // What user sees if they're logged in
         <>
+          <header>
           <div className="app-header">
             <h1 className="logo">priorityHealth</h1>
             <NavBar setFoodView={setFoodView} />
-          </div>
+            </div>
+            </header>
           <div className="container flex-grow-1">
             <Routes>
               <Route path="/" element={<Home user={user} />} />
@@ -78,8 +80,6 @@ const App = () => {
               />
             </Routes>
           </div>
-
-          <div></div>
 
           <Footer />
         </>

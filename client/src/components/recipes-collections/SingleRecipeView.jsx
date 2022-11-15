@@ -91,6 +91,7 @@ const SingleRecipeView = ({siteUser}) => {
                 <br />
                 Cook Time: {selectedRecipe.cook_time}
                 <br /> Yields: {selectedRecipe.yield}
+                <p />
                 <div className="recipe-ingredients">
                   {selectedRecipe.ingredients.map((ing, ind) => {
                     return ing.isGroupHeader ? (
