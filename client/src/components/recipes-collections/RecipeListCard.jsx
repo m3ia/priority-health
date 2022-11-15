@@ -10,20 +10,18 @@ const RecipeListCard = ({
   navToSingleRecipeView,
   collectionsData,
 }) => {
+  console.log("rec image", recipe.image);
+  console.log("function call: ", getDefaultImg());
   return (
     <div
       className="recipe-list-card-container"
       onClick={() => navToSingleRecipeView(recipe.id)}>
       <div className="recipe-list-card-img">
-        {/* TODO: Figure out default image issue */}
-        {recipe && (
-          <img
-            src={recipe.image}
-            onError={getDefaultImg}
-            alt="recipe-icon"
-            height="80"
-          />
-        )}
+        <img
+          src={recipe.image ? recipe.image : recipeIcon}
+          alt="recipe-icon"
+          height="80"
+        />
       </div>
       <div className="recipe-list-card-details">
         <p>Name: {recipe.name}</p>
