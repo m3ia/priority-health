@@ -26,7 +26,7 @@ const FoodItemView = ({foodView, setFoodView, food}) => {
       <div className="food-item-view-body">
         <div className="food-item-notes">
           <h2>Notes:</h2>
-          <div className="foot-item-notes-box">
+          <div className="food-item-notes-box">
             {food[0].notes ? food[0].notes : "none"}
           </div>
         </div>

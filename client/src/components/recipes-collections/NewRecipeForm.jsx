@@ -1,5 +1,4 @@
-import {useEffect} from "react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 const NewRecipeForm = ({siteUser}) => {
@@ -46,7 +45,6 @@ const NewRecipeForm = ({siteUser}) => {
 
     // TODO: redirect user to single recipe view
     navigate("/recipes");
-    console.log("passed navigate");
   };
 
   useEffect(() => {}, []);

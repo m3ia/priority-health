@@ -1,17 +1,34 @@
 import {useState, useEffect} from "react";
-import spinner from "../../../src/spinner.svg";
+import spinner from "../../spinner.svg";
 import {ReactSVG} from "react-svg";
 
-const NutritionLabel = ({foodView}) => {
+const RecipeNutritionLabel = ({ingredients, selectedRecipe}) => {
   const [nutritionLabelData, setNutritionLabelData] = useState({});
   const [loadExpired, setLoadExpired] = useState(false);
-
-  // const food = "1 tbsp honey";
-  const food = foodView;
+  const [labelData, setLabelData] = useState({
+    title: "",
+    ingr: [],
+    url: "",
+    summary: "",
+    yield: "",
+    time: "",
+    img: "",
+    prep: "",
+  });
 
   useEffect(() => {
     const getNutritionLabelData = async () => {
-      await fetch(`/api/example/${food}`)
+      await fetch(
+        `https://api.edamam.com/api/nutrition-details?app_id=857e0f4a&app_key=ca9c276c15994bdbdcb18952aabaf50d`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({title: selectedRecipe.name, ingr: ingredients}),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           setNutritionLabelData((prev) => ({
@@ -40,7 +57,7 @@ const NutritionLabel = ({foodView}) => {
         });
     };
     getNutritionLabelData();
-  }, [food]);
+  }, [ingredients]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -66,10 +83,10 @@ const NutritionLabel = ({foodView}) => {
                 <p className="nutrition-label-title">
                   Amount per serving
                   <br />
-                  <strong>1 serving:</strong> {food} (
+                  {/* <strong>1 serving:</strong> {food} */}(
                   {nutritionLabelData.weight})
                 </p>
-                <p className="calories">
+                <p className="nutrition-calories">
                   <strong>Calories: </strong>
                   {nutritionLabelData.calories}
                 </p>
@@ -130,4 +147,4 @@ const NutritionLabel = ({foodView}) => {
   );
 };
 
-export default NutritionLabel;
+export default RecipeNutritionLabel;
