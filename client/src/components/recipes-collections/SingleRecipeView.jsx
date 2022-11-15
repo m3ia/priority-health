@@ -79,21 +79,25 @@ const SingleRecipeView = ({siteUser}) => {
               <div className="recipe-photo">
                 {" "}
                 <figure>
-                  <img
-                    src={selectedRecipe.image}
-                    alt="recipe-hero-img"
-                    width="500"
-                  />
+                  {selectedRecipe.image && (
+                    <img
+                      src={selectedRecipe.image}
+                      alt="recipe-hero-img"
+                      width="500"
+                    />
+                  )}
                   <br />
-                  <figcaption>
-                    Source link:{" "}
-                    <a
-                      href={selectedRecipe.url}
-                      target="_blank"
-                      rel="noreferrer">
-                      {selectedRecipe.url}
-                    </a>
-                  </figcaption>
+                  {selectedRecipe.url && (
+                    <figcaption>
+                      Source link:{" "}
+                      <a
+                        href={selectedRecipe.url}
+                        target="_blank"
+                        rel="noreferrer">
+                        {selectedRecipe.url}
+                      </a>
+                    </figcaption>
+                  )}
                 </figure>
               </div>
               <div className="recipe-summary">
@@ -111,13 +115,14 @@ const SingleRecipeView = ({siteUser}) => {
               <div className="recipe-collections-list-div">
                 <h2>Current Collections:</h2>
                 <div className="recipe-collections-list-cards-div">
-                  {recipeCollectionsForView.length > 0 &&
-                    recipeCollectionsForView.map((item, ind) => (
-                      // <li key={ind}>{item.name}</li>
-                      <div key={ind} className="collections-cards-view">
-                        {item.name}
-                      </div>
-                    ))}
+                  {recipeCollectionsForView.length > 0
+                    ? recipeCollectionsForView.map((item, ind) => (
+                        // <li key={ind}>{item.name}</li>
+                        <div key={ind} className="collections-cards-view">
+                          {item.name}
+                        </div>
+                      ))
+                    : "No collections at this time."}
                 </div>
               </div>
             </div>
