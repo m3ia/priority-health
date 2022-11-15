@@ -449,7 +449,7 @@ header {
   flex-direction: row;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  background-color: rgb(253, 211, 85);
+  background-color: var(--alt-darker-bg-color)
 }
 
 .recipe-list-card-container:hover {
@@ -461,12 +461,32 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 10px;
+  /* margin-right: 10px; */
 }
 .recipe-list-card-details {
   display: flex;
   flex-direction: column; 
+  max-width: 70%;
+  margin-left: 20px;
 }
 
+.recipe-list-card-collection-div {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.recipe-list-card-collection-item {
+  /* border: 1px solid var(--text-color); */
+  padding: 3px 10px 3px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  font-size: 12px;
+}
 /* Single Recipe ---------------------*/
 .single-recipe-container {
   display: flex;
@@ -612,7 +632,7 @@ header {
 
 .collections-selections-div {
   border: 1px solid red;
-  height: 100%;
+  /* height: 100%; */
 }
 
 /* From the Single Recipe View: */
