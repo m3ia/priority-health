@@ -1,16 +1,24 @@
 import recipeIcon from "./menu.png";
 
+const getDefaultImg = () => {
+  return recipeIcon;
+};
+
 const RecipeListCard = ({recipe, viewRecipe, navToSingleRecipeView}) => {
   return (
     <div
       className="recipe-list-card-container"
       onClick={() => navToSingleRecipeView(recipe.id)}>
       <div className="recipe-list-card-img">
-        <img
-          src={!recipe.image ? recipe.image : recipeIcon}
-          alt="recipe-icon"
-          height="80"
-        />
+        {/* TODO: Figure out default image issue */}
+        {recipe && (
+          <img
+            src={recipe.image}
+            onError={getDefaultImg}
+            alt="recipe-icon"
+            height="80"
+          />
+        )}
       </div>
       <div className="recipe-list-card-details">
         <p>Name: {recipe.name}</p>
