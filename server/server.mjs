@@ -52,7 +52,7 @@ app.get('/api/users', async (req, res) => {
 app.get('/api/me', cors(), async (req, res) => {
 
   try {
-    const signedInUser = await db.one('SELECT * FROM users WHERE id = $1 ', [userId]);
+    const signedInUser = await db.query('SELECT * FROM users WHERE id = $1 ', [userId]);
     res.send(signedInUser);
   } catch (e) {
     return res.status(400).json({ e });
@@ -70,18 +70,20 @@ app.post('/api/me', cors(), async (req, res) => {
   }
   const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
   const valuesEmail = [newUser.email];
-  const returningUser = await db.query(queryEmail, valuesEmail);
-  if (returningUser.length > 0) {
-    console.log(`Thank you ${returningUser[0].first_name} for coming back`);
-    userId = returningUser[0].id;
-    res.send(returningUser);
+  const userInfo = await db.query(queryEmail, valuesEmail);
+  if (userInfo.length > 0) {
+    console.log(`Thank you ${userInfo[0].first_name} for coming back`);
+    userId = userInfo[0].id;
+    console.log('Returning user ID: ', userId);
+    console.log('Returning user: ', userInfo);
+    res.send(userInfo);
   } else {
-    const query = 'INSERT INTO users(last_name, first_name, email) VALUES($1, $2, $3) RETURNING *';
-    const values = [newUser.lastname, newUser.firstname, newUser.email];
-    const result = await db.query(query, values);
-    console.log('New User Created: ', result);
-    userId = result[0].id;
-    res.send(result);
+    await db.query('INSERT INTO users(last_name, first_name, email) VALUES($1, $2, $3)', [newUser.lastname, newUser.firstname, newUser.email]);
+    const response = await db.query('SELECT * FROM users WHERE email=$1 LIMIT 1', [newUser.email]);
+    console.log('New User Created: ', response[0]);
+    userId = response[0].id;
+    console.log('New user ID: ', userId);
+    res.send(response);
   }
 });
 
