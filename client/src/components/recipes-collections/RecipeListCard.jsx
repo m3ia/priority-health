@@ -1,5 +1,9 @@
 import recipeIcon from "./menu.png";
 
+const getDefaultImg = () => {
+  return recipeIcon;
+};
+
 const RecipeListCard = ({recipe, viewRecipe, navToSingleRecipeView}) => {
   return (
     <div
@@ -9,7 +13,8 @@ const RecipeListCard = ({recipe, viewRecipe, navToSingleRecipeView}) => {
         {/* TODO: Figure out default image issue */}
         {recipe && (
           <img
-            src={recipe.image ? recipe.image : recipeIcon}
+            src={recipe.image}
+            onError={getDefaultImg}
             alt="recipe-icon"
             height="80"
           />
