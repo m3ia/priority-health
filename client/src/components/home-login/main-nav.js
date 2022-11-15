@@ -17,13 +17,21 @@ const MainNav = ({setFoodView}) => {
         Home
       </NavLink>
       <NavLink
-        to="/foodList"
+        to="/food-list"
         onClick={() => setFoodView("")}
         exact
         className="nav-link"
         activeClassName="router-link-exact-active"
       >
         Food List
+      </NavLink>
+      <NavLink
+        to="/add-new-recipe"
+        exact
+        className="nav-link"
+        activeClassName="router-link-exact-active"
+      >
+        Add A Recipe
       </NavLink>
       <NavLink
         to="/recipes"
