@@ -19,6 +19,7 @@ const App = () => {
   const [recipeCollections, setRecipeCollections] = useState([]);
   const [singleRecipeID, setSingleRecipeID] = useState(0);
 
+  // TODO: Find out if I need this
   // const getUser = async (siteUser) => {
   //   // setSiteUser(prev => ({ ...prev, ...user }))
   //   await fetch("/api/me")
@@ -45,6 +46,7 @@ const App = () => {
     console.log('siteUser: ', siteUser);
   }, [user, isAuthenticated]);
 
+  // TODO: Find out if I need this
   // useEffect(() => {
   //   console.log('siteuser l;akdsjfl;akjsdf;lasjkf', siteUser)
   //   getUser();
@@ -60,7 +62,6 @@ const App = () => {
     return <Loading />;
   }
 
-  // console.log("siteUser", siteUser.userId);
   return (
     <div id="app" className="d-flex flex-column h-100 app">
       {!user ? (
@@ -127,12 +128,3 @@ const App = () => {
 };
 
 export default App;
-// function App() {
-//   return (
-//     <div className="App">
-//       hiasdf;lkjasdfasdflaksdf';lkaf
-//     </div>
-//   );
-// }
-
-// export default App;
