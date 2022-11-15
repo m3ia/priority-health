@@ -593,7 +593,7 @@ header {
   line-height: 2%;
 }
 
-/* RECIPE-COLLECTIONS SELECTION ---------------------*/
+/* RECIPE-COLLECTIONS MULTIPLE SELECTION ---------------------*/
 
 /* From the New Recipe Form: */
 .new-recipe-form-div {
@@ -604,6 +604,14 @@ header {
 
 .collections-selection {
   border: 1px solid black;
+}
+.selected-collections-btns-div {
+  border: 1px solid black;
+}
+
+.collections-selections-div {
+  border: 1px solid red;
+  height: 100%;
 }
 
 /* From the Single Recipe View: */
@@ -625,9 +633,8 @@ header {
   padding: 10px;
   border-radius: 6px;
   /* border: 2px solid black; */
-  
-    margin: 15px 15px;
-    /* -webkit-box-shadow: 10px 3px 8px #9D968B;
-    -moz-box-shadow: 10px 3px 8px #9D968B;
-    box-shadow: 10px 3px 8px #9D968B; */
+  margin: 15px 15px;
+  /* -webkit-box-shadow: 10px 3px 8px #9D968B;
+  -moz-box-shadow: 10px 3px 8px #9D968B;
+  box-shadow: 10px 3px 8px #9D968B; */
 }

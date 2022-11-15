@@ -13,8 +13,11 @@ import AuthNav from "./components/home-login/auth-nav";
 import "./App.css";
 
 const App = () => {
-  const {user, isLoading, isAuthenticated} = useAuth0();
-  const [siteUser, setSiteUser] = useState({userId: 3});
+  const { user, isLoading, isAuthenticated } = useAuth0();
+  // TODO: figure out logic to avoid having to hard-code userId
+  const [siteUser, setSiteUser] = useState({ userId: 3 });
+  const [recipeCollections, setRecipeCollections] = useState([]);
+  const [singleRecipeID, setSingleRecipeID] = useState(0);
 
   // const getUser = async (siteUser) => {
   //   // setSiteUser(prev => ({ ...prev, ...user }))
@@ -24,8 +27,20 @@ const App = () => {
   // };
   const [foodView, setFoodView] = useState("");
 
+  const getRecipeCollections = async (recipeId) => {
+      const recipeCollections = [];
+      await fetch(`/api/recipe-collections/${recipeId}`)
+        .then((res) => res.json())
+        .then((res) => {
+          console.log("resssy", res);
+          recipeCollections.push(...res);
+        });
+
+      setRecipeCollections([...recipeCollections]);
+    };
+  // useEffect for combining userId info from auth0 with userId from DB 
   useEffect(() => {
-    setSiteUser(prev => ({...prev, ...user}));
+    setSiteUser(prev => ({ ...prev, ...user }));
     console.log("isUserAuthenticated? ", isAuthenticated);
     console.log('siteUser: ', siteUser);
   }, [user, isAuthenticated]);
@@ -34,6 +49,12 @@ const App = () => {
   //   console.log('siteuser l;akdsjfl;akjsdf;lasjkf', siteUser)
   //   getUser();
   // }, [user]);
+
+  // useEffect for capturing recipe-collections from DB after user is signed in
+  useEffect(() => {
+    console.log('rec coll: ', getRecipeCollections(siteUser.userId))
+    getRecipeCollections(singleRecipeID, setRecipeCollections);
+}, [siteUser, singleRecipeID]);
 
   if (isLoading) {
     return <Loading />;
@@ -68,7 +89,8 @@ const App = () => {
               />
               <Route
                 path="/recipes"
-                element={<Collections siteUser={siteUser} />}
+                  element={<Collections siteUser={siteUser} getRecipeCollections={getRecipeCollections} />}
+                  
               />
               <Route
                 path="/food-list"
@@ -86,7 +108,12 @@ const App = () => {
               />
               <Route
                 path="/recipe/:recipeId"
-                element={<SingleRecipeView siteUser={siteUser} />}
+                  element={
+                    <SingleRecipeView
+                    siteUser={siteUser}
+                    setSingleRecipeID={setSingleRecipeID}
+                      recipeCollections={recipeCollections} />
+                  }
               />
             </Routes>
           </div>

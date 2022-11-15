@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import RecipeListCard from "./RecipeListCard";
 import {useNavigate} from "react-router-dom";
 
-const Recipes = ({collectionFilter, setCollectionFilter}) => {
+const Recipes = ({collectionFilter, setCollectionFilter, collectionsData}) => {
   const [recipes, setRecipes] = useState([]);
   const [searchString, setSearchString] = useState("");
 
@@ -54,6 +54,7 @@ const Recipes = ({collectionFilter, setCollectionFilter}) => {
                     key={ind}
                     recipe={recipe}
                     navToSingleRecipeView={navToSingleRecipeView}
+                    collectionsData={collectionsData}
                   />
                 );
               })
@@ -63,6 +64,7 @@ const Recipes = ({collectionFilter, setCollectionFilter}) => {
                   key={ind}
                   recipe={recipe}
                   navToSingleRecipeView={navToSingleRecipeView}
+                  collectionsData={collectionsData}
                 />
               );
             })}

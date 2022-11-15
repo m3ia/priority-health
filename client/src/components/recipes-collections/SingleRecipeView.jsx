@@ -26,11 +26,11 @@ const parseIngredients = (recipeFromDB, setSelectedRecipe, setIngredients) => {
     });
   setIngredients(filteredParsedIngredients);
 };
-const SingleRecipeView = ({siteUser}) => {
+
+const SingleRecipeView = ({siteUser, setSingleRecipeID, recipeCollections}) => {
   const {recipeId} = useParams();
   const [selectedRecipe, setSelectedRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
-  const [recipeCollections, setRecipeCollections] = useState([]);
 
   useEffect(() => {
     // Fetch data for a single recipe
@@ -42,20 +42,9 @@ const SingleRecipeView = ({siteUser}) => {
         });
     };
 
-    const getRecipeCollections = async (recipeId) => {
-      const recipeCollections = [];
-      await fetch(`/api/recipe-collections/${recipeId}`)
-        .then((res) => res.json())
-        .then((res) => {
-          console.log("resssy", res);
-          recipeCollections.push(...res);
-        });
-
-      setRecipeCollections([...recipeCollections]);
-    };
     viewRecipe(recipeId);
-    getRecipeCollections(recipeId);
-  }, [recipeId]);
+    setSingleRecipeID(recipeId);
+  }, [recipeId, setSingleRecipeID]);
 
   return (
     <div className="single-recipe-container">
