@@ -561,6 +561,7 @@ body {
 
 /* RECIPE-COLLECTIONS SELECTION ---------------------*/
 
+/* From the New Recipe Form: */
 .new-recipe-form-div {
   display: flex;
   flex-direction: row;
@@ -571,4 +572,28 @@ body {
   border: 1px solid black;
 }
 
+/* From the Single Recipe View: */
+.recipe-collections-list-div {
+    border-top: .5px solid black;
+}
 
+.recipe-collections-list-cards-div {
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.collections-cards-view {
+  background-color: #D39738;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  /* border: 2px solid black; */
+  
+    margin: 15px 15px;
+    /* -webkit-box-shadow: 10px 3px 8px #9D968B;
+    -moz-box-shadow: 10px 3px 8px #9D968B;
+    box-shadow: 10px 3px 8px #9D968B; */
+}

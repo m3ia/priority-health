@@ -73,9 +73,9 @@ app.post('/api/me', cors(), async (req, res) => {
   const returningUser = await db.query(queryEmail, valuesEmail);
   if (returningUser.length > 0) {
     console.log(`Thank you ${returningUser[0].first_name} for coming back`);
-    console.log('prev userId: ', userId);
+    // console.log('prev userId: ', userId);
     userId = returningUser[0].id;
-    console.log('current userId: ', userId);
+    // console.log('current userId: ', userId);
 
     res.send(returningUser);
   } else {
@@ -201,12 +201,12 @@ app.get('/api/recipe/:id', async (req, res) => {
 })
 
 // GET all recipe-collections-memberships (For viewing recipe collections)
-app.get(`/api/recipe-collections/:userId`, cors(), async (req, res) => {
-  const currUserId = req.params.userId;
+app.get(`/api/recipe-collections/:recipeId`, cors(), async (req, res) => {
+  const currRecipeId = req.params.recipeId;
 
   try {
-    const response = await db.any('SELECT * FROM recipe_collection_membership LEFT JOIN collections ON recipe_collection_membership.collection_id = collections.id WHERE collections.user_id = $1', [currUserId]);
-    console.log('/api/recipe-collections userId: ', currUserId);
+    const response = await db.any('SELECT * FROM recipe_collection_membership LEFT JOIN collections ON recipe_collection_membership.collection_id = collections.id WHERE recipe_collection_membership.recipe_id = $1 AND collections.user_id = $2;', [currRecipeId, userId]);
+    console.log('/api/recipe-collections userId: ', userId);
     res.send(response);
   } catch (e) {
     console.log(e);
