@@ -633,6 +633,16 @@ header {
 .collections-selections-div {
   border: 1px solid red;
   /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.collection-select {
+  border-bottom: 1px solid var(--text-color);
+  /* background-color: black; */
+  padding: 2px;
 }
 
 /* From the Single Recipe View: */
