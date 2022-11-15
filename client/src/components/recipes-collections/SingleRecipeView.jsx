@@ -6,6 +6,26 @@ import spinner from "./spinner.svg";
 import {ReactSVG} from "react-svg";
 import RecipeNutritionLabel from "./RecipeNutritionLabel";
 
+const parseIngredients = (recipeFromDB, setSelectedRecipe, setIngredients) => {
+  const parsedIngredients = [...parseIngredient(recipeFromDB.ingredients)];
+  const processedRecipe = {...recipeFromDB, ingredients: parsedIngredients};
+  setSelectedRecipe(processedRecipe);
+  console.log("parsed ingredients: ", parsedIngredients);
+  const filteredParsedIngredients = parsedIngredients
+    .filter((item) => item.isGroupHeader === false)
+    .map((ing) => {
+      return (
+        `${ing.quantity ? ing.quantity : null} ` +
+        `${ing.quantity2 ? "- " + ing.quantity2 : null}${
+          ing.unitOfMeasure ? ing.unitOfMeasure : null
+        } ${ing.description ? ing.description : null}`
+      )
+        .replaceAll("null", "")
+        .replaceAll("  ", " ")
+        .trim();
+    });
+  setIngredients(filteredParsedIngredients);
+};
 const SingleRecipeView = ({siteUser}) => {
   const {recipeId} = useParams();
   const [selectedRecipe, setSelectedRecipe] = useState({});
@@ -17,24 +37,7 @@ const SingleRecipeView = ({siteUser}) => {
       await fetch(`/api/recipe/${recipeId}`)
         .then((res) => res.json())
         .then((res) => {
-          const parsedIngredients = [...parseIngredient(res[0].ingredients)];
-          setSelectedRecipe({...res[0], ingredients: parsedIngredients});
-          console.log("parsed ingredients: ", parsedIngredients);
-          setIngredients(
-            parsedIngredients
-              .filter((item) => item.isGroupHeader === false)
-              .map((ing) => {
-                return (
-                  `${ing.quantity ? ing.quantity : null} ` +
-                  `${ing.quantity2 ? "- " + ing.quantity2 : null}${
-                    ing.unitOfMeasure ? ing.unitOfMeasure : null
-                  } ${ing.description ? ing.description : null}`
-                )
-                  .replaceAll("null", "")
-                  .replaceAll("  ", " ")
-                  .trim();
-              })
-          );
+          parseIngredients(res[0], setSelectedRecipe, setIngredients);
         });
     };
     viewRecipe(recipeId);
