@@ -28,6 +28,9 @@ Secondary text: #9D968B
   --accent-color: #D39738;
   --accent-text-color: #FFF;
   --secondary-text-color: #9D968B;
+  --title-font: 'Battambang';
+  --text-font: 'Jost';
+
 }
 div {
   font-family: 'Jost';
@@ -620,16 +623,67 @@ header {
 .new-recipe-form-div {
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .collections-selection {
-  border: 1px solid black;
-}
-.selected-collections-btns-div {
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  max-width: 60%;
 }
 
+/* .recipe-form-input-div-container {
+
+} */
+
+/* Inputs */
+.recipe-name-input {
+  font-size: 25px;
+  font-family: var(--title-font);
+}
+
+.recipe-form-input-divs input {
+  font-family: var(--text-font);
+  font-size: 17px;
+}
+
+textarea {
+  width: 400px;
+  height: 300px;
+  font-family: var(--text-font);
+  font-size: 17px;
+}
+
+
+.recipe-description-input {
+  font-size: 20px;
+  font-family: var(--text-font);
+  width: 300px;
+  height: 100px;
+}
+.selected-collections-btns-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  max-width: 100%;
+}
+
+.selected-collection-btn {
+  /* border: 1px solid var(--text-color); */
+  border-radius: 3px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 2px;
+}
+
+.remove-collection-btn {
+  border: 1px solid var(--secondary-text-color);
+  color: var(--text-color);
+  font-size: 11px;
+}
 .collections-selections-div {
   border: 1px solid red;
   /* height: 100%; */
