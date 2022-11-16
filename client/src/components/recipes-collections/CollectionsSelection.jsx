@@ -13,11 +13,17 @@ const CollectionsSelection = ({newRecipe, collectionsData}) => {
       <h3>Add Recipe to Categories</h3>
       alskdfjl;asjkdfasd
       <div className="selected-collections-btns-div">
-        {potentialCollections.map((item, ind) => {
+        {potentialCollections.map((collectionName, ind) => {
           return (
             <div key={ind} className="selected-collection-btn">
-              {item}{" "}
-              <span className="material-symbols-outlined remove-collection-btn">
+              {collectionName}{" "}
+              <span
+                className="material-symbols-outlined remove-collection-btn"
+                onClick={() =>
+                  setPotentialCollections((prev) =>
+                    prev.filter((item) => item !== collectionName)
+                  )
+                }>
                 close
               </span>
             </div>
@@ -45,6 +51,7 @@ const CollectionsSelection = ({newRecipe, collectionsData}) => {
               collection={collection}
               key={ind}
               setPotentialCollections={setPotentialCollections}
+              potentialCollections={potentialCollections}
             />
           );
         })}

@@ -62,7 +62,6 @@ const RecipeNutritionLabel = ({ingredients, selectedRecipe}) => {
                 ingrts: data.ingredients[0].text,
               }));
             }
-            console.log("data: ", data);
           });
       } catch (err) {
         setLoadExpired(true);

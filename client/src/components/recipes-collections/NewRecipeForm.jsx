@@ -2,7 +2,13 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import CollectionsSelection from "./CollectionsSelection";
 
-const NewRecipeForm = ({siteUser}) => {
+const NewRecipeForm = ({
+  siteUser,
+  recipeCollectionsForView,
+  getRecipeCollections,
+}) => {
+  const [collectionsData, setCollectionsData] = useState([]);
+
   const navigate = useNavigate();
 
   const [newRecipe, setNewRecipe] = useState({
@@ -48,7 +54,16 @@ const NewRecipeForm = ({siteUser}) => {
     navigate("/recipes");
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const getCollections = () => {
+      fetch("/api/collections")
+        .then((res) => res.json())
+        .then((res) => {
+          setCollectionsData([...res]);
+        });
+    };
+    getCollections();
+  }, []);
   return (
     <div className="new-recipe-form-container">
       <h1>Add a New Recipe</h1>
@@ -192,7 +207,10 @@ const NewRecipeForm = ({siteUser}) => {
           </div>
         </div>
         <div className="collections-selection">
-          <CollectionsSelection newRecipe={newRecipe} />
+          <CollectionsSelection
+            newRecipe={newRecipe}
+            collectionsData={collectionsData}
+          />
         </div>
       </div>
       <div className="form-submit-btn" onClick={(e) => addNewRecipe(e)}>

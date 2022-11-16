@@ -52,6 +52,7 @@ const Recipes = ({collectionFilter, setCollectionFilter, collectionsData}) => {
                 return (
                   <RecipeListCard
                     key={ind}
+                    index={ind}
                     recipe={recipe}
                     navToSingleRecipeView={navToSingleRecipeView}
                     collectionsData={collectionsData}

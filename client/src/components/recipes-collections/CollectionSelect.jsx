@@ -1,7 +1,14 @@
+import {useEffect} from "react";
 import {useState} from "react";
 
-const CollectionSelect = ({collection, setPotentialCollections}) => {
-  const [isChecked, setIsChecked] = useState(false);
+const CollectionSelect = ({
+  collection,
+  setPotentialCollections,
+  potentialCollections,
+}) => {
+  const [isChecked, setIsChecked] = useState(
+    potentialCollections.includes(collection.name)
+  );
 
   const checkUncheck = (e, name) => {
     if (e.target.checked === false) {
@@ -15,6 +22,11 @@ const CollectionSelect = ({collection, setPotentialCollections}) => {
     }
     // setIsChecked(!e.target.checked);
   };
+
+  useEffect(
+    () => setIsChecked(potentialCollections.includes(collection.name)),
+    [potentialCollections, collection.name]
+  );
   return (
     <>
       <div className="collection-select">
