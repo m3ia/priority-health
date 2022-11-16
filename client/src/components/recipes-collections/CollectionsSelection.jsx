@@ -22,8 +22,7 @@ const CollectionsSelection = ({
       <div className="selected-collections-btns-div">
         {potentialCollections.map((collectionName, ind) => {
           return (
-            <div key={ind} className="selected-collection-btn">
-              {collectionName}{" "}
+            <span key={ind} className="selected-collection-btn">
               <span
                 className="material-symbols-outlined remove-collection-btn"
                 onClick={() =>
@@ -35,8 +34,9 @@ const CollectionsSelection = ({
                   }))
                 }>
                 close
-              </span>
-            </div>
+              </span>{" "}
+              {collectionName}
+            </span>
           );
         })}
       </div>

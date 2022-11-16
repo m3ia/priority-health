@@ -27,6 +27,19 @@ const parseIngredients = (recipeFromDB, setSelectedRecipe, setIngredients) => {
   setIngredients(filteredParsedIngredients);
 };
 
+// Function that gets recipe collections for specific recipes. stateUpdateFxn is any function meant to update any state
+export const getRecipeCollections = async (recipeId, stateUpdaterFxn) => {
+  const recipeCollections = [];
+  await fetch(`/api/recipe-collections/${recipeId}`)
+    .then((res) => res.json())
+    .then((res) => {
+      // TODO remove test line when done testing recipe-collections mult selection
+      console.log("resssy", res);
+      recipeCollections.push(...res);
+    });
+
+  stateUpdaterFxn([...recipeCollections]);
+};
 const SingleRecipeView = ({siteUser}) => {
   const {recipeId} = useParams();
   const [selectedRecipe, setSelectedRecipe] = useState({});
@@ -34,19 +47,6 @@ const SingleRecipeView = ({siteUser}) => {
   const [recipeCollectionsForView, setRecipeCollectionsForView] = useState([]);
 
   const [singleRecipeID, setSingleRecipeID] = useState(0);
-
-  const getRecipeCollections = async (recipeId) => {
-    const recipeCollections = [];
-    await fetch(`/api/recipe-collections/${recipeId}`)
-      .then((res) => res.json())
-      .then((res) => {
-        // TODO remove test line when done testing recipe-collections mult selection
-        console.log("resssy", res);
-        recipeCollections.push(...res);
-      });
-
-    setRecipeCollectionsForView([...recipeCollections]);
-  };
 
   useEffect(() => {
     // Fetch data for a single recipe

@@ -10,7 +10,7 @@ const getRecipeCollections = async (recipeId, stateUpdaterFxn) => {
     .then((res) => res.json())
     .then((res) => {
       // TODO remove test line when done testing recipe-collections mult selection
-      console.log("resssy", res);
+
       recipeCollections.push(...res);
     });
 
@@ -22,17 +22,16 @@ const RecipeListCard = ({
   viewRecipe,
   navToSingleRecipeView,
   collectionsData,
+  index,
 }) => {
   const [collectionsList, setCollectionsList] = useState([]);
 
-  console.log("recipe: ", recipe);
-  useEffect(
-    () => getRecipeCollections(recipe.id, setCollectionsList),
-    [recipe]
-  );
+  useEffect(() => {
+    getRecipeCollections(recipe.id, setCollectionsList);
+  }, [recipe]);
   return (
     <div
-      className="recipe-list-card-container"
+      className={`recipe-list-card-container ${index}`}
       onClick={() => navToSingleRecipeView(recipe.id)}>
       <div className="recipe-list-card-img">
         <img
@@ -46,7 +45,7 @@ const RecipeListCard = ({
           <strong>{recipe.name}</strong>
         </p>
         <p>URL: {recipe.url}</p>
-        <p>
+        <div>
           <strong>Collections: </strong>{" "}
           <div className="recipe-list-card-collection-div">
             {collectionsList.length === 0
@@ -57,7 +56,7 @@ const RecipeListCard = ({
                   </div>
                 ))}
           </div>
-        </p>
+        </div>
       </div>
     </div>
   );
