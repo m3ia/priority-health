@@ -142,7 +142,7 @@ app.get('/api/recipes', async (req, res) => {
 
 // POST - Add a new recipe
 app.post('/api/new-recipe', cors(), async (req, res, next) => {
-  
+  // Updates recipes tables with new recipe
   const newRecipe = {
     userId: req.body.userId,
     name: req.body.name,
@@ -154,14 +154,17 @@ app.post('/api/new-recipe', cors(), async (req, res, next) => {
     // user_id:req.body.user_id,
     prep_time: req.body.prep_time,
     cook_time: req.body.cook_time,
-    yield: req.body.yield
+    yield: req.body.yield,
+    collections: req.body.collections
   }
 
-  // userId = newRecipe.userId;
+  let user = newRecipe.userId;
+  
+  console.log('newRecipe: ', newRecipe);
   try {
-        console.log('userId: ', userId, typeof userId);
+    console.log('POST for new recipe - userId: ', user, typeof user);
 
-    const recipeQuery = 'INSERT INTO recipes (name, summary, ingredients, instructions, image, url, user_id, prep_time, cook_time, yield) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *';
+    const recipeQuery = 'INSERT INTO recipes (name, summary, ingredients, instructions, image, url, user_id, prep_time, cook_time, yield) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id';
 
     const values = [
       newRecipe.name, 
@@ -170,15 +173,27 @@ app.post('/api/new-recipe', cors(), async (req, res, next) => {
       newRecipe.instructions,
       newRecipe.image,
       newRecipe.url,
-      userId,
+      user,
       newRecipe.prep_time,
       newRecipe.cook_time,
       newRecipe.yield
     ];
 
-    const result = await db.query(recipeQuery, values);
-    console.log('New Recipe Added: ', result);
-    console.log('userId: ', userId, typeof userId);
+    const result = await db.one(recipeQuery, values);
+    const newRecipeId = result.id
+    
+    console.log('New Recipe Added: ', newRecipeId, 'user: ', user);
+    
+    // Updates recipe_collection_membership with new recipe-collection connections
+    if (newRecipe.collections.length > 0) {
+      console.log('in the loop');
+      for (let item of newRecipe.collections) {
+        // let newId = await db.one('INSERT INTO recipe_collection_membership (collection_id, recipe_id) SELECT id as collection_id, $1 as recipe_id FROM collections WHERE user_id = $2 AND name = $3', [newRecipeId, user, item]);
+        await db.query('INSERT INTO recipe_collection_membership (collection_id, recipe_id) SELECT id as collection_id, $1 as recipe_id FROM collections WHERE user_id = $2 AND name = $3', [newRecipeId, user, item]);
+      }
+      console.log('Success! New Recipe has been added to collection(s).');
+    }
+    
     res.status(201);
     res.send();
   } catch (e) {
