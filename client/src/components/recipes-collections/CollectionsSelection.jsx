@@ -2,10 +2,17 @@ import {useEffect, useState} from "react";
 // import {isInputElement} from "react-router-dom/dist/dom";
 import CollectionSelect from "./CollectionSelect";
 
-const CollectionsSelection = ({newRecipe, collectionsData}) => {
+const CollectionsSelection = ({
+  newRecipe,
+  collectionsData,
+  // potentialCollections = newRecipe.collections: an empty array that tracks all potential collections for a recipe.
+  potentialCollections,
+  // setNewRecipe updates the newRecipe object, set in NewRecipeForm.jsx
+  setNewRecipe,
+}) => {
   // collectionsData = all collections
   // TODO: set a state for potential collections.
-  const [potentialCollections, setPotentialCollections] = useState([]);
+  // const [potentialCollections, setPotentialCollections] = useState([]);
   // onSubmit, send those as a post to be added to recipe-collections.
 
   return (
@@ -20,9 +27,12 @@ const CollectionsSelection = ({newRecipe, collectionsData}) => {
               <span
                 className="material-symbols-outlined remove-collection-btn"
                 onClick={() =>
-                  setPotentialCollections((prev) =>
-                    prev.filter((item) => item !== collectionName)
-                  )
+                  setNewRecipe((prev) => ({
+                    ...prev,
+                    collections: potentialCollections.filter(
+                      (item) => item !== collectionName
+                    ),
+                  }))
                 }>
                 close
               </span>
@@ -50,7 +60,8 @@ const CollectionsSelection = ({newRecipe, collectionsData}) => {
             <CollectionSelect
               collection={collection}
               key={ind}
-              setPotentialCollections={setPotentialCollections}
+              // setPotentialCollections={setPotentialCollections}
+              setNewRecipe={setNewRecipe}
               potentialCollections={potentialCollections}
             />
           );

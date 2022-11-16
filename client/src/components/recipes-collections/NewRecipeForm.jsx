@@ -8,6 +8,7 @@ const NewRecipeForm = ({
   getRecipeCollections,
 }) => {
   const [collectionsData, setCollectionsData] = useState([]);
+  // const [potentialCollections, setPotentialCollections] = useState([]);
 
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ const NewRecipeForm = ({
     prep_time: "",
     cook_time: "",
     yield: 0,
+    collections: [],
   });
 
   const addNewRecipe = async (e) => {
@@ -48,6 +50,7 @@ const NewRecipeForm = ({
       prep_time: "",
       cook_time: "",
       yield: 0,
+      collections: [],
     });
 
     // TODO: redirect user to single recipe view
@@ -210,6 +213,8 @@ const NewRecipeForm = ({
           <CollectionsSelection
             newRecipe={newRecipe}
             collectionsData={collectionsData}
+            potentialCollections={newRecipe.collections}
+            setNewRecipe={setNewRecipe}
           />
         </div>
       </div>

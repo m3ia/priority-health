@@ -3,8 +3,9 @@ import {useState} from "react";
 
 const CollectionSelect = ({
   collection,
-  setPotentialCollections,
+  // setPotentialCollections,
   potentialCollections,
+  setNewRecipe,
 }) => {
   const [isChecked, setIsChecked] = useState(
     potentialCollections.includes(collection.name)
@@ -12,12 +13,16 @@ const CollectionSelect = ({
 
   const checkUncheck = (e, name) => {
     if (e.target.checked === false) {
-      setPotentialCollections((prev) => [
-        ...prev.filter((item) => item !== name),
-      ]);
+      setNewRecipe((prev) => ({
+        ...prev,
+        collections: potentialCollections.filter((item) => item !== name),
+      }));
       setIsChecked(false);
     } else {
-      setPotentialCollections((prev) => [...prev, name]);
+      setNewRecipe((prev) => ({
+        ...prev,
+        collections: [...potentialCollections, name],
+      }));
       setIsChecked(true);
     }
     // setIsChecked(!e.target.checked);
