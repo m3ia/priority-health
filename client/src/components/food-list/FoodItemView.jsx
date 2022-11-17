@@ -14,7 +14,7 @@ const FoodItemView = ({foodView, setFoodView, food}) => {
               }`,
               padding: "7px",
             }}>
-            {food[0].status ? food[0].status.toUpperCase() : "Not yet labeled"}
+            {food[0].status ? food[0].status.toUpperCase() : "Unknown/Not Sure"}
           </span>
         </h1>{" "}
         <span

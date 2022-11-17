@@ -32,6 +32,7 @@ const NewFoodForm = ({siteUser}) => {
     });
 
     navigate("/food-list");
+    navigate(0);
   };
 
   return (

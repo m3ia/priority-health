@@ -11,33 +11,46 @@ const NutritionLabel = ({foodView}) => {
 
   useEffect(() => {
     const getNutritionLabelData = async () => {
-      await fetch(`/api/example/${food}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setNutritionLabelData((prev) => ({
-            ...prev,
-            dietLabels: data.dietLabels,
-            healthLabels: data.healthLabels,
-            calories: data.calories,
-            weight: data.ingredients[0].parsed[0].weight.toFixed(0) + "g",
-            fat:
-              data.totalNutrients.FAT.quantity.toFixed(2) +
-              data.totalNutrients.FAT.unit,
-            satFat:
-              data.totalNutrients.FASAT.quantity.toFixed(2) +
-              data.totalNutrients.FASAT.unit,
-            protein:
-              data.totalNutrients.PROCNT.quantity.toFixed(2) +
-              data.totalNutrients.PROCNT.unit,
-            carbs:
-              data.totalNutrients.CHOCDF.quantity.toFixed(2) +
-              data.totalNutrients.CHOCDF.unit,
-            chole:
-              data.totalNutrients.CHOLE.quantity.toFixed(2) +
-              data.totalNutrients.CHOLE.unit,
-            ingrts: data.ingredients[0].text,
-          }));
-        });
+      try {
+        await fetch(`/api/example/${food}`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (
+              data.error ||
+              (!data.totalNutrients.FAT.quantity &&
+                data.totalNutrients.FAT.quantity !== 0)
+            ) {
+              setLoadExpired(true);
+            } else {
+              setNutritionLabelData((prev) => ({
+                ...prev,
+                dietLabels: data.dietLabels,
+                healthLabels: data.healthLabels,
+                calories: data.calories,
+                weight:
+                  data.ingredients[0]?.parsed[0]?.weight?.toFixed(0) + "g",
+                fat:
+                  data.totalNutrients.FAT.quantity.toFixed(2) +
+                  data.totalNutrients.FAT.unit,
+                satFat:
+                  data.totalNutrients.FASAT.quantity.toFixed(2) +
+                  data.totalNutrients.FASAT.unit,
+                protein:
+                  data.totalNutrients.PROCNT.quantity.toFixed(2) +
+                  data.totalNutrients.PROCNT.unit,
+                carbs:
+                  data.totalNutrients.CHOCDF.quantity.toFixed(2) +
+                  data.totalNutrients.CHOCDF.unit,
+                chole:
+                  data.totalNutrients.CHOLE.quantity.toFixed(2) +
+                  data.totalNutrients.CHOLE.unit,
+                ingrts: data.ingredients[0].text,
+              }));
+            }
+          });
+      } catch (err) {
+        setLoadExpired(true);
+      }
     };
     getNutritionLabelData();
   }, [food]);
