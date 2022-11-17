@@ -54,16 +54,6 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
   useEffect(() => {
     getFoods(siteUser.userId);
   }, [siteUser]);
-  // Checks for food search query updates
-  useEffect(() => {
-    // if (searchedFood.length !== 0) {
-    //   console.log("foods", foods);
-    //   setFoods((prev) =>
-    //     prev.filter((item) => item.food.includes(searchedFood))
-    //   );
-    // }
-    console.log("searched: ", searchedFood);
-  }, [searchedFood]);
 
   return (
     <>
