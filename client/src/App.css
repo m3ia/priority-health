@@ -28,6 +28,9 @@ Secondary text: #9D968B
   --accent-color: #D39738;
   --accent-text-color: #FFF;
   --secondary-text-color: #9D968B;
+  --title-font: 'Battambang';
+  --text-font: 'Jost';
+
 }
 div {
   font-family: 'Jost';
@@ -82,6 +85,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1rem;
 }
 /* Logo */
 .logo {
@@ -448,7 +452,7 @@ header {
   flex-direction: row;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  background-color: rgb(253, 211, 85);
+  background-color: var(--alt-darker-bg-color)
 }
 
 .recipe-list-card-container:hover {
@@ -460,12 +464,32 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 10px;
+  /* margin-right: 10px; */
 }
 .recipe-list-card-details {
   display: flex;
   flex-direction: column; 
+  max-width: 70%;
+  margin-left: 20px;
 }
 
+.recipe-list-card-collection-div {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.recipe-list-card-collection-item {
+  /* border: 1px solid var(--text-color); */
+  padding: 3px 10px 3px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  font-size: 12px;
+}
 /* Single Recipe ---------------------*/
 .single-recipe-container {
   display: flex;
@@ -591,4 +615,111 @@ header {
 .nutrition-calories {
   font-size: 20px;
   line-height: 2%;
+}
+
+/* RECIPE-COLLECTIONS MULTIPLE SELECTION ---------------------*/
+
+/* From the New Recipe Form: */
+.new-recipe-form-div {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+}
+
+.collections-selection {
+  /* border: 1px solid black; */
+  max-width: 60%;
+}
+
+/* .recipe-form-input-div-container {
+
+} */
+
+/* Inputs */
+.recipe-name-input {
+  font-size: 25px;
+  font-family: var(--title-font);
+}
+
+.recipe-form-input-divs input {
+  font-family: var(--text-font);
+  font-size: 17px;
+}
+
+textarea {
+  width: 400px;
+  height: 300px;
+  font-family: var(--text-font);
+  font-size: 17px;
+}
+
+
+.recipe-description-input {
+  font-size: 20px;
+  font-family: var(--text-font);
+  width: 300px;
+  height: 100px;
+}
+.selected-collections-btns-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  max-width: 100%;
+}
+
+.selected-collection-btn {
+  /* border: 1px solid var(--text-color); */
+  border-radius: 3px;
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 2px;
+}
+
+.remove-collection-btn {
+  border: 1px solid var(--secondary-text-color);
+  color: var(--text-color);
+  font-size: 11px;
+}
+.collections-selections-div {
+  border: 1px solid red;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.collection-select {
+  border-bottom: 1px solid var(--text-color);
+  /* background-color: black; */
+  padding: 2px;
+}
+
+/* From the Single Recipe View: */
+.recipe-collections-list-div {
+    border-top: .5px solid black;
+}
+
+.recipe-collections-list-cards-div {
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.collections-cards-view {
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  padding: 10px;
+  border-radius: 6px;
+  /* border: 2px solid black; */
+  margin: 15px 15px;
+  /* -webkit-box-shadow: 10px 3px 8px #9D968B;
+  -moz-box-shadow: 10px 3px 8px #9D968B;
+  box-shadow: 10px 3px 8px #9D968B; */
 }

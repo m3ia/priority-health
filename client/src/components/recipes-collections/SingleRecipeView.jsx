@@ -26,10 +26,27 @@ const parseIngredients = (recipeFromDB, setSelectedRecipe, setIngredients) => {
     });
   setIngredients(filteredParsedIngredients);
 };
+
+// Function that gets recipe collections for specific recipes. stateUpdateFxn is any function meant to update any state
+export const getRecipeCollections = async (recipeId, stateUpdaterFxn) => {
+  const recipeCollections = [];
+  await fetch(`/api/recipe-collections/${recipeId}`)
+    .then((res) => res.json())
+    .then((res) => {
+      // TODO remove test line when done testing recipe-collections mult selection
+      console.log("resssy", res);
+      recipeCollections.push(...res);
+    });
+
+  stateUpdaterFxn([...recipeCollections]);
+};
 const SingleRecipeView = ({siteUser}) => {
   const {recipeId} = useParams();
   const [selectedRecipe, setSelectedRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
+  const [recipeCollectionsForView, setRecipeCollectionsForView] = useState([]);
+
+  const [singleRecipeID, setSingleRecipeID] = useState(0);
 
   useEffect(() => {
     // Fetch data for a single recipe
@@ -40,8 +57,15 @@ const SingleRecipeView = ({siteUser}) => {
           parseIngredients(res[0], setSelectedRecipe, setIngredients);
         });
     };
+
     viewRecipe(recipeId);
-  }, [recipeId]);
+    setSingleRecipeID(recipeId);
+  }, [recipeId, setSingleRecipeID]);
+
+  // useEffect for capturing recipe-collections from DB after user is signed in
+  useEffect(() => {
+    getRecipeCollections(singleRecipeID, setRecipeCollectionsForView);
+  }, [singleRecipeID]);
 
   return (
     <div className="single-recipe-container">
@@ -55,21 +79,25 @@ const SingleRecipeView = ({siteUser}) => {
               <div className="recipe-photo">
                 {" "}
                 <figure>
-                  <img
-                    src={selectedRecipe.image}
-                    alt="recipe-hero-img"
-                    width="500"
-                  />
+                  {selectedRecipe.image && (
+                    <img
+                      src={selectedRecipe.image}
+                      alt="recipe-hero-img"
+                      width="500"
+                    />
+                  )}
                   <br />
-                  <figcaption>
-                    Source link:{" "}
-                    <a
-                      href={selectedRecipe.url}
-                      target="_blank"
-                      rel="noreferrer">
-                      {selectedRecipe.url}
-                    </a>
-                  </figcaption>
+                  {selectedRecipe.url && (
+                    <figcaption>
+                      Source link:{" "}
+                      <a
+                        href={selectedRecipe.url}
+                        target="_blank"
+                        rel="noreferrer">
+                        {selectedRecipe.url}
+                      </a>
+                    </figcaption>
+                  )}
                 </figure>
               </div>
               <div className="recipe-summary">
@@ -82,6 +110,20 @@ const SingleRecipeView = ({siteUser}) => {
               <div className="recipe-instructions">
                 <h2>Instructions</h2>
                 <Interweave content={selectedRecipe.instructions} />
+              </div>
+              {/* Contains list of collections this recipe is a member of in button-size cards */}
+              <div className="recipe-collections-list-div">
+                <h2>Current Collections:</h2>
+                <div className="recipe-collections-list-cards-div">
+                  {recipeCollectionsForView.length > 0
+                    ? recipeCollectionsForView.map((item, ind) => (
+                        // <li key={ind}>{item.name}</li>
+                        <div key={ind} className="collections-cards-view">
+                          {item.name}
+                        </div>
+                      ))
+                    : "No collections at this time."}
+                </div>
               </div>
             </div>
             <div className="recipe-body-right">

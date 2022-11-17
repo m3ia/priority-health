@@ -13,35 +13,47 @@ import AuthNav from "./components/home-login/auth-nav";
 import "./App.css";
 
 const App = () => {
-  const {user, isLoading, isAuthenticated} = useAuth0();
-  const [siteUser, setSiteUser] = useState({userId: 3});
+  const { user, isLoading, isAuthenticated } = useAuth0();
+  // TODO: figure out logic to avoid having to hard-code userId
+  const [siteUser, setSiteUser] = useState({ userId: 3 });
 
-  const getUser = async (siteUser) => {
-    // setSiteUser(prev => ({ ...prev, ...user }))
-    await fetch("/api/me")
-      .then((res) => res.json())
-      .then((res) => setSiteUser((prev) => ({...prev, userId: res.id})));
-  };
+  // TODO: Find out if I need this
+  // const getUser = async (siteUser) => {
+  //   // setSiteUser(prev => ({ ...prev, ...user }))
+  //   await fetch("/api/me")
+  //     .then((res) => res.json())
+  //     .then((res) => setSiteUser((prev) => ({...prev, userId: res.id})));
+  // };
   const [foodView, setFoodView] = useState("");
 
+  // useEffect for combining userId info from auth0 with userId from DB 
   useEffect(() => {
-    setSiteUser(user);
+    setSiteUser(prev => ({ ...prev, ...user }));
     console.log("isUserAuthenticated? ", isAuthenticated);
   }, [user, isAuthenticated]);
 
-  useEffect(() => {
-    getUser();
-  }, [user]);
+  // TODO: Find out if I need this
+  // useEffect(() => {
+  //   console.log('siteuser l;akdsjfl;akjsdf;lasjkf', siteUser)
+  //   getUser();
+  // }, [user]);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  console.log("siteUser", siteUser.userId);
   return (
     <div id="app" className="d-flex flex-column h-100 app">
-      {user ? (
-        // What user sees if they're logged in
+      {!user ? (
+                // Log in page
+        <>
+          <div className="container flex-grow-1 log-in-div">
+            <h1>priorityHealth</h1>
+            <AuthNav />
+          </div>
+        </>
+      ) : (
+// What user sees if they're logged in
         <>
           <header>
           <div className="app-header">
@@ -58,7 +70,8 @@ const App = () => {
               />
               <Route
                 path="/recipes"
-                element={<Collections siteUser={siteUser} />}
+                  element={<Collections siteUser={siteUser} />}
+                  
               />
               <Route
                 path="/food-list"
@@ -72,26 +85,24 @@ const App = () => {
               />
               <Route
                 path="/add-new-recipe"
-                element={<NewRecipeForm siteUser={siteUser} />}
+                  element={<NewRecipeForm siteUser={siteUser}
+                  />}
               />
               <Route
                 path="/recipe/:recipeId"
-                element={<SingleRecipeView siteUser={siteUser} />}
+                  element={
+                    <SingleRecipeView
+                    siteUser={siteUser}
+                    />
+                  }
               />
             </Routes>
           </div>
 
           <Footer />
         </>
-      ) : (
-        // Log in page
-        <>
-          <div className="container flex-grow-1 log-in-div">
-            <h1>priorityHealth</h1>
-            <AuthNav />
-          </div>
-        </>
-      )}
+      )
+      }
     </div>
   );
 };

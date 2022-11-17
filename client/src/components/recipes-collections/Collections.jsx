@@ -40,6 +40,7 @@ const Collections = () => {
           <Recipes
             collectionFilter={collectionFilter}
             setCollectionFilter={setCollectionFilter}
+            collectionsData={collectionsData}
           />
         </div>
       </div>
