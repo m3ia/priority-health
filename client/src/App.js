@@ -8,7 +8,7 @@ import {Home, Profile} from "./components/home-login/views";
 import Collections from "./components/recipes-collections/Collections";
 import NewRecipeForm from "./components/recipes-collections/NewRecipeForm";
 import SingleRecipeView from "./components/recipes-collections/SingleRecipeView";
-
+import NewFoodForm from './components/food-list/NewFoodForm'
 import AuthNav from "./components/home-login/auth-nav";
 import "./App.css";
 
@@ -92,6 +92,14 @@ const App = () => {
                 path="/recipe/:recipeId"
                   element={
                     <SingleRecipeView
+                    siteUser={siteUser}
+                    />
+                  }
+                />
+                <Route
+                path="/add-new-food"
+                  element={
+                    <NewFoodForm
                     siteUser={siteUser}
                     />
                   }

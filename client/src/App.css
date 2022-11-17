@@ -447,10 +447,11 @@ header {
   border-radius: 4px;
 }
 
-.recipes-form-btn, .new-food-btn  {
+.recipes-form-btn, .new-food-btn, .btn  {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 20%;
+  min-width: 100px;
   border: 1px var(--accent-text-color) solid;
   align-items: center;
   justify-content: center;
@@ -460,7 +461,7 @@ header {
   padding: 10px;
 }
 
-.recipes-form-btn:hover, .new-food-btn:hover {
+.recipes-form-btn:hover, .new-food-btn:hover, .btn {
   cursor: pointer;
   background-color: var(--accent-color-hover);
 }

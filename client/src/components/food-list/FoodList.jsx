@@ -1,9 +1,12 @@
 import {useState, useEffect} from "react";
 import FoodItemView from "./FoodItemView";
 import FoodItem from "./FoodItem";
+import {useNavigate} from "react-router-dom";
 
 const FoodList = ({foodView, setFoodView}) => {
   const [foods, setFoods] = useState([]);
+
+  const navigate = useNavigate();
 
   const getFoods = async () => {
     await fetch("/api/myFoods")
@@ -12,6 +15,8 @@ const FoodList = ({foodView, setFoodView}) => {
         setFoods([...res]);
       });
   };
+
+  const navToNewFoodForm = () => navigate("/add-new-food");
 
   // GET request that fetches everything from http://localhost:8080/api/myFoods
   useEffect(() => {
@@ -29,7 +34,9 @@ const FoodList = ({foodView, setFoodView}) => {
               <h3>Track the foods you can/can't tolerate here.</h3>
             </div>
             <div>
-              <div className="new-food-btn">Add a Food</div>
+              <div className="new-food-btn" onClick={() => navToNewFoodForm()}>
+                Add a Food
+              </div>
             </div>
           </div>
           <div className="food-list-div">

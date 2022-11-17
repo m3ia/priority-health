@@ -101,6 +101,44 @@ app.get(`/api/myFoods`, cors(), async (req, res) => {
   }
 });
 
+// POST - Add a new food
+app.post('/api/new-food', cors(), async (req, res, next) => {
+  // Updates recipes tables with new recipe
+  const newFood = {
+    userId: req.body.userId,
+    food: req.body.food,
+    status: req.body.status,
+    notes: req.body.notes
+  }
+
+  let user = newFood.userId;
+  
+  console.log('newFood: ', newFood);
+  try {
+    console.log('POST for new food - userId: ', user, typeof user);
+
+    const foodQuery = 'INSERT INTO foods (food, status, notes, user_id) VALUES ($1, $2, $3, $4) RETURNING id';
+
+    const values = [
+      newFood.food,
+      newFood.status,
+      newFood.notes,
+      user
+    ];
+
+    const result = await db.one(foodQuery, values);
+    const newFoodId = result.id
+    
+    console.log('New Food Item Added: ', newFoodId, 'user: ', user);
+    res.status(201);
+    res.send();
+  } catch (e) {
+    console.log('Food Post Req Handler Error: ', e);
+    res.status(400).send({ e });
+  }
+});
+
+
 // Get for Nutritional Analysis
 app.get(`/api/example/:food`, async (req, res) => {
   const food1 = '1 tbsp honey';
