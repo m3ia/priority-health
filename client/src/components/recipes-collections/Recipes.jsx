@@ -35,7 +35,8 @@ const Recipes = ({collectionFilter, setCollectionFilter, collectionsData}) => {
               setSearchString(e.target.value);
             }}></input>
         </div>
-        <div className="recipes-form-btn">+</div>
+        {/* TODO: decide if i need a btn to add a new form here */}
+        {/* <div className="recipes-form-btn">+</div> */}
       </div>
       <div className="recipes-view-info">
         <h2>{collectionFilter === "all-recipes" && "All Recipes"}</h2>

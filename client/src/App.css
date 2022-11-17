@@ -26,11 +26,19 @@ Secondary text: #9D968B
   --alt-darker-bg-color: #FDF2E2;
   --text-color: #2D2B2B;
   --accent-color: #D39738;
+  --accent-color-hover: #D39738e3;
   --accent-text-color: #FFF;
   --secondary-text-color: #9D968B;
   --title-font: 'Battambang';
   --text-font: 'Jost';
+  --h3-font: 'Jost';
+  --h3-font-weight: 300;
 
+}
+h3 {
+  font-family: var(--h3-font);
+  font-weight: var(--h3-font-weight);
+  
 }
 div {
   font-family: 'Jost';
@@ -84,9 +92,12 @@ header {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 1rem;
+  padding-top: 2rem;
+  padding-left: 4rem;
 }
+
 /* Logo */
 .logo {
   font-family: 'Battambang';
@@ -194,6 +205,14 @@ header {
 }
 
 /* --------------------- FOOD LIST --------------------- */
+.food-list-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .nutrition-label-div {
   display: flex;
   flex-direction: column;
@@ -428,21 +447,22 @@ header {
   border-radius: 4px;
 }
 
-.recipes-form-btn {
+.recipes-form-btn, .new-food-btn  {
   display: flex;
   flex-direction: column;
-  width: 20%;
-  border: dotted;
+  width: 100px;
+  border: 1px var(--accent-text-color) solid;
   align-items: center;
   justify-content: center;
   background-color: var(--accent-color);
   color: white;
   border-radius: 4px;
+  padding: 10px;
 }
 
-.recipes-form-btn:hover {
+.recipes-form-btn:hover, .new-food-btn:hover {
   cursor: pointer;
-  background-color: var(--accent-color)e3;
+  background-color: var(--accent-color-hover);
 }
 
 

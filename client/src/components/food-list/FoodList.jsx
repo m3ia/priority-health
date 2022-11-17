@@ -21,17 +21,28 @@ const FoodList = ({foodView, setFoodView}) => {
   return (
     <>
       {foodView === "" ? (
-        <div className="food-list-div">
-          <h1>Food Tolerance List</h1>
-          <p>food view: {foodView}</p>
-          <div className="foods-btns-div">
-            {foods.map((food, ind) => {
-              return (
-                <FoodItem key={ind} food={food} setFoodView={setFoodView} />
-              );
-            })}
+        <>
+          <div className="food-list-header">
+            <div>
+              {/* TODO add form for food list */}
+              <h1>Food Tolerance List</h1>
+              <h3>Track the foods you can/can't tolerate here.</h3>
+            </div>
+            <div>
+              <div className="new-food-btn">Add a Food</div>
+            </div>
           </div>
-        </div>
+          <div className="food-list-div">
+            <p>food view: {foodView}</p>
+            <div className="foods-btns-div">
+              {foods.map((food, ind) => {
+                return (
+                  <FoodItem key={ind} food={food} setFoodView={setFoodView} />
+                );
+              })}
+            </div>
+          </div>
+        </>
       ) : (
         <div className="food-item-view-container">
           <FoodItemView
