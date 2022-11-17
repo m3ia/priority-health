@@ -44,17 +44,8 @@ const App = () => {
 
   return (
     <div id="app" className="d-flex flex-column h-100 app">
-      {!user ? (
-                // Log in page
-        <>
-          <div className="container flex-grow-1 log-in-div">
-            <h1>priorityHealth</h1>
-            <AuthNav />
-          </div>
-        </>
-      ) : (
-// What user sees if they're logged in
-        <>
+{/* // What user sees if they're logged in */}
+        {user ? (<>
           <header>
           <div className="app-header">
             <h1 className="logo">priorityHealth</h1>
@@ -109,7 +100,14 @@ const App = () => {
 
           <Footer />
         </>
-      )
+      ) :
+                        // Log in page
+        (<>
+          <div className="container flex-grow-1 log-in-div">
+            <h1>priorityHealth</h1>
+            <AuthNav />
+          </div>
+        </>)
       }
     </div>
   );
