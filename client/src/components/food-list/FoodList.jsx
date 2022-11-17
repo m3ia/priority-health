@@ -84,20 +84,14 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
             <div className="foods-btns-div">
               {foods.map((food, ind) => {
                 return (
-                  <div key={ind}>
-                    <FoodItem food={food} setFoodView={setFoodView} />
-                    {editMode && (
-                      <span
-                        className="material-symbols-outlined delete-food-item-btn"
-                        onClick={() => {
-                          setFoods((prev) =>
-                            prev.filter((item) => item.id !== food.id)
-                          );
-                          setFoodsToDelete((prev) => [...prev, food.id]);
-                        }}>
-                        remove
-                      </span>
-                    )}
+                  <div className="foot-btn-delete-div" key={ind}>
+                    <FoodItem
+                      food={food}
+                      setFoodView={setFoodView}
+                      editMode={editMode}
+                      setFoods={setFoods}
+                      setFoodsToDelete={setFoodsToDelete}
+                    />
                   </div>
                 );
               })}
