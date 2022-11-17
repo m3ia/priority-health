@@ -97,12 +97,3 @@ const App = () => {
 };
 
 export default App;
-// function App() {
-//   return (
-//     <div className="App">
-//       hiasdf;lkjasdfasdflaksdf';lkaf
-//     </div>
-//   );
-// }
-
-// export default App;
