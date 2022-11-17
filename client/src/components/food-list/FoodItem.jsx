@@ -21,7 +21,7 @@ const FoodItem = ({food, setFoodView}) => {
           food.status ? foodStatusToColor(food?.status) : "#FFF"
         }`,
       }}>
-      <h3>{food.food}</h3>
+      <p>{food.food}</p>
     </div>
   );
 };

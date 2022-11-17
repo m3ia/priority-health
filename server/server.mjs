@@ -88,10 +88,11 @@ app.post('/api/me', cors(), async (req, res) => {
 });
 
 
-//  ------- ------- ------- FOODS LIST ------- ------- -------
+//  ------- ------- ------- FOOD TOLERANCE LIST ------- ------- -------
 
 // GET Get all foods for 1 user:
-app.get(`/api/myFoods`, cors(), async (req, res) => {
+app.get(`/api/myFoods/:id`, cors(), async (req, res) => {
+  const userId = req.params.id;
   try {
     const response = await db.any('SELECT * FROM foods WHERE user_id = $1', [userId]);
     res.send(response);
@@ -138,6 +139,26 @@ app.post('/api/new-food', cors(), async (req, res, next) => {
   }
 });
 
+// DELETE - For multiple foods on the Food List page
+app.delete('/api/delete-foods', cors(), async (req, res) => {
+  const foodsToDelete = {
+    userId: req.body.userId,
+    items: req.body.items
+  }
+  console.log('in the delete req handler');
+  const user = foodsToDelete.userId;
+  const itemsToDelete = foodsToDelete.items;
+  try {
+    for (let foodId of itemsToDelete) {
+      await db.none('DELETE FROM foods WHERE id = $1 AND user_id = $2', [foodId, user]);
+    }
+    console.log('All food items deleted!');
+    res.send();
+  } catch (e) {
+    console.log('ERROR in DELETE req handler for /api/delete-foods: ', e);
+    res.status(400).send({ e });
+  }
+})
 
 // Get for Nutritional Analysis
 app.get(`/api/example/:food`, async (req, res) => {

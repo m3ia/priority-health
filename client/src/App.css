@@ -234,6 +234,29 @@ header {
   display: flex;
   flex-direction: column;
   width: 300px;
+  font-family: var(--text-font);
+  font-weight: 500;
+  font-size: 20px;
+  position: relative;
+}
+
+.delete-food-item-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  height: 15px;
+  width: 15px;
+  padding: 2px;
+  float: right;
+  margin-left: -3%;
+  z-index: 1;
+  border-radius: 100%;
+  color: white;
+  /* position: absolute; */
+  /* top: 0;
+  right: 0; */
 }
 
 .foods-btns-div {
@@ -461,7 +484,7 @@ header {
   padding: 10px;
 }
 
-.recipes-form-btn:hover, .new-food-btn:hover, .btn {
+.recipes-form-btn:hover, .new-food-btn:hover, .btn:hover {
   cursor: pointer;
   background-color: var(--accent-color-hover);
 }
