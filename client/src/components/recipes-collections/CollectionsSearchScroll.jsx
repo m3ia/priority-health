@@ -20,8 +20,14 @@ import {useState} from "react";
 ]
 
 */
-const CollectionsSearchScroll = ({collectionsData}) => {
-  const [collectionFilter, setCollectionFilter] = useState("");
+const CollectionsSearchScroll = ({
+  collectionsData,
+  collectionFilter,
+  setCollectionFilter,
+  selectedCollection,
+  setSelectedCollection,
+}) => {
+  // const [collectionFilter, setCollectionFilter] = useState("");
   return (
     <div className="collections-search-div">
       <div className="collections-searchbar">
@@ -35,7 +41,10 @@ const CollectionsSearchScroll = ({collectionsData}) => {
         {collectionFilter.length === 0
           ? collectionsData.map((collection, ind) => {
               return (
-                <div className="collection-bar" key={ind}>
+                <div
+                  className="collection-bar"
+                  key={ind}
+                  onClick={() => setSelectedCollection(collection.name)}>
                   {collection.name}
                 </div>
               );
@@ -48,7 +57,10 @@ const CollectionsSearchScroll = ({collectionsData}) => {
               )
               .map((collection, ind) => {
                 return (
-                  <div className="collection-bar" key={ind}>
+                  <div
+                    className="collection-bar"
+                    key={ind}
+                    onClick={() => setSelectedCollection(collection.name)}>
                     {collection.name}
                   </div>
                 );

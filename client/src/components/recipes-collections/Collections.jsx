@@ -3,9 +3,10 @@ import CollectionsSearchScroll from "./CollectionsSearchScroll";
 import Recipes from "./Recipes";
 
 const Collections = () => {
-  const [collectionsData, setCollectionsData] = useState([]);
+  const [collectionsData, setCollectionsData] = useState([]); // Data from /api/collections
   // TODO:
-  const [collectionFilter, setCollectionFilter] = useState("all-recipes");
+  const [collectionFilter, setCollectionFilter] = useState(""); // A string to filter collection options by
+  const [selectedCollection, setSelectedCollection] = useState(""); // Collection user wants to filter recipes for
 
   const getCollections = () => {
     fetch("/api/collections")
@@ -36,6 +37,10 @@ const Collections = () => {
           <CollectionsSearchScroll
             collectionsData={collectionsData}
             setCollectionsData={setCollectionsData}
+            collectionFilter={collectionFilter}
+            setCollectionFilter={setCollectionFilter}
+            selectedCollection={selectedCollection}
+            setSelectedCollection={setSelectedCollection}
           />
         </div>
         <div className="recipes-div">
@@ -44,6 +49,8 @@ const Collections = () => {
             collectionFilter={collectionFilter}
             setCollectionFilter={setCollectionFilter}
             collectionsData={collectionsData}
+            selectedCollection={selectedCollection}
+            setSelectedCollection={setSelectedCollection}
           />
         </div>
       </div>
