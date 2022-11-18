@@ -122,8 +122,6 @@ header {
   font-size: 80px;
 }
 /* --------------------- NAVBAR --------------------- */
-
-
 .navbar-nav {
   display: flex;
   flex-direction: row;
@@ -202,6 +200,36 @@ header {
 
 .login-btn:hover:after {
   width: 100%;
+}
+
+/* --------------------- HOME PAGE --------------------- */
+.home-menu-btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+}
+
+.menu-btns {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid black; */
+  width: 125px;
+  height: 130px;
+  margin: 10px;
+  font-family: var(--text-font);
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.menu-btns:hover {
+  cursor: pointer;
+  background-color: var(--accent-color-hover);
 }
 
 /* --------------------- FOOD LIST --------------------- */
