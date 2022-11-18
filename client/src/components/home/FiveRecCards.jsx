@@ -19,9 +19,15 @@ const FiveRecCards = ({siteUser}) => {
               <div className="">
                 {card.image && <img src={card.image} alt="the recipe meal" />}
               </div>
-              <div className="">{card.prep_time && card.prep_time}</div>
-              <div className="">{card.cook_time && card.cook_time}</div>
-              <div className="">{card.yield && card.yield}</div>
+              <div className="">
+                {card.prep_time && `Prep time: ${card.prep_time}`}
+              </div>
+              <div className="">
+                {card.cook_time && `Cook time: ${card.cook_time}`}
+              </div>
+              <div className="">
+                {card.yield > 0 && `Yields: ${card.yield}`}
+              </div>
             </div>
           );
         })}

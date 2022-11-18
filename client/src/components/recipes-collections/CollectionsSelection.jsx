@@ -17,8 +17,7 @@ const CollectionsSelection = ({
 
   return (
     <div className="collections-selection-container">
-      <h3>Add Recipe to Categories</h3>
-      alskdfjl;asjkdfasd
+      <h3>Add Recipe to Collections</h3>
       <div className="selected-collections-btns-div">
         {potentialCollections.map((collectionName, ind) => {
           return (

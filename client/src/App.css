@@ -35,10 +35,18 @@ Secondary text: #9D968B
   --h3-font-weight: 300;
 
 }
-h3 {
+
+h1 {
+  font-family: var(--title-font);
+  font-weight: 700;
+  font-size: 40px;
+}
+
+h2 {
   font-family: var(--h3-font);
   font-weight: var(--h3-font-weight);
-  
+  font-size: 30px;
+  /* line-height: 10%; */
 }
 div {
   font-family: 'Jost';
@@ -212,70 +220,74 @@ header {
   flex-direction: row;
   max-width: 800px;
 }
-.home-menu-btns {
+.home-section-left {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 400px;
+  flex-direction: column;
 }
-.menu-btns {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  /* border: 1px solid black; */
-  width: 125px;
-  height: 130px;
-  margin: 10px;
-  font-family: var(--text-font);
-  background-color: var(--accent-color);
-  color: white;
-  border-radius: 4px;
-  padding: 10px;
+.user-diet-info {
+  border-bottom: 1px black solid;
+  margin-bottom: 10px;
+  padding: 20px;
 }
-
-.menu-btns:hover {
-  cursor: pointer;
-  background-color: var(--accent-color-hover);
-}
-
 /* Recent 5 Recipe Cards */
 /* Div for cards */
 .five-recent-cards {
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   overflow-x: scroll;
+  padding-left: 20px;
 }
 
 /* A Single Card */
 .recent-card {
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-width: 200px;
-  min-height: 300px;
+  min-height: 270px;
+  padding: 15px;
+  border-radius: 15px;
+  margin-left: 25px;
+  border-bottom:1px solid var(--secondary-text-color);
+  border-right: 2px solid var(--secondary-text-color);
+  /* box-shadow: 1px 1px var(--secondary-text-color); */
+  color: var(--text-color);
+  font-weight: 200;
+}
+
+.recent-card img {
+  max-width: 100%;
 }
 
 /* Section 2: Current dietary preferences, restrictions, allergies */
 
 /* Section 3: Food Log */
 .home-section-3 {
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .meal-check-in-div {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  min-width: 400px;
+  /* align-items: center; */
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .check-in-text {
   font-size: 20px;
   font-family: var(--text-font);
   font-weight: 300;
 }
+
+.check-in-btns-p {
+  text-align: center;
+}
 .check-in-btn {
   font-size: 50px;
+  line-height: 30%;
 }
 /* --------------------- FOOD LIST --------------------- */
 .food-list-header {
@@ -671,6 +683,9 @@ header {
   padding: 5px 25px 5px 25px;
 }
 
+.recipe-instructions img {
+  max-width: 100%;
+}
 .recipe-body-right {
   /* border: 1px black solid; */
   width: 30%;
