@@ -11,24 +11,6 @@ const Home = ({user, siteUser}) => {
       <div className="text-center hero home-container">
         <h1>Welcome, {user.given_name}!</h1>
         <div className="home-section-1">
-          {/* <div className="home-menu-btns">
-            <div className="menu-btns" onClick={() => navigate("/food-list")}>
-              Food Tolerance List
-            </div>
-            <div className="menu-btns" onClick={() => navigate("/recipes")}>
-              View Recipes and Collections
-            </div>
-            <div
-              className="menu-btns"
-              onClick={() => navigate("/add-new-recipe")}>
-              Add A Recipe
-            </div>
-            <div
-              className="menu-btns"
-              onClick={() => navigate("/add-new-food")}>
-              Add New Food
-            </div>
-          </div> */}
           <div className="home-section-left">
             <div className="user-diet-info">
               <div>

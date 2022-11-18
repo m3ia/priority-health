@@ -33,7 +33,10 @@ const Collections = () => {
             onClick={() => setCollectionFilter("uncategorized-recipes")}>
             Uncategorized Recipes
           </div>
-          <CollectionsSearchScroll collectionsData={collectionsData} />
+          <CollectionsSearchScroll
+            collectionsData={collectionsData}
+            setCollectionsData={setCollectionsData}
+          />
         </div>
         <div className="recipes-div">
           <h2>Recipes</h2>
