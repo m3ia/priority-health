@@ -95,6 +95,7 @@ header {
   align-items: flex-start;
   margin-top: 1rem;
   padding-top: 2rem;
+  padding-bottom: 100px;
   padding-left: 4rem;
 }
 
@@ -203,13 +204,20 @@ header {
 }
 
 /* --------------------- HOME PAGE --------------------- */
+
+/* Meal Check-In Section of home page */
+/* First section of the home page: menu buttons and top 5 recipes */
+.home-section-1 {
+  display: flex;
+  flex-direction: row;
+  max-width: 800px;
+}
 .home-menu-btns {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 50%;
+  width: 400px;
 }
-
 .menu-btns {
   display: flex;
   flex-direction: row;
@@ -232,6 +240,43 @@ header {
   background-color: var(--accent-color-hover);
 }
 
+/* Recent 5 Recipe Cards */
+/* Div for cards */
+.five-recent-cards {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 300px;
+  overflow-x: scroll;
+}
+
+/* A Single Card */
+.recent-card {
+  border: 1px solid black;
+  min-width: 200px;
+  min-height: 300px;
+}
+
+/* Section 2: Current dietary preferences, restrictions, allergies */
+
+/* Section 3: Food Log */
+.home-section-3 {
+  border: 1px solid black;
+}
+
+.meal-check-in-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.check-in-text {
+  font-size: 20px;
+  font-family: var(--text-font);
+  font-weight: 300;
+}
+.check-in-btn {
+  font-size: 50px;
+}
 /* --------------------- FOOD LIST --------------------- */
 .food-list-header {
   display: flex;
@@ -801,4 +846,13 @@ textarea {
   /* -webkit-box-shadow: 10px 3px 8px #9D968B;
   -moz-box-shadow: 10px 3px 8px #9D968B;
   box-shadow: 10px 3px 8px #9D968B; */
+}
+
+
+/* --------------------- FOOTER --------------------- */
+footer {
+    border-bottom: .5px solid var(--secondary-text-color);
+    background-color: var(--darker-bg-color);
+    margin: -27px;
+    padding-top: 150px;
 }

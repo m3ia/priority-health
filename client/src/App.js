@@ -54,7 +54,7 @@ const App = () => {
             </header>
           <div className="container flex-grow-1">
             <Routes>
-              <Route path="/" element={<Home user={user} />} />
+            <Route path="/" element={<Home user={user} siteUser={siteUser} />} />
               <Route
                 path="/profile"
                 element={<Profile siteUser={siteUser} />}
