@@ -87,7 +87,19 @@ app.post('/api/me', cors(), async (req, res) => {
   }
 });
 
-
+//  ------- ------- ------- HOME ------- ------- -------
+// GET All Recipes
+app.get('/api/recent-recipes/:id', async (req, res) => {
+  const userId = req.params.id;
+  
+  try {
+    const response = await db.any('SELECT * FROM recipes WHERE user_id = $1 ORDER BY id DESC LIMIT 5', [userId]);
+    res.send(response);
+  } catch (e) {
+    console.log('GET /api/recent-recipes error: ', e);
+    res.status(400).send({ e });
+  }
+});
 //  ------- ------- ------- FOOD TOLERANCE LIST ------- ------- -------
 
 // GET Get all foods for 1 user:
@@ -289,3 +301,5 @@ app.get(`/api/recipe-collections/:recipeId`, cors(), async (req, res) => {
 
 // TODO: create a POST for recipe-collections-memberships
 // TODO: create a DELETE for recipe-collections-memberships
+
+
