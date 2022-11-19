@@ -895,7 +895,7 @@ textarea {
   display: flex;
   flex-direction: row;
   width: 75%;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
@@ -905,7 +905,7 @@ textarea {
   padding: 10px;
   border-radius: 6px;
   /* border: 2px solid black; */
-  margin: 15px 15px;
+  margin: 1px 1px;
   /* -webkit-box-shadow: 10px 3px 8px #9D968B;
   -moz-box-shadow: 10px 3px 8px #9D968B;
   box-shadow: 10px 3px 8px #9D968B; */

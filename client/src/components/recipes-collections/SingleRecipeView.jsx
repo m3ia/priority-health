@@ -27,19 +27,6 @@ const parseIngredients = (recipeFromDB, setSelectedRecipe, setIngredients) => {
   setIngredients(filteredParsedIngredients);
 };
 
-// Function that gets recipe collections for specific recipes. stateUpdateFxn is any function meant to update any state
-export const getRecipeCollections = async (recipeId, stateUpdaterFxn) => {
-  const recipeCollections = [];
-  await fetch(`/api/recipe-collections/${recipeId}`)
-    .then((res) => res.json())
-    .then((res) => {
-      // TODO remove test line when done testing recipe-collections mult selection
-      console.log("resssy", res);
-      recipeCollections.push(...res);
-    });
-
-  stateUpdaterFxn([...recipeCollections]);
-};
 const SingleRecipeView = ({siteUser}) => {
   const {recipeId} = useParams();
   const [selectedRecipe, setSelectedRecipe] = useState({});
@@ -64,7 +51,18 @@ const SingleRecipeView = ({siteUser}) => {
 
   // useEffect for capturing recipe-collections from DB after user is signed in
   useEffect(() => {
-    getRecipeCollections(singleRecipeID, setRecipeCollectionsForView);
+    // Function that gets recipe collections for specific recipes. stateUpdateFxn is any function meant to update any state
+    const getRecipeCollections = async (recipeId) => {
+      const recipeCollections = [];
+      await fetch(`/api/recipe-collections/${recipeId}`)
+        .then((res) => res.json())
+        .then((res) => {
+          recipeCollections.push(...res);
+        });
+
+      setRecipeCollectionsForView([...recipeCollections]);
+    };
+    getRecipeCollections(singleRecipeID);
   }, [singleRecipeID]);
 
   return (
@@ -113,16 +111,19 @@ const SingleRecipeView = ({siteUser}) => {
               </div>
               {/* Contains list of collections this recipe is a member of in button-size cards */}
               <div className="recipe-collections-list-div">
-                <h2>Current Collections:</h2>
-                <div className="recipe-collections-list-cards-div">
-                  {recipeCollectionsForView.length > 0
-                    ? recipeCollectionsForView.map((item, ind) => (
-                        // <li key={ind}>{item.name}</li>
-                        <div key={ind} className="collections-cards-view">
-                          {item.name}
-                        </div>
-                      ))
-                    : "No collections at this time."}
+                <div className="">
+                  {recipeCollectionsForView && (
+                    <>
+                      <h2>Current Collections:</h2>
+                      <div className="recipe-collections-list-cards-div">
+                        {recipeCollectionsForView.map((item, ind) => (
+                          <div key={ind} className="collections-cards-view">
+                            {item.name}
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -140,7 +141,7 @@ const SingleRecipeView = ({siteUser}) => {
                       <h3 key={ind}>{ing.description}</h3>
                     ) : (
                       <li key={ind}>
-                        {ing.quantity} {ing.quantity2 && `- ${ing.qauntity2}`}
+                        {ing.quantity} {ing.quantity2 && `- ${ing.quantity2}`}
                         {ing.unitOfMeasure} {ing.description}
                       </li>
                     );
