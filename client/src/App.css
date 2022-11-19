@@ -35,10 +35,18 @@ Secondary text: #9D968B
   --h3-font-weight: 300;
 
 }
-h3 {
+
+h1 {
+  font-family: var(--title-font);
+  font-weight: 700;
+  font-size: 40px;
+}
+
+h2 {
   font-family: var(--h3-font);
   font-weight: var(--h3-font-weight);
-  
+  font-size: 30px;
+  /* line-height: 10%; */
 }
 div {
   font-family: 'Jost';
@@ -95,6 +103,7 @@ header {
   align-items: flex-start;
   margin-top: 1rem;
   padding-top: 2rem;
+  padding-bottom: 100px;
   padding-left: 4rem;
 }
 
@@ -122,8 +131,6 @@ header {
   font-size: 80px;
 }
 /* --------------------- NAVBAR --------------------- */
-
-
 .navbar-nav {
   display: flex;
   flex-direction: row;
@@ -204,6 +211,134 @@ header {
   width: 100%;
 }
 
+/* --------------------- HOME PAGE --------------------- */
+
+/* Meal Check-In Section of home page */
+/* First section of the home page: menu buttons and top 5 recipes */
+.home-section-1 {
+  display: flex;
+  flex-direction: row;
+  max-width: 800px;
+}
+.home-section-left {
+  display: flex;
+  flex-direction: column;
+}
+.user-diet-info {
+  border-bottom: 1px black solid;
+  margin-bottom: 10px;
+  padding: 20px;
+  width: 425px;
+}
+
+.diet-info-input {
+  background-color: var(--accent-text-color);
+}
+/* Recent 5 Recipe Cards */
+/* Div for cards */
+.five-recent-cards {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* max-width: 500px; */
+  /* overflow-x: scroll; */
+  padding-left: 20px;
+}
+
+/* A Single Card */
+.recent-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* min-width: 200px; */
+  /* min-height: 270px; */
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  border-bottom:1px solid var(--secondary-text-color);
+  border-right: 2px solid var(--secondary-text-color);
+  /* box-shadow: 1px 1px var(--secondary-text-color); */
+  /* font-weight: 500; */
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  min-width: 100%;
+}
+
+.recent-card:hover {
+  cursor: pointer;
+}
+
+.five-recent-info {
+  padding: 10px;
+}
+.recent-card img {
+  max-height: 100px;
+}
+
+/* Section 2: Current dietary preferences, restrictions, allergies */
+
+/* Section 3: Food Log */
+
+.meal-check-in-div {
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  /* align-items: center; */
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.selectedEntry {
+  background-color: yellow;
+}
+
+.check-in-text {
+  font-size: 20px;
+  font-family: var(--text-font);
+  font-weight: 300;
+}
+
+.check-in-btns-p {
+  text-align: center;
+}
+.check-in-btn {
+  font-size: 50px;
+  line-height: 30%;
+}
+
+.logs-div {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.diet-entry {
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.feeling-cells-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.feeling-cells {
+  border: 1px black solid;
+  height: 20px;
+  width: 20px;
+}
+
+.good-cell {
+  background-color: green;
+}
+.ok-cell {
+    background-color: yellow;
+}
+.bad-cell {
+  background-color: red;
+}
 /* --------------------- FOOD LIST --------------------- */
 .food-list-header {
   display: flex;
@@ -455,6 +590,7 @@ header {
 .recipes-div {
   border: 2px solid black;
   width: 120%;
+  min-width: 800px;
   margin-left: 3rem;
   margin-right: 3rem;
 }
@@ -491,7 +627,7 @@ header {
   padding: 10px;
 }
 
-.recipes-form-btn:hover, .new-food-btn:hover, .btn:hover {
+.recipes-form-btn:hover, .new-food-btn:hover, .btn:hover, .btn:hover {
   cursor: pointer;
   background-color: var(--accent-color-hover);
 }
@@ -598,6 +734,9 @@ header {
   padding: 5px 25px 5px 25px;
 }
 
+.recipe-instructions img {
+  max-width: 100%;
+}
 .recipe-body-right {
   /* border: 1px black solid; */
   width: 30%;
@@ -759,7 +898,7 @@ textarea {
   display: flex;
   flex-direction: row;
   width: 75%;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
@@ -769,8 +908,17 @@ textarea {
   padding: 10px;
   border-radius: 6px;
   /* border: 2px solid black; */
-  margin: 15px 15px;
+  margin: 1px 1px;
   /* -webkit-box-shadow: 10px 3px 8px #9D968B;
   -moz-box-shadow: 10px 3px 8px #9D968B;
   box-shadow: 10px 3px 8px #9D968B; */
+}
+
+
+/* --------------------- FOOTER --------------------- */
+footer {
+    border-bottom: .5px solid var(--secondary-text-color);
+    background-color: var(--darker-bg-color);
+    margin: -27px;
+    padding-top: 150px;
 }

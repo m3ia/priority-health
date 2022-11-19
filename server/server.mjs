@@ -60,6 +60,25 @@ app.get('/api/me', cors(), async (req, res) => {
   
 });
 
+// PATCH for updating user's diet info
+app.patch('/api/me', cors(), async (req, res) => {
+  console.log('reqbody: ', req.body);
+  const dietInfo = {
+    userId: req.body.userId,
+    allergies: req.body.allergies,
+    dietPref: req.body.dietPref,
+    dietRest: req.body.dietRest
+  }
+
+  try {
+    const result = await db.one('UPDATE users SET allergies = $1, diet_pref = $2, diet_restr = $3 WHERE id = $4 RETURNING *', [dietInfo.allergies, dietInfo.dietPref, dietInfo.dietRest, dietInfo.userId])
+    res.send(result);
+  } catch (e) {
+    console.log('PATCH error from /api/me: ', e);
+    return res.status(400).json({ e });
+  }
+});
+
 // POST Check if user exists/add new user:
 app.post('/api/me', cors(), async (req, res) => {
   const newUser = {
@@ -87,7 +106,73 @@ app.post('/api/me', cors(), async (req, res) => {
   }
 });
 
+// GET -- all user diet log entries 
+app.get('/api/logs/:id', cors(), async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const logs = await db.query('SELECT * FROM diet_logs WHERE user_id = $1 ORDER BY date DESC', [userId])
+    res.send(logs);
+  } catch (e) {
+    console.log('GET error at /api/diet-logs/', e);
+    res.status(400).json({ e });
+  }
+})
+// POST - user adding a new diet log entry 
+app.post('/api/new-log', cors(), async (req, res) => {
+  const newLog = {
+    userId: req.body.userId,
+    feeling: req.body.feeling,
+    meal: req.body.meal,
+    notes: req.body.notes
+  }
 
+  try {
+    await db.query('INSERT INTO diet_logs (user_id, feeling, meal, notes, date) values ($1, $2, $3, $4, NOW())', [newLog.userId, newLog.feeling, newLog.meal, newLog.notes]);
+    res.send();
+  } catch (e) {
+    console.log('POST error for /api/new-log: ', e)
+  }
+});
+
+// POST - for adding a new collection
+app.post('/api/new-collection', cors(), async (req, res) => {
+  const newCollection = {
+    userId: req.body.userId,
+    name: req.body.name,
+    notes: req.body.notes
+  }
+
+  let testColl = await db.any('SELECT * FROM collections WHERE name = $1 AND user_id = $2', [newCollection.name, newCollection.userId]);
+
+  try {
+    if (testColl[0]) {
+      console.log('User tried to enter a collection that already exists');
+    res.send();
+  } else {
+    let res = await db.query('INSERT INTO collections (name, user_id, notes) VALUES ($1, $2, $3)', [newCollection.name, newCollection.userId, newCollection.notes]);
+
+    console.log('New collection created: ', res[0]);
+    res.send(res);
+  }
+  } catch (e) {
+    console.log('Error for /api/new-collection', e);
+    }
+    
+  })
+
+//  ------- ------- ------- HOME ------- ------- -------
+// GET All Recipes
+app.get('/api/recent-recipes/:id', async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const response = await db.any('SELECT * FROM recipes WHERE user_id = $1 ORDER BY id DESC LIMIT 5', [userId]);
+    res.send(response);
+  } catch (e) {
+    console.log('GET /api/recent-recipes error: ', e);
+    res.status(400).send({ e });
+  }
+});
 //  ------- ------- ------- FOOD TOLERANCE LIST ------- ------- -------
 
 // GET Get all foods for 1 user:
@@ -199,6 +284,43 @@ app.get('/api/recipes', async (req, res) => {
   }
 });
 
+// GET recipes filtered by collections
+app.get('/api/recipes-filtered/:id/:selectedCollection', async (req, res) => {
+  // Example: http://localhost:8080/api/recipes-filtered/3/Asian%20Recipes
+  // TODO: search by collection ID instead of name
+  const userId = req.params.id;
+  const selectedCollection = req.params.selectedCollection;
+  try {
+    const resp = await db.any(`
+      SELECT
+        collections.name as collection_name, 
+        recipe_collection_membership.collection_id as collection_id,
+        recipe_collection_membership.recipe_id as id, 
+        recipes.name as name,
+        recipes.cook_time as cook_time,
+        recipes.image as image,
+        recipes.ingredients as ingredients,
+        recipes.instructions as instructions,
+        recipes.prep_time as prep_time,
+        recipes.summary as summary,
+        recipes.url as url,
+        recipes.yield as yield,
+        collections.notes as notes,
+        collections.user_id as user_id
+      FROM recipe_collection_membership
+      LEFT JOIN collections
+      ON recipe_collection_membership.collection_id = collections.id
+      LEFT JOIN recipes
+      ON recipe_collection_membership.recipe_id = recipes.id
+      WHERE collections.user_id = $1
+      AND collections.name = $2`, [userId, selectedCollection]);
+    res.send(resp);
+  } catch (e) {
+    console.log('GET /api/recipes-filtered error: ', e);
+    res.status(400).send({ e });
+  }
+})
+
 // POST - Add a new recipe
 app.post('/api/new-recipe', cors(), async (req, res, next) => {
   // Updates recipes tables with new recipe
@@ -289,3 +411,5 @@ app.get(`/api/recipe-collections/:recipeId`, cors(), async (req, res) => {
 
 // TODO: create a POST for recipe-collections-memberships
 // TODO: create a DELETE for recipe-collections-memberships
+
+

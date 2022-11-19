@@ -9,6 +9,7 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
   const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();
   const [userId, setUserId] = useState(0);
+  const [searchedFood, setSearchedFood] = useState("");
 
   // GET request for all food to list as buttons
   const getFoods = async (userId) => {
@@ -63,6 +64,12 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
               {/* TODO add form for food list */}
               <h1>Food Tolerance List</h1>
               <h3>Track the foods you can/can't tolerate here.</h3>
+              <div className="filter-foods">
+                <input
+                  type="text"
+                  placeholder="Filter by food name"
+                  onChange={(e) => setSearchedFood(e.target.value)}></input>
+              </div>
             </div>
             <div>
               <div
@@ -82,19 +89,35 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
               {editMode && <button onClick={deleteFoodItems}>Save</button>}
             </div>
             <div className="foods-btns-div">
-              {foods.map((food, ind) => {
-                return (
-                  <div className="foot-btn-delete-div" key={ind}>
-                    <FoodItem
-                      food={food}
-                      setFoodView={setFoodView}
-                      editMode={editMode}
-                      setFoods={setFoods}
-                      setFoodsToDelete={setFoodsToDelete}
-                    />
-                  </div>
-                );
-              })}
+              {searchedFood.length === 0
+                ? foods.map((food, ind) => {
+                    return (
+                      <div className="foot-btn-delete-div" key={ind}>
+                        <FoodItem
+                          food={food}
+                          setFoodView={setFoodView}
+                          editMode={editMode}
+                          setFoods={setFoods}
+                          setFoodsToDelete={setFoodsToDelete}
+                        />
+                      </div>
+                    );
+                  })
+                : foods
+                    .filter((item) => item.food.includes(searchedFood))
+                    .map((food, ind) => {
+                      return (
+                        <div className="foot-btn-delete-div" key={ind}>
+                          <FoodItem
+                            food={food}
+                            setFoodView={setFoodView}
+                            editMode={editMode}
+                            setFoods={setFoods}
+                            setFoodsToDelete={setFoodsToDelete}
+                          />
+                        </div>
+                      );
+                    })}
             </div>
           </div>
         </>

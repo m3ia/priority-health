@@ -1,11 +1,15 @@
 import {useState, useEffect} from "react";
 import CollectionsSearchScroll from "./CollectionsSearchScroll";
 import Recipes from "./Recipes";
+import {useNavigate} from "react-router-dom";
 
-const Collections = () => {
-  const [collectionsData, setCollectionsData] = useState([]);
+const Collections = ({siteUser}) => {
+  const [collectionsData, setCollectionsData] = useState([]); // Data from /api/collections
   // TODO:
-  const [collectionFilter, setCollectionFilter] = useState("all-recipes");
+  const [collectionFilter, setCollectionFilter] = useState(""); // A string to filter collection options by
+  const [selectedCollection, setSelectedCollection] = useState(""); // Collection user wants to filter recipes for
+
+  const navigate = useNavigate();
 
   const getCollections = () => {
     fetch("/api/collections")
@@ -33,7 +37,19 @@ const Collections = () => {
             onClick={() => setCollectionFilter("uncategorized-recipes")}>
             Uncategorized Recipes
           </div>
-          <CollectionsSearchScroll collectionsData={collectionsData} />
+          <CollectionsSearchScroll
+            collectionsData={collectionsData}
+            setCollectionsData={setCollectionsData}
+            collectionFilter={collectionFilter}
+            setCollectionFilter={setCollectionFilter}
+            selectedCollection={selectedCollection}
+            setSelectedCollection={setSelectedCollection}
+          />
+          <div
+            className="add-new-collection-btn btn"
+            onClick={() => navigate("/add-new-collection")}>
+            Add New Collection
+          </div>
         </div>
         <div className="recipes-div">
           <h2>Recipes</h2>
@@ -41,6 +57,9 @@ const Collections = () => {
             collectionFilter={collectionFilter}
             setCollectionFilter={setCollectionFilter}
             collectionsData={collectionsData}
+            selectedCollection={selectedCollection}
+            setSelectedCollection={setSelectedCollection}
+            siteUser={siteUser}
           />
         </div>
       </div>

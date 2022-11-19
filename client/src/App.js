@@ -11,6 +11,7 @@ import SingleRecipeView from "./components/recipes-collections/SingleRecipeView"
 import NewFoodForm from './components/food-list/NewFoodForm'
 import AuthNav from "./components/home-login/auth-nav";
 import "./App.css";
+import NewCollectionForm from "./components/recipes-collections/NewCollectionForm";
 
 const App = () => {
   const { user, isLoading, isAuthenticated } = useAuth0();
@@ -54,7 +55,7 @@ const App = () => {
             </header>
           <div className="container flex-grow-1">
             <Routes>
-              <Route path="/" element={<Home user={user} />} />
+            <Route path="/" element={<Home user={user} siteUser={siteUser} />} />
               <Route
                 path="/profile"
                 element={<Profile siteUser={siteUser} />}
@@ -91,6 +92,14 @@ const App = () => {
                 path="/add-new-food"
                   element={
                     <NewFoodForm
+                    siteUser={siteUser}
+                    />
+                  }
+            />
+            <Route
+                path="/add-new-collection"
+                  element={
+                    <NewCollectionForm
                     siteUser={siteUser}
                     />
                   }
