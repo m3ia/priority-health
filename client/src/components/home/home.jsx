@@ -20,6 +20,8 @@ const Home = ({user, siteUser}) => {
     notes: "",
   });
   const [logs, setLogs] = useState([]);
+  const [latestFeelings, setLatestFeelings] = useState([]);
+
   const navigate = useNavigate();
 
   const convFeeling = (feeling) => {
@@ -36,13 +38,19 @@ const Home = ({user, siteUser}) => {
   };
   // GET for log entries
   const getLogEntries = async () => {
-    console.log("userid111", siteUser.userId);
     await fetch(`/api/logs/${siteUser.userId}`)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        console.log("res", res);
+        console.log("res", res[0].feeling);
+        let feelings = [];
+        for (let i = 0; i < Math.min(60, res.length); i++) {
+          if (res[i].feeling) {
+            feelings.push(res[i].feeling);
+          }
+        }
+        setLatestFeelings([...feelings]);
         setLogs([...res]);
       });
   };
@@ -274,14 +282,25 @@ const Home = ({user, siteUser}) => {
         <div className="home-section-2"></div>
         <div className="home-section-3">
           <h3>Food Log</h3>
+          <div className="feeling-cells-div">
+            {latestFeelings &&
+              latestFeelings.map((feeling, ind) => {
+                return (
+                  <div
+                    className={`feeling-cells ${feeling}-cell`}
+                    key={ind}></div>
+                );
+              })}
+          </div>
           <div className="logs-div">
             {logs &&
               logs.map((log, ind) => {
                 return (
-                  <div key={ind}>
+                  <div className="diet-entry" key={ind}>
                     <p>Date: {format(new Date(log.date), "MM/dd/yyyy")}</p>
-                    <p>Meal: {log.meal}</p>
                     <p>Feeling: {convFeeling(log.feeling)}</p>
+
+                    <p>Meal: {log.meal}</p>
                     <p>Notes: {log.notes}</p>
                   </div>
                 );
