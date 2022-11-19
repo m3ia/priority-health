@@ -1,11 +1,28 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import FiveRecCards from "./FiveRecCards";
 
 const Home = ({user, siteUser}) => {
+  const [allergies, setAllergies] = useState("");
+  const [dietPref, setDietPref] = useState("");
+  const [dietRest, setDietRest] = useState("");
+
   const navigate = useNavigate();
   //     navigate("/recipes");
 
+  // Get user info
+  useEffect(() => {
+    const getDietInfo = async () => {
+      await fetch(`/api/me`)
+        .then((res) => res.json())
+        .then((res) => {
+          setAllergies(res[0].allergies);
+          setDietPref(res[0].diet_pref);
+          setDietRest(res[0].diet_restr);
+        });
+    };
+    getDietInfo();
+  }, []);
   return (
     <Fragment>
       <div className="text-center hero home-container">
@@ -14,13 +31,16 @@ const Home = ({user, siteUser}) => {
           <div className="home-section-left">
             <div className="user-diet-info">
               <div>
-                Current Allergies: <input></input>
+                Current Allergies:{" "}
+                {allergies ? `${allergies}` : <input></input>}
               </div>
               <div>
-                Current Dietary Preferences: <input></input>
+                Current Dietary Preferences:{" "}
+                {dietPref ? dietPref : <input></input>}
               </div>
               <div>
-                Current Dietary Restrictions: <input></input>
+                Current Dietary Restrictions:{" "}
+                {dietRest ? dietRest : <input></input>}
               </div>
             </div>
             <div className="meal-check-in-div">
