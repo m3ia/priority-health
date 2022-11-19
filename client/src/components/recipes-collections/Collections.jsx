@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import CollectionsSearchScroll from "./CollectionsSearchScroll";
 import Recipes from "./Recipes";
 
-const Collections = () => {
+const Collections = ({siteUser}) => {
   const [collectionsData, setCollectionsData] = useState([]); // Data from /api/collections
   // TODO:
   const [collectionFilter, setCollectionFilter] = useState(""); // A string to filter collection options by
@@ -51,6 +51,7 @@ const Collections = () => {
             collectionsData={collectionsData}
             selectedCollection={selectedCollection}
             setSelectedCollection={setSelectedCollection}
+            siteUser={siteUser}
           />
         </div>
       </div>

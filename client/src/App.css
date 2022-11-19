@@ -540,6 +540,7 @@ header {
 .recipes-div {
   border: 2px solid black;
   width: 120%;
+  min-width: 800px;
   margin-left: 3rem;
   margin-right: 3rem;
 }

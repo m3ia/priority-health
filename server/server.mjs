@@ -91,7 +91,7 @@ app.post('/api/me', cors(), async (req, res) => {
 // GET All Recipes
 app.get('/api/recent-recipes/:id', async (req, res) => {
   const userId = req.params.id;
-  
+
   try {
     const response = await db.any('SELECT * FROM recipes WHERE user_id = $1 ORDER BY id DESC LIMIT 5', [userId]);
     res.send(response);
@@ -210,6 +210,43 @@ app.get('/api/recipes', async (req, res) => {
     res.status(400).send({ e });
   }
 });
+
+// GET recipes filtered by collections
+app.get('/api/recipes-filtered/:id/:selectedCollection', async (req, res) => {
+  // Example: http://localhost:8080/api/recipes-filtered/3/Asian%20Recipes
+  // TODO: search by collection ID instead of name
+  const userId = req.params.id;
+  const selectedCollection = req.params.selectedCollection;
+  try {
+    const resp = await db.any(`
+      SELECT
+        collections.name as collection_name, 
+        recipe_collection_membership.collection_id as collection_id,
+        recipe_collection_membership.recipe_id as id, 
+        recipes.name as name,
+        recipes.cook_time as cook_time,
+        recipes.image as image,
+        recipes.ingredients as ingredients,
+        recipes.instructions as instructions,
+        recipes.prep_time as prep_time,
+        recipes.summary as summary,
+        recipes.url as url,
+        recipes.yield as yield,
+        collections.notes as notes,
+        collections.user_id as user_id
+      FROM recipe_collection_membership
+      LEFT JOIN collections
+      ON recipe_collection_membership.collection_id = collections.id
+      LEFT JOIN recipes
+      ON recipe_collection_membership.recipe_id = recipes.id
+      WHERE collections.user_id = $1
+      AND collections.name = $2`, [userId, selectedCollection]);
+    res.send(resp);
+  } catch (e) {
+    console.log('GET /api/recipes-filtered error: ', e);
+    res.status(400).send({ e });
+  }
+})
 
 // POST - Add a new recipe
 app.post('/api/new-recipe', cors(), async (req, res, next) => {
