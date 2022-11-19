@@ -233,32 +233,41 @@ header {
 /* Div for cards */
 .five-recent-cards {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
-  max-width: 400px;
-  overflow-x: scroll;
+  /* max-width: 500px; */
+  /* overflow-x: scroll; */
   padding-left: 20px;
 }
 
 /* A Single Card */
 .recent-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  min-width: 200px;
-  min-height: 270px;
+  /* min-width: 200px; */
+  /* min-height: 270px; */
   padding: 15px;
   border-radius: 15px;
-  margin-left: 25px;
+  margin-bottom: 25px;
   border-bottom:1px solid var(--secondary-text-color);
   border-right: 2px solid var(--secondary-text-color);
   /* box-shadow: 1px 1px var(--secondary-text-color); */
-  color: var(--text-color);
-  font-weight: 200;
+  /* font-weight: 500; */
+  background-color: var(--accent-color);
+  color: var(--accent-text-color);
+  min-width: 100%;
 }
 
+.recent-card:hover {
+  cursor: pointer;
+}
+
+.five-recent-info {
+  padding: 10px;
+}
 .recent-card img {
-  max-width: 100%;
+  max-height: 100px;
 }
 
 /* Section 2: Current dietary preferences, restrictions, allergies */

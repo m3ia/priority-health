@@ -87,6 +87,7 @@ app.post('/api/me', cors(), async (req, res) => {
   }
 });
 
+// POST - for adding a new collection
 app.post('/api/new-collection', cors(), async (req, res) => {
   const newCollection = {
     userId: req.body.userId,
@@ -96,8 +97,10 @@ app.post('/api/new-collection', cors(), async (req, res) => {
 
   let testColl = await db.any('SELECT * FROM collections WHERE name = $1 AND user_id = $2', [newCollection.name, newCollection.userId]);
 
-  try {  if (testColl[0]) {
-    res.send('Collection already exists');
+  try {
+    if (testColl[0]) {
+      console.log('User tried to enter a collection that already exists');
+    res.send();
   } else {
     let res = await db.query('INSERT INTO collections (name, user_id, notes) VALUES ($1, $2, $3)', [newCollection.name, newCollection.userId, newCollection.notes]);
 
