@@ -48,6 +48,9 @@ const Home = ({user, siteUser}) => {
       await fetch(`/api/me`)
         .then((res) => res.json())
         .then((res) => {
+          if (!res[0].allergies || !res[0].diet_pref || !res[0].diet_restr) {
+            setEditAllergies(true);
+          }
           setDietInfo({
             allergies: res[0].allergies,
             dietPref: res[0].diet_pref,
@@ -55,6 +58,7 @@ const Home = ({user, siteUser}) => {
           });
         });
     };
+
     getDietInfo();
   }, []);
   return (
@@ -67,7 +71,9 @@ const Home = ({user, siteUser}) => {
               <div>
                 Current Allergies:{" "}
                 {!editAllergies ? (
-                  <span onClick={() => setEditAllergies(true)}>
+                  <span
+                    className="diet-info-input"
+                    onClick={() => setEditAllergies(true)}>
                     {dietInfo.allergies}
                   </span>
                 ) : (
@@ -87,7 +93,9 @@ const Home = ({user, siteUser}) => {
               <div>
                 Current Dietary Preferences:{" "}
                 {!editAllergies ? (
-                  <span onClick={() => setEditAllergies(true)}>
+                  <span
+                    className="diet-info-input"
+                    onClick={() => setEditAllergies(true)}>
                     {dietInfo.dietPref}
                   </span>
                 ) : (
@@ -109,7 +117,9 @@ const Home = ({user, siteUser}) => {
               <div>
                 Current Dietary Restrictions:{" "}
                 {!editAllergies ? (
-                  <span onClick={() => setEditAllergies(true)}>
+                  <span
+                    className="diet-info-input"
+                    onClick={() => setEditAllergies(true)}>
                     {dietInfo.dietRest}
                   </span>
                 ) : (
