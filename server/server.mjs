@@ -106,6 +106,17 @@ app.post('/api/me', cors(), async (req, res) => {
   }
 });
 
+// GET -- all user diet log entries 
+app.get('/api/logs/:id', cors(), async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const logs = await db.query('SELECT * FROM diet_logs WHERE user_id = $1', [userId])
+    res.send(logs);
+  } catch (e) {
+    console.log('GET error at /api/diet-logs/', e);
+    res.status(400).json({ e });
+  }
+})
 // POST - user adding a new diet log entry 
 app.post('/api/new-log', cors(), async (req, res) => {
   const newLog = {

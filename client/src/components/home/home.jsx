@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import FiveRecCards from "./FiveRecCards";
+import {format} from "date-fns";
 
 const Home = ({user, siteUser}) => {
   const [dietInfo, setDietInfo] = useState({
@@ -18,15 +19,35 @@ const Home = ({user, siteUser}) => {
     meal: "",
     notes: "",
   });
+  const [logs, setLogs] = useState([]);
   const navigate = useNavigate();
 
-  const entryFeelings = {
-    good: "😋",
-    ok: "😐",
-    bad: "😔",
+  const convFeeling = (feeling) => {
+    switch (feeling) {
+      case "good":
+        return "😋";
+      case "ok":
+        return "😐";
+      case "bad":
+        return "😔";
+      default:
+        return "";
+    }
+  };
+  // GET for log entries
+  const getLogEntries = async () => {
+    console.log("userid111", siteUser.userId);
+    await fetch(`/api/logs/${siteUser.userId}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        console.log("res", res);
+        setLogs([...res]);
+      });
   };
 
-  // Post for blog entries
+  // POST for blog entries
   const addNewLog = async (e) => {
     e.preventDefault();
     await fetch("/api/new-log", {
@@ -44,7 +65,9 @@ const Home = ({user, siteUser}) => {
       meal: "",
       notes: "",
     });
+    getLogEntries();
   };
+  // POST for updating user diet info
   const updateDietInfo = async () => {
     const dietBody = {
       userId: siteUser.userId,
@@ -61,6 +84,7 @@ const Home = ({user, siteUser}) => {
       body: JSON.stringify(dietBody),
     });
   };
+  // Allows user to submit diet info after clicking ENTER key
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       // setDietInfo((prev) => ({...prev, allergies: e.target.value}));
@@ -88,6 +112,7 @@ const Home = ({user, siteUser}) => {
     };
 
     getDietInfo();
+    getLogEntries();
   }, []);
   return (
     <Fragment>
@@ -249,6 +274,19 @@ const Home = ({user, siteUser}) => {
         <div className="home-section-2"></div>
         <div className="home-section-3">
           <h3>Food Log</h3>
+          <div className="logs-div">
+            {logs &&
+              logs.map((log, ind) => {
+                return (
+                  <div key={ind}>
+                    <p>Date: {format(new Date(log.date), "MM/dd/yyyy")}</p>
+                    <p>Meal: {log.meal}</p>
+                    <p>Feeling: {convFeeling(log.feeling)}</p>
+                    <p>Notes: {log.notes}</p>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </Fragment>
