@@ -577,7 +577,7 @@ header {
   padding: 10px;
 }
 
-.recipes-form-btn:hover, .new-food-btn:hover, .btn:hover {
+.recipes-form-btn:hover, .new-food-btn:hover, .btn:hover, .btn:hover {
   cursor: pointer;
   background-color: var(--accent-color-hover);
 }

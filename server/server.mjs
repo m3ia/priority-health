@@ -87,6 +87,29 @@ app.post('/api/me', cors(), async (req, res) => {
   }
 });
 
+app.post('/api/new-collection', cors(), async (req, res) => {
+  const newCollection = {
+    userId: req.body.userId,
+    name: req.body.name,
+    notes: req.body.notes
+  }
+
+  let testColl = await db.any('SELECT * FROM collections WHERE name = $1 AND user_id = $2', [newCollection.name, newCollection.userId]);
+
+  try {  if (testColl[0]) {
+    res.send('Collection already exists');
+  } else {
+    let res = await db.query('INSERT INTO collections (name, user_id, notes) VALUES ($1, $2, $3)', [newCollection.name, newCollection.userId, newCollection.notes]);
+
+    console.log('New collection created: ', res[0]);
+    res.send(res);
+  }
+  } catch (e) {
+    console.log('Error for /api/new-collection', e);
+    }
+    
+  })
+
 //  ------- ------- ------- HOME ------- ------- -------
 // GET All Recipes
 app.get('/api/recent-recipes/:id', async (req, res) => {
