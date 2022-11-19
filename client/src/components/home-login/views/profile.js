@@ -1,22 +1,26 @@
-import React from 'react';
-import { withAuthenticationRequired } from '@auth0/auth0-react';
-import Loading from '../loading';
+import React from "react";
+import {withAuthenticationRequired} from "@auth0/auth0-react";
+import Loading from "../loading";
 
 const Profile = ({siteUser}) => {
+  console.log("siteuser: ", siteUser);
   // const { name, picture, email } = user;
   return (
     <div>
       <div className="row align-items-center profile-header">
-        {siteUser.id ? (
-              <div style={{ border: '2px solid black' }}>
-                <>
-                  <p>id: {siteUser.id}</p>
-                  <p>first name: {siteUser.first_name}</p>
-                  <p>last name: {siteUser.last_name}</p>
-                  <p>email: {siteUser.email}</p>
-                </>
-              </div>
-            ) : (<p>user not found</p>)} 
+        {siteUser.userId ? (
+          <div style={{border: "2px solid black"}}>
+            <>
+              <p>
+                <img src={siteUser.picture} alt="profile" />
+              </p>
+              <p>id: {siteUser.userId}</p>
+              <p>Name: {siteUser.name}</p>
+            </>
+          </div>
+        ) : (
+          <p>user not found</p>
+        )}
         {/* <div className="col-md-2 mb-3">
           {picture && 
           (<img

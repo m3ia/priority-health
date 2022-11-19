@@ -130,7 +130,7 @@ const Home = ({user, siteUser}) => {
           <div className="home-section-left">
             <div className="user-diet-info">
               <div>
-                Current Allergies:{" "}
+                <strong>Current Allergies:</strong>{" "}
                 {!editAllergies ? (
                   <span
                     className="diet-info-input"
@@ -152,7 +152,7 @@ const Home = ({user, siteUser}) => {
                 )}
               </div>
               <div>
-                Current Dietary Preferences:{" "}
+                <strong>Current Dietary Preferences:</strong>{" "}
                 {!editAllergies ? (
                   <span
                     className="diet-info-input"
@@ -176,7 +176,7 @@ const Home = ({user, siteUser}) => {
                 {dietInfo.dietPref ? dietInfo.dietPref : <input></input>} */}
               </div>
               <div>
-                Current Dietary Restrictions:{" "}
+                <strong>Current Dietary Restrictions:</strong>{" "}
                 {!editAllergies ? (
                   <span
                     className="diet-info-input"

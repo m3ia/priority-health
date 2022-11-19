@@ -231,6 +231,9 @@ header {
   width: 425px;
 }
 
+.diet-info-input {
+  background-color: var(--accent-text-color);
+}
 /* Recent 5 Recipe Cards */
 /* Div for cards */
 .five-recent-cards {
