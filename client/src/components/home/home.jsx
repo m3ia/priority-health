@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState, useRef} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import FiveRecCards from "./FiveRecCards";
 
@@ -9,14 +9,42 @@ const Home = ({user, siteUser}) => {
     dietPref: "",
     dietRest: "",
   });
-  // const [allergies, setAllergies] = useState("");
-  // const [dietPref, setDietPref] = useState("");
-  // const [dietRest, setDietRest] = useState("");
+
   const [editAllergies, setEditAllergies] = useState(false);
-
+  const [entryFeeling, setEntryFeeling] = useState("");
+  const [logEntry, setLogEntry] = useState({
+    userId: siteUser.userId,
+    feeling: entryFeeling,
+    meal: "",
+    notes: "",
+  });
   const navigate = useNavigate();
-  //     navigate("/recipes");
 
+  const entryFeelings = {
+    good: "😋",
+    ok: "😐",
+    bad: "😔",
+  };
+
+  // Post for blog entries
+  const addNewLog = async (e) => {
+    e.preventDefault();
+    await fetch("/api/new-log", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(logEntry),
+    });
+
+    setLogEntry({
+      userId: siteUser.userId,
+      feeling: "",
+      meal: "",
+      notes: "",
+    });
+  };
   const updateDietInfo = async () => {
     const dietBody = {
       userId: siteUser.userId,
@@ -52,9 +80,9 @@ const Home = ({user, siteUser}) => {
             setEditAllergies(true);
           }
           setDietInfo({
-            allergies: res[0].allergies,
-            dietPref: res[0].diet_pref,
-            dietRest: res[0].diet_restr,
+            allergies: res[0].allergies || "",
+            dietPref: res[0].diet_pref || "",
+            dietRest: res[0].diet_restr || "",
           });
         });
     };
@@ -143,18 +171,72 @@ const Home = ({user, siteUser}) => {
               <div>
                 <p className="check-in-text">How I felt since my last meal:</p>
                 <p className="check-in-btns-p">
-                  <span className="check-in-btn">😋</span>
-                  <span className="check-in-btn">😐</span>
-                  <span className="check-in-btn">😔</span>
+                  <span
+                    className={`check-in-btn ${
+                      entryFeeling === "good" && "selectedEntry"
+                    }`}
+                    onClick={() => {
+                      setEntryFeeling("good");
+                      setLogEntry((prev) => ({
+                        ...prev,
+                        feeling: "good",
+                      }));
+                    }}>
+                    😋
+                  </span>
+                  <span
+                    className={`check-in-btn ${
+                      entryFeeling === "ok" && "selectedEntry"
+                    }`}
+                    onClick={() => {
+                      setEntryFeeling("ok");
+                      setLogEntry((prev) => ({
+                        ...prev,
+                        feeling: "ok",
+                      }));
+                    }}>
+                    😐
+                  </span>
+                  <span
+                    className={`check-in-btn ${
+                      entryFeeling === "bad" && "selectedEntry"
+                    }`}
+                    onClick={() => {
+                      setEntryFeeling("bad");
+                      setLogEntry((prev) => ({
+                        ...prev,
+                        feeling: "bad",
+                      }));
+                    }}>
+                    😔
+                  </span>
                 </p>
               </div>
               <div>
-                Meal: <input></input>
+                Meal:{" "}
+                <input
+                  type="text"
+                  value={logEntry.meal}
+                  onChange={(e) =>
+                    setLogEntry((prev) => ({
+                      ...prev,
+                      meal: e.target.value,
+                    }))
+                  }></input>
               </div>
               <div>
-                Notes: <textarea></textarea>
+                Notes:{" "}
+                <textarea
+                  type="text"
+                  value={logEntry.notes}
+                  onChange={(e) =>
+                    setLogEntry((prev) => ({
+                      ...prev,
+                      notes: e.target.value,
+                    }))
+                  }></textarea>
               </div>
-              <button>submit</button>
+              <button onClick={(e) => addNewLog(e)}>submit</button>
             </div>
           </div>
 

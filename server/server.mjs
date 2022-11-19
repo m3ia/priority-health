@@ -106,6 +106,23 @@ app.post('/api/me', cors(), async (req, res) => {
   }
 });
 
+// POST - user adding a new diet log entry 
+app.post('/api/new-log', cors(), async (req, res) => {
+  const newLog = {
+    userId: req.body.userId,
+    feeling: req.body.feeling,
+    meal: req.body.meal,
+    notes: req.body.notes
+  }
+
+  try {
+    await db.query('INSERT INTO diet_logs (user_id, feeling, meal, notes, date) values ($1, $2, $3, $4, NOW())', [newLog.userId, newLog.feeling, newLog.meal, newLog.notes]);
+    res.send();
+  } catch (e) {
+    console.log('POST error for /api/new-log: ', e)
+  }
+});
+
 // POST - for adding a new collection
 app.post('/api/new-collection', cors(), async (req, res) => {
   const newCollection = {
