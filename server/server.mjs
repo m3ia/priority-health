@@ -60,6 +60,25 @@ app.get('/api/me', cors(), async (req, res) => {
   
 });
 
+// PATCH for updating user's diet info
+app.patch('/api/me', cors(), async (req, res) => {
+  console.log('reqbody: ', req.body);
+  const dietInfo = {
+    userId: req.body.userId,
+    allergies: req.body.allergies,
+    dietPref: req.body.dietPref,
+    dietRest: req.body.dietRest
+  }
+
+  try {
+    const result = await db.one('UPDATE users SET allergies = $1, diet_pref = $2, diet_restr = $3 WHERE id = $4 RETURNING *', [dietInfo.allergies, dietInfo.dietPref, dietInfo.dietRest, dietInfo.userId])
+    res.send(result);
+  } catch (e) {
+    console.log('PATCH error from /api/me: ', e);
+    return res.status(400).json({ e });
+  }
+});
+
 // POST Check if user exists/add new user:
 app.post('/api/me', cors(), async (req, res) => {
   const newUser = {
