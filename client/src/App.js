@@ -8,7 +8,7 @@ import {Home, Profile} from "./components/home-login/views";
 import Collections from "./components/recipes-collections/Collections";
 import NewRecipeForm from "./components/recipes-collections/NewRecipeForm";
 import SingleRecipeView from "./components/recipes-collections/SingleRecipeView";
-
+import NewFoodForm from './components/food-list/NewFoodForm'
 import AuthNav from "./components/home-login/auth-nav";
 import "./App.css";
 
@@ -44,17 +44,8 @@ const App = () => {
 
   return (
     <div id="app" className="d-flex flex-column h-100 app">
-      {!user ? (
-                // Log in page
-        <>
-          <div className="container flex-grow-1 log-in-div">
-            <h1>priorityHealth</h1>
-            <AuthNav />
-          </div>
-        </>
-      ) : (
-// What user sees if they're logged in
-        <>
+{/* // What user sees if they're logged in */}
+        {user ? (<>
           <header>
           <div className="app-header">
             <h1 className="logo">priorityHealth</h1>
@@ -95,13 +86,28 @@ const App = () => {
                     siteUser={siteUser}
                     />
                   }
+                />
+                <Route
+                path="/add-new-food"
+                  element={
+                    <NewFoodForm
+                    siteUser={siteUser}
+                    />
+                  }
               />
             </Routes>
           </div>
 
           <Footer />
         </>
-      )
+      ) :
+                        // Log in page
+        (<>
+          <div className="container flex-grow-1 log-in-div">
+            <h1>priorityHealth</h1>
+            <AuthNav />
+          </div>
+        </>)
       }
     </div>
   );
