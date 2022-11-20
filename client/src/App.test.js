@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { foodStatusToColor } from '../src/components/food-list/FoodItem';
 
 jest.mock("@auth0/auth0-react", () => ({
   useAuth0: () => ({
@@ -29,4 +30,8 @@ test("renders logo", async () => {
   
   // eslint-disable-next-line jest/valid-expect
   expect(logo);
+})
+
+describe('foodStatusToColor returns correct color', () => {
+  expect(foodStatusToColor('ok')).toBe('#309F77');
 })
