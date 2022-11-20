@@ -2,6 +2,21 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import CollectionsSelection from "./CollectionsSelection";
 
+// Checks if all required inputs are filled out
+export const validateRecipeForm = (recipe) => {
+  if (!recipe.name) {
+    alert("A recipe requires a name!");
+    return false;
+  } else if (!recipe.ingredients) {
+    alert("A recipe requires ingredients!");
+    return false;
+  } else if (!recipe.instructions) {
+    alert("A recipe requires instructions!");
+    return false;
+  } else {
+    return true;
+  }
+};
 const NewRecipeForm = ({
   siteUser,
   recipeCollectionsForView,
@@ -28,33 +43,41 @@ const NewRecipeForm = ({
 
   const addNewRecipe = async (e) => {
     e.preventDefault();
+    if (!validateRecipeForm(newRecipe)) {
+      return;
+    } else {
+      try {
+        await fetch("/api/new-recipe", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newRecipe),
+        });
 
-    await fetch("/api/new-recipe", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newRecipe),
-    });
+        // getRecipes();
+        setNewRecipe({
+          userId: siteUser.userId,
+          name: "",
+          summary: "",
+          ingredients: "",
+          instructions: "",
+          image: "",
+          url: "",
+          prep_time: "",
+          cook_time: "",
+          yield: 0,
+          collections: [],
+        });
 
-    // getRecipes();
-    setNewRecipe({
-      userId: siteUser.userId,
-      name: "",
-      summary: "",
-      ingredients: "",
-      instructions: "",
-      image: "",
-      url: "",
-      prep_time: "",
-      cook_time: "",
-      yield: 0,
-      collections: [],
-    });
-
-    // TODO: redirect user to single recipe view
-    navigate("/recipes");
+        // TODO: redirect user to single recipe view
+        navigate("/recipes");
+      } catch (e) {
+        navigate("/add-new-recipe");
+        console.log("New Recipe Form error: ", e);
+      }
+    }
   };
 
   useEffect(() => {
@@ -70,37 +93,81 @@ const NewRecipeForm = ({
   return (
     <div className="new-recipe-form-container">
       <h1>Add a New Recipe</h1>
-      <p>HTML is OK!</p>
       <div className="new-recipe-form-div">
         <div className="recipe-form-input-div-container">
-          <div className="recipe-form-input-divs">
-            <label>
-              Recipe Name:
-              <br />
-              <input
-                className="recipe-form-input recipe-name-input"
-                type="text"
-                id="add-name"
-                value={newRecipe.name}
-                placeholder="Recipe Name"
-                onChange={(e) => {
-                  setNewRecipe((prev) => ({
-                    ...prev,
-                    name: e.target.value,
-                  }));
-                }}
-              />
-            </label>
+          <div className="small-recipe-inputs">
+            <div className="recipe-form-input-divs">
+              <label>
+                <strong>
+                  Recipe Name<span className="required-asterisk">*</span>:
+                </strong>
+                <br />
+                <input
+                  className="recipe-form-input recipe-name-input"
+                  type="text"
+                  id="add-name"
+                  value={newRecipe.name}
+                  placeholder="Lasagna"
+                  onChange={(e) => {
+                    setNewRecipe((prev) => ({
+                      ...prev,
+                      name: e.target.value,
+                    }));
+                  }}
+                />
+              </label>
+            </div>
+
+            <div className="recipe-form-input-divs">
+              <label>
+                <strong>Recipe URL:</strong>
+                <br />
+                <input
+                  className="recipe-form-input"
+                  type="text"
+                  id="add-url"
+                  value={newRecipe.url}
+                  placeholder="Recipe URL"
+                  onChange={(e) => {
+                    setNewRecipe((prev) => ({
+                      ...prev,
+                      url: e.target.value,
+                    }));
+                  }}
+                />
+              </label>
+            </div>
+            <div className="recipe-form-input-divs">
+              {" "}
+              <label>
+                <strong>Image URL:</strong>
+                <br />
+                <input
+                  className="recipe-form-input recipe-input-image"
+                  type="text"
+                  id="add-image"
+                  value={newRecipe.image}
+                  placeholder="Image URL"
+                  onChange={(e) => {
+                    setNewRecipe((prev) => ({
+                      ...prev,
+                      image: e.target.value,
+                    }));
+                  }}
+                />
+              </label>
+            </div>
           </div>
           <div className="recipe-form-input-divs">
             <label>
-              Description: <br />
+              <strong>Description:</strong> <br />
               <textarea
                 className="recipe-form-input recipe-description-input"
                 type="text"
                 id="add-summary"
+                placeholder="A little background story about this recipe..."
                 value={newRecipe.summary}
-                placeholder="Description"
+                // placeholder="Description"
                 onChange={(e) => {
                   setNewRecipe((prev) => ({
                     ...prev,
@@ -110,16 +177,19 @@ const NewRecipeForm = ({
               />
             </label>
           </div>
+
           <div className="recipe-form-input-divs">
             <label>
-              Ingredients:
+              <strong>
+                Ingredients<span className="required-asterisk">*</span>:
+              </strong>
               <br />
               <textarea
                 className="recipe-form-input"
                 type="text"
                 id="add-ingredients"
                 value={newRecipe.ingredients}
-                placeholder="Ingredients with HTML"
+                placeholder="Sugar, spice, and everything nice..."
                 onChange={(e) => {
                   setNewRecipe((prev) => ({
                     ...prev,
@@ -131,14 +201,16 @@ const NewRecipeForm = ({
           </div>
           <div className="recipe-form-input-divs">
             <label>
-              Instructions:
+              <strong>
+                Instructions<span className="required-asterisk">*</span>:
+              </strong>
               <br />
               <textarea
                 className="recipe-form-input"
                 type="text"
                 id="add-instructions"
                 value={newRecipe.instructions}
-                placeholder="Instructions"
+                placeholder="Feel free to structure your instructions with HTML!"
                 onChange={(e) => {
                   setNewRecipe((prev) => ({
                     ...prev,
@@ -149,47 +221,8 @@ const NewRecipeForm = ({
             </label>
           </div>
           <div className="recipe-form-input-divs">
-            {" "}
             <label>
-              Image URL:
-              <br />
-              <input
-                className="recipe-form-input recipe-input-image"
-                type="text"
-                id="add-image"
-                value={newRecipe.image}
-                placeholder="Image URL"
-                onChange={(e) => {
-                  setNewRecipe((prev) => ({
-                    ...prev,
-                    image: e.target.value,
-                  }));
-                }}
-              />
-            </label>
-          </div>
-          <div className="recipe-form-input-divs">
-            <label>
-              Recipe URL:
-              <br />
-              <input
-                className="recipe-form-input"
-                type="text"
-                id="add-url"
-                value={newRecipe.url}
-                placeholder="Recipe URL"
-                onChange={(e) => {
-                  setNewRecipe((prev) => ({
-                    ...prev,
-                    url: e.target.value,
-                  }));
-                }}
-              />
-            </label>
-          </div>
-          <div className="recipe-form-input-divs">
-            <label>
-              Prep Time:
+              <strong>Prep Time:</strong>
               <br />
               <input
                 className="recipe-form-input"
@@ -208,7 +241,7 @@ const NewRecipeForm = ({
           </div>
           <div className="recipe-form-input-divs">
             <label>
-              Cook Time:
+              <strong>Cook Time:</strong>
               <br />
               <input
                 className="recipe-form-input"
@@ -226,10 +259,11 @@ const NewRecipeForm = ({
             </label>
           </div>
           <div className="recipe-form-input-divs">
-            Yield:
+            <strong>Yield:</strong>
             <br />
             <input
               className="recipe-form-input"
+              min="0"
               type="number"
               id="add-yield"
               value={newRecipe.yield}
@@ -251,9 +285,12 @@ const NewRecipeForm = ({
           />
         </div>
       </div>
-      <div className="form-submit-btn" onClick={(e) => addNewRecipe(e)}>
-        {" "}
-        <h3>Submit</h3>
+
+      <div className="submit-div">
+        <div className="form-submit-btn btn" onClick={(e) => addNewRecipe(e)}>
+          {" "}
+          <h3>Submit</h3>
+        </div>
       </div>
     </div>
   );
