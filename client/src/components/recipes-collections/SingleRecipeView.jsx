@@ -32,8 +32,8 @@ const SingleRecipeView = ({siteUser}) => {
   const [selectedRecipe, setSelectedRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const [recipeCollectionsForView, setRecipeCollectionsForView] = useState([]);
-
   const [singleRecipeID, setSingleRecipeID] = useState(0);
+  const [ingView, setIngView] = useState(true);
 
   useEffect(() => {
     // Fetch data for a single recipe
@@ -128,32 +128,46 @@ const SingleRecipeView = ({siteUser}) => {
               </div>
             </div>
             <div className="recipe-body-right">
-              <div className="recipe-servings-info">
-                <h2>Ingredients</h2>
-                Prep Time: {selectedRecipe.prep_time}
-                <br />
-                Cook Time: {selectedRecipe.cook_time}
-                <br /> Yields: {selectedRecipe.yield}
-                <p />
-                <div className="recipe-ingredients">
-                  {selectedRecipe.ingredients.map((ing, ind) => {
-                    return ing.isGroupHeader ? (
-                      <h3 key={ind}>{ing.description}</h3>
-                    ) : (
-                      <li key={ind}>
-                        {ing.quantity} {ing.quantity2 && `- ${ing.quantity2}`}
-                        {ing.unitOfMeasure} {ing.description}
-                      </li>
-                    );
-                  })}
+              <button
+                onClick={() => setIngView(ingView === true ? false : true)}
+                style={{
+                  backgroundColor: `${ingView === false ? "#FFF" : "#DB8D35"}`,
+                  color: `${ingView === false ? "#2D2B2B" : "#FFF"}`,
+                  // border: `${
+                  //   ingView === false ? "1px solid #2D2B2B" : "#DB8D35"
+                  // }`,
+                }}>
+                {ingView ? "View Nutrition Info" : "View Ingredients"}
+              </button>
+              {ingView ? (
+                <div className="recipe-servings-info">
+                  <h2>Ingredients</h2>
+                  Prep Time: {selectedRecipe.prep_time}
+                  <br />
+                  Cook Time: {selectedRecipe.cook_time}
+                  <br /> Yields: {selectedRecipe.yield}
+                  <p />
+                  <div className="recipe-ingredients">
+                    {selectedRecipe.ingredients.map((ing, ind) => {
+                      return ing.isGroupHeader ? (
+                        <h3 key={ind}>{ing.description}</h3>
+                      ) : (
+                        <li key={ind}>
+                          {ing.quantity} {ing.quantity2 && `- ${ing.quantity2}`}
+                          {ing.unitOfMeasure} {ing.description}
+                        </li>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-              <div className="recipe-nutrition-label-container">
-                <RecipeNutritionLabel
-                  ingredients={ingredients}
-                  selectedRecipe={selectedRecipe}
-                />
-              </div>
+              ) : (
+                <div className="recipe-nutrition-label-container">
+                  <RecipeNutritionLabel
+                    ingredients={ingredients}
+                    selectedRecipe={selectedRecipe}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </>
