@@ -15,14 +15,9 @@ Secondary text: #9D968B
  */
 /* --------------------- App --------------------- */
 :root {
-  /* 1 */
-  /* --bg-color: #FFF3E0;
-  --darker-bg-color: #D39738; */
-
-  /* 2 */
-  --bg-color: #FEFBF7;
+  /* Prev:  */
+  /* --bg-color: #FEFBF7;
   --darker-bg-color: #FDF2E2;
-
   --alt-darker-bg-color: #FDF2E2;
   --text-color: #2D2B2B;
   --accent-color: #D39738;
@@ -32,7 +27,31 @@ Secondary text: #9D968B
   --title-font: 'Battambang';
   --text-font: 'Jost';
   --h3-font: 'Jost';
+  --h3-font-weight: 300; */
+  /* New:  */
+  --bg-color: #EFE9E4;
+  --darker-bg-color: #EFE9E4;
+  --alt-darker-bg-color: #FDF2E2;
+  --text-color: #2D2B2B;
+  --accent-color: #DB8D35;
+  --accent-color-hover: #D39738e3;
+  --accent-text-color: #FFF;
+  --secondary-text-color: #9D968B;
+  --title-font: 'Battambang';
+  --text-font: 'Jost';
+  --h3-font: 'Jost';
   --h3-font-weight: 300;
+  --green: #829566;
+  --orange: #DB8D35;
+  --red: #A83027;
+  --white: #FFF;
+
+  /* Dark Mode*/
+  --dark-bg-color: #464647;
+  --dark-green: #829566;
+  --dark-red: #C24940;
+  --dark-orange: #DB8D35;
+  --dark-white: #FFF;
 
 }
 
@@ -289,7 +308,7 @@ header {
 }
 
 .selectedEntry {
-  background-color: yellow;
+  background-color: var(--orange);
 }
 
 .check-in-text {
@@ -331,13 +350,13 @@ header {
 }
 
 .good-cell {
-  background-color: green;
+  background-color: var(--green);
 }
 .ok-cell {
-    background-color: yellow;
+    background-color: var(--orange);
 }
 .bad-cell {
-  background-color: red;
+  background-color: var(--red);
 }
 /* --------------------- FOOD LIST --------------------- */
 .food-list-header {
@@ -362,11 +381,11 @@ header {
   /* background-color: #fde4bd; */
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  margin-top: 40px;
 }
 
-.foot-btn-delete-div {
+.food-btn-delete-div {
   display: flex;
  flex-direction: row;
 }
@@ -386,7 +405,7 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  background-color: var(--red);
   height: 15px;
   width: 15px;
   padding: 2px;
@@ -403,11 +422,14 @@ header {
 
 .foods-btns-div {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  min-width: 50%;
-  max-width: 700px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* min-width: 100%; */
+  /* max-width: 700px; */
+  max-height: 400px;
+  overflow-y: scroll;
+  /* flex-wrap: wrap; */
+
 }
 
 /* Single Food View */
@@ -422,10 +444,10 @@ header {
   flex-direction: row;
   justify-content: center;
   font-family: 'Jost';
-  color: var(--accent-text-color);
-  text-shadow: 1px 1px var(--text-color);
+  color: #FFF;
+  /* text-shadow: 1px 1px black; */
   width: 200px;
-  margin: 10px;
+  margin: 5px;
   border-radius: 4px;
 }
 
@@ -875,7 +897,7 @@ textarea {
   font-size: 11px;
 }
 .collections-selections-div {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   /* height: 100%; */
   display: flex;
   flex-direction: column;
