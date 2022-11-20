@@ -358,6 +358,10 @@ header {
 .bad-cell {
   background-color: var(--red);
 }
+
+.uncat-cell {
+    background-color: var(--white);
+}
 /* --------------------- FOOD LIST --------------------- */
 .food-list-header {
   display: flex;
@@ -376,6 +380,16 @@ header {
   border-radius: 10px;
 }
 
+.foods-div-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.food-cell {
+  margin-right: 5px;
+}
 .food-list-div {
   /* border: 1px solid black; */
   /* background-color: #fde4bd; */
@@ -420,6 +434,9 @@ header {
   right: 0; */
 }
 
+.foods-btns-container {
+ min-width: 200px;
+}
 .foods-btns-div {
   display: flex;
   flex-direction: column;
