@@ -67,14 +67,18 @@ const Recipes = ({
         <div className="recipes-searchbar">
           <input
             type="text"
-            placeholder="Search for a recipe"
+            placeholder="Filter by recipe name"
             value={searchString}
             onChange={(e) => {
               setSearchString(e.target.value);
             }}></input>
         </div>
         {/* TODO: decide if i need a btn to add a new form here */}
-        {/* <div className="recipes-form-btn">+</div> */}
+        <div
+          className="recipes-form-btn"
+          onClick={() => navigate("/add-new-recipe")}>
+          Add New Recipe
+        </div>
       </div>
       <div className="recipes-view-info">
         {selectedCollection === "" && collectionFilter === "" ? (

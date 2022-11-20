@@ -584,11 +584,17 @@ header {
 
 
 /* --------------------- MY RECIPE COLLECTIONS PAGE --------------------- */
+.recipes-collections-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
 .recipes-collections-div {
   display: flex;
   flex-direction: row;
-  /* align-items: flex-start; */
+  max-width: 1000px;
 }
 
 /* COLLECTIONS SECTION ---------------------*/
@@ -596,7 +602,8 @@ header {
 .collections-div {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 400px;
+  /* max-width: 75%; */
 }
 
 .recipes-btn {
@@ -606,8 +613,7 @@ header {
 }
 /* Collections Search Scroll */
 .collections-searchbar {
-  border: solid black;
-  border-width: px 2px 0px 2px;
+  border: 1px solid var(--text-color);
   padding: 10px;
 }
 .collections-searchbar input {
@@ -615,21 +621,35 @@ header {
   border: none;
   width: 100%;
   height: 100%;
+  font-size: 15px;
 }
 .collections-scroll-section {
-  border: 1px solid black;
+  border-left: 1px solid var(--text-color);
+  border-right: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
   max-height: 170px;
   overflow-y: scroll;
 }
 .collection-bar {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--text-color);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 7px;
+  padding-right: 7px;
+  background-color: var(--white);
+}
+
+.collection-bar:hover {
+  cursor: pointer;
+  background-color: var(--accent-color-hover);
+  color: var(--white);
 }
 
 /* RECIPES SECTION ---------------------*/
 .recipes-div {
-  border: 2px solid black;
-  width: 120%;
-  min-width: 800px;
+  /* border: 2px solid black; */
+  width: 100%;
+  /* min-width: 800px; */
   margin-left: 3rem;
   margin-right: 3rem;
 }
@@ -638,7 +658,7 @@ header {
 .recipes-search-form-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -646,10 +666,9 @@ header {
   display: flex;
   flex-direction: column;
   padding: 3px;
-  width: 80%;
-  border:dotted;
-  background-color: white;
+  width: 30%;
   border-radius: 4px;
+  margin-left: 20px;
 }
 
 .recipes-form-btn, .new-food-btn, .btn  {
@@ -674,33 +693,77 @@ header {
   background-color: var(--accent-color-hover);
 }
 
-
 /* Recipe List Card Section  */
+.recipe-list-cards-div {
+  max-height: 700px;
+  overflow-y: scroll;
+}
 .recipe-list-card-container {
   display: flex;
   flex-direction: row;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  background-color: var(--alt-darker-bg-color)
+  /* border: 1px solid var(--secondary-text-color); */
+  background-color: var(--white);
+  color: (var(--text-color));
+  /* padding: 10px; */
+  max-height: 200px;
+  margin-bottom: 1rem;
+  /* overflow-y: scroll; */
+}
+
+.recipe-list-card-icon-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+.cook-icon, .prep-icon {
+  font-size: 20px;
 }
 
 .recipe-list-card-container:hover {
   cursor: pointer;
-  background-color: rgb(246, 213, 117);
+  border: 2px solid var(--accent-color);
+  /* color: white; */
 }
 
 .recipe-list-card-img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 10px;
+  /* margin-left: 10px; */
+    /* height: 100%; */
+      /* width: auto; */
   /* margin-right: 10px; */
+  overflow: hidden;
+}
+
+.recipe-list-card-img img {
+  /* height: 200px; */
+  /* width: 100%; */
+  /* max-height: 200px; */
+  min-width: 300px;
+  max-width: 200px;
+  height: auto;
+  
+    /* overflow: hidden; */
+  /* width: auto; */
+}
+
+.recipe-icon {
+  width: 25px !important;
+  height: auto !important;
+  
+  /* height: 100px !important; */
 }
 .recipe-list-card-details {
   display: flex;
   flex-direction: column; 
-  max-width: 70%;
-  margin-left: 20px;
+  /* max-width: 70%; */
+  margin-left: 50px;
+}
+
+.recipe-list-card-details p {
+  max-height: 100%;
 }
 
 .recipe-list-card-collection-div {
