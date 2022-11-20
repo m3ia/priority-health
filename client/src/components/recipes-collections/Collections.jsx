@@ -27,16 +27,6 @@ const Collections = ({siteUser}) => {
       <h1>My Recipe Collections</h1>
       <div className="recipes-collections-div">
         <div className="collections-div">
-          <div
-            className="recipes-btn"
-            onClick={() => setCollectionFilter("all-recipes")}>
-            All Recipes
-          </div>
-          <div
-            className="recipes-btn"
-            onClick={() => setCollectionFilter("uncategorized-recipes")}>
-            Uncategorized Recipes
-          </div>
           <CollectionsSearchScroll
             collectionsData={collectionsData}
             setCollectionsData={setCollectionsData}

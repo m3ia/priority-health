@@ -16,7 +16,7 @@ const CollectionsSelection = ({
 
   return (
     <div className="collections-selection-container">
-      <div class="collections-selection-header">
+      <div className="collections-selection-header">
         <p>
           <strong>Add Recipe to Collections</strong>
         </p>
