@@ -786,15 +786,17 @@ header {
 .single-recipe-container {
   display: flex;
   flex-direction: column;
-
   margin: 35px 10px 35px 10px;
   padding-bottom: 10px;
-  width: 80%;
-  max-width: 1000px;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  /* max-width: 1000px; */
 }
 
 .recipe-header {
   /* margin-top: 10px; */
+  width: 1000px;
 }
 
 .recipe-header span {
@@ -827,6 +829,7 @@ header {
   display: flex; 
   flex-direction: row;
   margin: 25px 0px 25px 0px;
+  width: 1000px;
 }
 
 .recipe-body-left {
