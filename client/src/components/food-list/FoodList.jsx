@@ -79,15 +79,18 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
               </div>
               <div
                 className="delete-foods-btn btn"
-                onClick={() => setEditMode(true)}>
-                Edit Foods
+                onClick={() => {
+                  if (editMode) {
+                    deleteFoodItems();
+                  } else {
+                    setEditMode(true);
+                  }
+                }}>
+                {editMode ? "Save" : "Remove Food"}
               </div>
             </div>
           </div>
           <div className="food-list-div">
-            <div>
-              {editMode && <button onClick={deleteFoodItems}>Save</button>}
-            </div>
             <div className="foods-btns-div">
               {searchedFood.length === 0
                 ? foods.map((food, ind) => {
