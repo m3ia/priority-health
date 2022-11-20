@@ -853,17 +853,17 @@ header {
 
 /* From the New Recipe Form: */
 .new-recipe-form-container {
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 
 }
 .new-recipe-form-div {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  max-width: 1000px;
   justify-content: space-evenly;
-  /* background-color: white; */
-  /* width: 80%; */
 }
 .small-recipe-inputs{
   display: flex;
@@ -902,12 +902,12 @@ textarea {
 }
 
 .submit-div {
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
 }
 .form-submit-btn {
   margin-top: 20px;
-  width: 50%;
+  width: 400px;
 }
 
 .collections-selection {
