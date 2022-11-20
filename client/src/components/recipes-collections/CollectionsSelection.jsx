@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import CollectionSelect from "./CollectionSelect";
 
 const CollectionsSelection = ({
-  newRecipe,
   collectionsData,
   // potentialCollections = newRecipe.collections: an empty array that tracks all potential collections for a recipe.
   potentialCollections,
@@ -21,6 +20,9 @@ const CollectionsSelection = ({
         <p>Add Recipe to Collections</p>
       </div>
       <div className="selected-collections-btns-div">
+        {!potentialCollections.length && (
+          <em>Selected collections show here.</em>
+        )}
         {potentialCollections.map((collectionName, ind) => {
           return (
             <span key={ind} className="selected-collection-btn">
@@ -45,28 +47,18 @@ const CollectionsSelection = ({
         return <div key={ind}>{item}</div>;
       })} */}
       <div className="collections-selections-div">
-        {collectionsData.map((collection, ind) => {
-          return (
-            // <div className="collection-select">
-            //   <label>
-            //     <input
-            //       key={ind}
-            //       type="checkbox"
-            //       value={item.name}
-            //       onChange={(e) => checkUncheck(e)}
-            //     />
-            //     {item.name}
-            //   </label>
-            // </div>
-            <CollectionSelect
-              collection={collection}
-              key={ind}
-              // setPotentialCollections={setPotentialCollections}
-              setNewRecipe={setNewRecipe}
-              potentialCollections={potentialCollections}
-            />
-          );
-        })}
+        {collectionsData
+          .filter((item) => !potentialCollections.includes(item.name))
+          .map((collection, ind) => {
+            return (
+              <CollectionSelect
+                collection={collection}
+                key={ind}
+                setNewRecipe={setNewRecipe}
+                potentialCollections={potentialCollections}
+              />
+            );
+          })}
       </div>
     </div>
   );
