@@ -329,11 +329,12 @@ header {
 
 .log-meal-input, .log-meal-notes {
   font-size: 20px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   border: 1px solid var(--secondary-text-color);
   font-family: var(--text-font);
   font-weight: 300;
   padding: 5px;
+  margin-top: 10px;
 }
 
 
@@ -342,9 +343,10 @@ header {
 }
 
 .check-in-text {
-  font-size: 20px;
+  font-size: 28px;
   font-family: var(--text-font);
   font-weight: 300;
+  margin-bottom: 30px;
 }
 
 .log-submit-btn {
@@ -361,6 +363,14 @@ header {
   line-height: 30%;
 }
 
+.check-in-btn:hover {
+  cursor: pointer;
+  background-color: #d3973892;
+}
+
+.select-one-text {
+  color: var(--secondary-text-color);
+}
 .logs-div {
   display: flex;
   flex-direction: row;

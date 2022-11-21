@@ -250,6 +250,7 @@ const Home = ({user, siteUser}) => {
                     }}>
                     😔
                   </span>
+                  <p className="select-one-text">Select one</p>
                 </p>
               </div>
               <div>
