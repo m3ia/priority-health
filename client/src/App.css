@@ -119,11 +119,12 @@ header {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   margin-top: 1rem;
   padding-top: 2rem;
   padding-bottom: 100px;
   padding-left: 4rem;
+  /* width: 100%; */
 }
 
 /* Logo */
@@ -367,8 +368,10 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
+  width: 1000px;
   justify-content: space-between;
+
+
 }
 
 .nutrition-label-div {
@@ -397,6 +400,7 @@ header {
   display: flex;
   flex-direction: row;
   margin-top: 40px;
+  justify-content: center;
 }
 
 .food-btn-delete-div {
