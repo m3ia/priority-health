@@ -27,7 +27,7 @@ const FiveRecCards = ({siteUser}) => {
                 </div>
               </div>
               <div>
-                <div>
+                <div className="recipe-list-card-title">
                   <strong>{card.name}</strong>
                 </div>
                 <div className="">

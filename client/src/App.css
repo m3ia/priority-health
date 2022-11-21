@@ -55,26 +55,36 @@ Secondary text: #9D968B
 
 }
 
+.home-container h1 {
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 50px;
+}
+
 h1 {
-  font-family: var(--title-font);
-  font-weight: 700;
-  font-size: 40px;
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 45px;
 }
 
 h2 {
-  font-family: var(--h3-font);
-  font-weight: var(--h3-font-weight);
+  /* font-family: var(--h3-font);
+  font-weight: var(--h3-font-weight); */
+  font-family: 'Jost';
+  font-weight: 400;
   font-size: 30px;
   /* line-height: 10%; */
 }
 
+h3 {
+  font-family: 'Jost';
+  font-weight: 300;
+  font-size: 25px;
+}
 div {
   font-family: 'Jost';
 }
 
-h1 {
-  font-family: 'Battambang';
-}
 
 html,
 body, :root {
@@ -87,22 +97,25 @@ body, :root {
   flex-direction: column;
   justify-content: space-around */
 }
-/* 
+
 .app-header {
-  border-bottom: .5px solid var(--secondary-text-color);
-  background-color: var(--darker-bg-color);
-} */
+  /* border-bottom: .5px solid var(--secondary-text-color); */
+  /* background-color: var(--darker-bg-color); */
+    /* background-color: var(--text-color); */
+  color: #EFE9E4;
+}
 
 header {
   border-bottom: .5px solid var(--secondary-text-color);
-  background-color: var(--darker-bg-color);
+  background-color: var(--dark-bg-color);
   margin: -27px;
   padding: 10px;
+  color: #EFE9E4;
   /* width: 100%; */
 }
 
 .logo {
-  background-color: var(--darker-bg-color);
+  /* background-color: var(--darker-bg-color); */
   margin-left: 28px;
 }
 
@@ -157,19 +170,29 @@ header {
   flex-direction: row;
   justify-content: space-around;
   padding: 10px;
+  color: #EFE9E4;
 }
 
 .nav-link {
   font-family: 'Jost';
-  color: var(--text-color);
+  color: var(--bg-color);
   font-weight: 400;
   text-decoration: none;
   font-size: 20px;
 }
 
-.nav-link:hover {
-  color: var(--accent-color);
+.nav-link a:link,
+a:visited,
+a:hover,
+a:active, .router-link-exact-active {
+  color: var(--bg-color);
+  text-decoration:none;
+  font-size: 15px;
 }
+
+/* .nav-link:hover {
+  color: var(--accent-color);
+} */
 /* --------------------- AUTH0 --------------------- */
 .spinner {
   position: absolute;
@@ -248,9 +271,10 @@ header {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-right: 40px;
 }
 .user-diet-info {
-  border-bottom: 1px black solid;
+  border-bottom: 1px var(--text-color) solid;
   margin-bottom: 10px;
   padding: 20px;
   width: 425px;
@@ -289,6 +313,7 @@ header {
   overflow: hidden;
   width: 450px;
   border-radius: 10px;
+  align-items: center;
 }
 
 .recent-card:hover {
@@ -300,6 +325,9 @@ header {
   /* padding: 10px; */
 }
 
+.recipe-list-card-title {
+  /* margin-top: 20px; */
+}
 .recent-card-img {
   display: flex;
   flex-direction: column;
@@ -327,7 +355,7 @@ header {
   padding-right: 20px;
 }
 
-.log-meal-input, .log-meal-notes {
+.filter-foods input, .log-meal-input, .log-meal-notes {
   font-size: 20px;
   margin-bottom: 14px;
   border: 1px solid var(--secondary-text-color);
@@ -533,6 +561,7 @@ header {
   float: right;
   bottom: 0%;
   margin-left: -10px;
+  margin-top: -7px;
   z-index: 1;
   border-radius: 100%;
   color: white;
@@ -778,14 +807,14 @@ header {
   margin-left: 20px;
 }
 
-.recipes-form-btn, .new-food-btn, .btn  {
+.recipes-form-btn, .btn  {
   display: flex;
   flex-direction: column;
-  border: 1px var(--accent-text-color) solid;
+  /* border: 1px var(--accent-text-color) solid; */
   align-items: center;
   justify-content: center;
-  background-color: var(--accent-color);
-  color: white;
+  /* background-color: var(--accent-color); */
+  /* color: white; */
   border-radius: 4px;
   padding: 10px;
 }
@@ -795,7 +824,21 @@ header {
   width: 20%;
   min-width: 100px;
 }
-.recipes-form-btn:hover, .new-food-btn:hover, .btn:hover, .btn:hover {
+
+.new-food-btn, .delete-foods-btn {
+  background-color: var(--dark-bg-color);
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.new-food-btn:hover {
+  color: var(--green);
+}
+.delete-foods-btn:hover {
+  color: var(--red);
+}
+
+.recipes-form-btn:hover  {
   cursor: pointer;
   background-color: var(--accent-color-hover);
 }
@@ -1076,9 +1119,15 @@ textarea {
   /* display: flex; */
   /* justify-content: center; */
 }
-.form-submit-btn {
+.form-submit-btn  {
   margin-top: 20px;
   width: 400px;
+  background-color: var(--accent-color)
+}
+
+.form-submit-btn:hover {
+  cursor: pointer;
+  color: #FFF;
 }
 
 .collections-selection {

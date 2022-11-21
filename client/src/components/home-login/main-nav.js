@@ -11,7 +11,7 @@ const MainNav = ({setFoodView}) => {
         to="/"
         exact='true'
         className={(navData) =>
-          navData.isActive ? "router-link-exact-active" : "nav-link"
+          navData.isActive ? "router-link-exact-active nav-a" : "nav-link nav-a"
         }>
         Home
       </NavLink>
@@ -20,7 +20,7 @@ const MainNav = ({setFoodView}) => {
         onClick={() => setFoodView("")}
         exact='true'
         className={(navData) =>
-          navData.isActive ? "router-link-exact-active" : "nav-link"
+          navData.isActive ? "router-link-exact-active nav-a" : "nav-link nav-a"
         }>
         Food List
       </NavLink>
@@ -28,7 +28,7 @@ const MainNav = ({setFoodView}) => {
         to="/add-new-recipe"
         exact='true'
         className={(navData) =>
-          navData.isActive ? "router-link-exact-active" : "nav-link"
+          navData.isActive ? "router-link-exact-active nav-a" : "nav-link nav-a"
         }>
         Add A Recipe
       </NavLink>
@@ -36,22 +36,14 @@ const MainNav = ({setFoodView}) => {
         to="/recipes"
         exact='true'
         className={(navData) =>
-          navData.isActive ? "router-link-exact-active" : "nav-link"
+          navData.isActive ? "router-link-exact-active nav-a" : "nav-link nav-a"
         }>
         Recipes
       </NavLink>
       <NavLink
-        to="/profile"
         exact='true'
         className={(navData) =>
-          navData.isActive ? "router-link-exact-active" : "nav-link"
-        }>
-        Profile
-      </NavLink>
-      <NavLink
-        exact='true'
-        className={(navData) =>
-          navData.isActive ? "router-link-exact-active" : "nav-link"
+          navData.isActive ? "router-link-exact-active nav-a" : "nav-link nav-a"
         }
         onClick={() =>
           logout({
