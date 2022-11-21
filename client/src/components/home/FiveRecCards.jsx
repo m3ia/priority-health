@@ -22,17 +22,33 @@ const FiveRecCards = ({siteUser}) => {
               className="recent-card"
               onClick={() => navigate(`/recipe/${card.id}`)}>
               <div className="five-recent-info">
-                {card.image && <img src={card.image} alt="the recipe meal" />}
+                <div className="recent-card-img">
+                  {card.image && <img src={card.image} alt="the recipe meal" />}
+                </div>
               </div>
               <div>
                 <div>
                   <strong>{card.name}</strong>
                 </div>
                 <div className="">
-                  {card.prep_time && `Prep time: ${card.prep_time}`}
+                  {card.prep_time && (
+                    <span>
+                      <span class="material-symbols-outlined prep-icon">
+                        timer
+                      </span>{" "}
+                      <span>{card.prep_time}</span>
+                    </span>
+                  )}
                 </div>
                 <div className="">
-                  {card.cook_time && `Cook time: ${card.cook_time}`}
+                  {card.cook_time && (
+                    <span>
+                      <span className="material-symbols-outlined cook-icon">
+                        cooking
+                      </span>
+                      <span> {card.cook_time}</span>
+                    </span>
+                  )}
                 </div>
                 <div className="">
                   {card.yield > 0 && `Yields: ${card.yield}`}

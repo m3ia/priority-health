@@ -278,8 +278,6 @@ const Home = ({user, siteUser}) => {
             <FiveRecCards siteUser={siteUser} />
           </div>
         </div>
-
-        <div className="home-section-2"></div>
         <div className="home-section-3">
           <h3>Food Log</h3>
           <div className="feeling-cells-div">
