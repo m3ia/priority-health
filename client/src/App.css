@@ -67,6 +67,7 @@ h2 {
   font-size: 30px;
   /* line-height: 10%; */
 }
+
 div {
   font-family: 'Jost';
 }
@@ -361,15 +362,39 @@ header {
 }
 
 .logs-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   max-height: 500px;
   overflow-y: scroll;
 }
 
 .diet-entry {
-  border: 1px solid black;
+  width: 200px;
+  height: 230px;
+  margin-right: 15px;
+  border-radius: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-bottom: 10px;
 }
 
+.logs-div .good-entry {
+  background-color: #82956679;
+}
+
+.logs-div .ok-entry {
+  background-color: #D39738e3;
+}
+
+.logs-div .bad-entry {
+  background-color: #a83027a3;
+}
+
+.diet-entry-notes {
+  max-height: 75px;
+  overflow-y: scroll;
+}
 .feeling-cells-div {
   display: flex;
   flex-direction: row;
