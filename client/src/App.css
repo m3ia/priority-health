@@ -326,6 +326,16 @@ header {
   padding-right: 20px;
 }
 
+.log-meal-input, .log-meal-notes {
+  font-size: 20px;
+  margin-bottom: 18px;
+  border: 1px solid var(--secondary-text-color);
+  font-family: var(--text-font);
+  font-weight: 300;
+  padding: 5px;
+}
+
+
 .selectedEntry {
   background-color: var(--orange);
 }
@@ -336,9 +346,15 @@ header {
   font-weight: 300;
 }
 
+.log-submit-btn {
+  width: 40%;
+  height: 35px;
+}
+
 .check-in-btns-p {
   text-align: center;
 }
+
 .check-in-btn {
   font-size: 50px;
   line-height: 30%;

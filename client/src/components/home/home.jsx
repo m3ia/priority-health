@@ -246,10 +246,11 @@ const Home = ({user, siteUser}) => {
                 </p>
               </div>
               <div>
-                Meal:{" "}
                 <input
                   type="text"
+                  className="log-meal-input"
                   value={logEntry.meal}
+                  placeholder="Latest Meal"
                   onChange={(e) =>
                     setLogEntry((prev) => ({
                       ...prev,
@@ -258,10 +259,11 @@ const Home = ({user, siteUser}) => {
                   }></input>
               </div>
               <div>
-                Notes:{" "}
                 <textarea
+                  className="log-meal-notes"
                   type="text"
                   value={logEntry.notes}
+                  placeholder="Notes"
                   onChange={(e) =>
                     setLogEntry((prev) => ({
                       ...prev,
@@ -269,7 +271,9 @@ const Home = ({user, siteUser}) => {
                     }))
                   }></textarea>
               </div>
-              <button onClick={(e) => addNewLog(e)}>submit</button>
+              <div className="btn log-submit-btn" onClick={(e) => addNewLog(e)}>
+                submit
+              </div>
             </div>
           </div>
 
