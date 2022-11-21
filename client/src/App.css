@@ -355,7 +355,7 @@ a:active, .router-link-exact-active {
   padding-right: 20px;
 }
 
-.filter-foods input, .log-meal-input, .log-meal-notes {
+.filter-foods input, .log-meal-input, .log-meal-notes, .recipe-search-input, input {
   font-size: 20px;
   margin-bottom: 14px;
   border: 1px solid var(--secondary-text-color);
@@ -377,11 +377,21 @@ a:active, .router-link-exact-active {
   margin-bottom: 30px;
 }
 
-.log-submit-btn {
+.log-submit-btn, .recipes-form-btn {
   width: 40%;
   height: 35px;
+  background-color: var(--accent-color);
 }
 
+.log-submit-btn:hover, .recipes-form-btn:hover, .add-new-collection-btn:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.add-new-collection-btn {
+  margin-top: 12px;
+  background-color: var(--accent-color);
+}
 .check-in-btns-p {
   text-align: center;
 }
@@ -541,12 +551,22 @@ a:active, .router-link-exact-active {
 
 .food-item-div {
   display: flex;
-  flex-direction: column;
-  width: 300px;
+  flex-direction: row;
+  justify-content: center;
   font-family: var(--text-font);
   font-weight: 500;
   font-size: 20px;
   position: relative;
+  color: #FFF;
+  /* text-shadow: 1px 1px black; */
+  width: 200px;
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.food-item-div:hover {
+  cursor: pointer;
+  opacity: .9;
 }
 
 .delete-food-item-btn {
@@ -590,18 +610,6 @@ a:active, .router-link-exact-active {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.food-item-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  font-family: 'Jost';
-  color: #FFF;
-  /* text-shadow: 1px 1px black; */
-  width: 200px;
-  margin: 5px;
-  border-radius: 4px;
 }
 
 .health-labels-list {
@@ -807,6 +815,7 @@ a:active, .router-link-exact-active {
   margin-left: 20px;
 }
 
+
 .recipes-form-btn, .btn  {
   display: flex;
   flex-direction: column;
@@ -869,8 +878,13 @@ a:active, .router-link-exact-active {
 
 .recipe-list-card-container:hover {
   cursor: pointer;
-  border: 2px solid var(--accent-color);
+  /* border: 2px solid var(--accent-color); */
   /* color: white; */
+  /* background-color: #d3973892; */
+  background-color: #db8e3528;
+  /* color: black; */
+  opacity: .9;
+
 }
 
 .recipe-list-card-img {
@@ -1122,7 +1136,8 @@ textarea {
 .form-submit-btn  {
   margin-top: 20px;
   width: 400px;
-  background-color: var(--accent-color)
+  background-color: var(--accent-color);
+
 }
 
 .form-submit-btn:hover {

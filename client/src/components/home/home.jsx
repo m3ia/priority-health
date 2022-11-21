@@ -291,7 +291,7 @@ const Home = ({user, siteUser}) => {
           </div>
         </div>
         <div className="home-section-3">
-          <h2>Food Log</h2>
+          <h2>Wellness Log</h2>
           <div className="feeling-cells-div">
             {latestFeelings &&
               latestFeelings.map((feeling, ind) => {
