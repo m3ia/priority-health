@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import FiveRecCards from "./FiveRecCards";
-import {format} from "date-fns";
+import LogEntry from "./LogEntry";
 
 const Home = ({user, siteUser}) => {
   const [dietInfo, setDietInfo] = useState({
@@ -58,22 +58,29 @@ const Home = ({user, siteUser}) => {
   // POST for blog entries
   const addNewLog = async (e) => {
     e.preventDefault();
-    await fetch("/api/new-log", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(logEntry),
-    });
 
-    setLogEntry({
-      userId: siteUser.userId,
-      feeling: "",
-      meal: "",
-      notes: "",
-    });
-    getLogEntries();
+    if (logEntry.feeling === "") {
+      alert("Log entires need feelings!");
+    } else if (logEntry.meal === "") {
+      alert("You need to log your latest meal.");
+    } else {
+      await fetch("/api/new-log", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(logEntry),
+      });
+
+      setLogEntry({
+        userId: siteUser.userId,
+        feeling: "",
+        meal: "",
+        notes: "",
+      });
+      getLogEntries();
+    }
   };
   // POST for updating user diet info
   const updateDietInfo = async () => {
@@ -283,7 +290,7 @@ const Home = ({user, siteUser}) => {
           </div>
         </div>
         <div className="home-section-3">
-          <h3>Food Log</h3>
+          <h2>Food Log</h2>
           <div className="feeling-cells-div">
             {latestFeelings &&
               latestFeelings.map((feeling, ind) => {
@@ -298,13 +305,7 @@ const Home = ({user, siteUser}) => {
             {logs &&
               logs.map((log, ind) => {
                 return (
-                  <div className="diet-entry" key={ind}>
-                    <p>Date: {format(new Date(log.date), "MM/dd/yyyy")}</p>
-                    <p>Feeling: {convFeeling(log.feeling)}</p>
-
-                    <p>Meal: {log.meal}</p>
-                    <p>Notes: {log.notes}</p>
-                  </div>
+                  <LogEntry log={log} key={ind} convFeeling={convFeeling} />
                 );
               })}
           </div>
