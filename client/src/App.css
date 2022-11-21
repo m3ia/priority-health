@@ -370,6 +370,8 @@ header {
 }
 
 .diet-entry {
+  display: flex;
+  flex-direction: column;
   width: 200px;
   height: 230px;
   margin-right: 15px;
@@ -377,24 +379,56 @@ header {
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 10px;
+  overflow:hidden;
+  color: var(--text-color);
 }
 
 .logs-div .good-entry {
-  background-color: #82956679;
+  background-color: #8295667c;
 }
 
 .logs-div .ok-entry {
-  background-color: #D39738e3;
+  background-color: #d3973892;
 }
 
 .logs-div .bad-entry {
-  background-color: #a83027a3;
+  background-color: #a8302767;
+}
+
+.diet-entry-date {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.diet-entry .feeling-icon {
+  font-size: 50px;
+  line-height: 0px;
+  text-align: center;
+}
+
+.good-date {
+  color: var(--green);
+  font-family: var(--text-font);
+  font-weight: 400;
+}
+
+.ok-date {
+  color: var(--orange);
+  font-family: var(--text-font);
+  font-weight: 400;
+}
+
+.bad-date {
+  color: var(--red);
+  font-family: var(--text-font);
+  font-weight: 400;
 }
 
 .diet-entry-notes {
   max-height: 75px;
   overflow-y: scroll;
 }
+
 .feeling-cells-div {
   display: flex;
   flex-direction: row;
@@ -413,7 +447,7 @@ header {
   background-color: var(--green);
 }
 .ok-cell {
-    background-color: var(--orange);
+  background-color: var(--orange);
 }
 .bad-cell {
   background-color: var(--red);
