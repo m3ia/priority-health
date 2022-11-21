@@ -67,6 +67,7 @@ const Recipes = ({
         <div className="recipes-searchbar">
           <input
             type="text"
+            className="recipe-search-input"
             placeholder="Filter by recipe name"
             value={searchString}
             onChange={(e) => {
