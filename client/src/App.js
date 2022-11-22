@@ -15,6 +15,7 @@ import NewCollectionForm from "./components/recipes-collections/NewCollectionFor
 
 const App = () => {
   const { user, isLoading, isAuthenticated } = useAuth0();
+  console.log(user);
   // TODO: figure out logic to avoid having to hard-code userId
   const [siteUser, setSiteUser] = useState({ userId: 3 });
 

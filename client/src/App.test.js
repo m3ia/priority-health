@@ -33,5 +33,5 @@ test("renders logo", async () => {
 })
 
 describe('foodStatusToColor returns correct color', () => {
-  expect(foodStatusToColor('ok')).toBe('#309F77');
+  expect(foodStatusToColor('ok')).toBe('#829566');
 })
