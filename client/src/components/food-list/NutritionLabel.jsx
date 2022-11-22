@@ -12,7 +12,9 @@ const NutritionLabel = ({foodView}) => {
   useEffect(() => {
     const getNutritionLabelData = async () => {
       try {
-        await fetch(`/api/example/${food}`)
+        await fetch(
+          `https://api.edamam.com/api/nutrition-data?app_id=${process.env.REACT_APP_NUTRITIONAL_ANALYSIS_APP_ID}&app_key=${process.env.REACT_APP_NUTRITIONAL_ANALYSIS_API_KEY}&nutrition-type=cooking&ingr=1+serving+${food}`
+        )
           .then((res) => res.json())
           .then((data) => {
             if (

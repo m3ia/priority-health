@@ -246,7 +246,7 @@ app.delete('/api/delete-foods', cors(), async (req, res) => {
 })
 
 // Get for Nutritional Analysis
-app.get(`/api/example/:food`, async (req, res) => {
+app.get(`/api/nutr/:food`, async (req, res) => {
   const food1 = '1 tbsp honey';
   const food = req.params.food;
 
