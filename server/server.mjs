@@ -110,7 +110,7 @@ app.post('/api/me', cors(), async (req, res) => {
 app.get('/api/logs/:id', cors(), async (req, res) => {
   const userId = req.params.id;
   try {
-    const logs = await db.query('SELECT * FROM diet_logs WHERE user_id = $1 ORDER BY date DESC', [userId])
+    const logs = await db.query('SELECT * FROM diet_logs WHERE user_id = $1 ORDER BY id DESC', [userId])
     res.send(logs);
   } catch (e) {
     console.log('GET error at /api/diet-logs/', e);
