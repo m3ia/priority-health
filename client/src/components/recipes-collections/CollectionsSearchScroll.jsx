@@ -33,7 +33,7 @@ const CollectionsSearchScroll = ({
       <div className="collections-searchbar">
         <input
           type="text"
-          placeholder="filter collections"
+          placeholder="Filter by collection name"
           value={collectionFilter}
           onChange={(e) => setCollectionFilter(e.target.value)}></input>
       </div>

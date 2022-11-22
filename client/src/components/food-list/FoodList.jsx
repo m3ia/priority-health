@@ -63,7 +63,7 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
             <div>
               {/* TODO add form for food list */}
               <h1>Food Tolerance List</h1>
-              <h3>Track the foods you can/can't tolerate here.</h3>
+              <h3>Track the foods you can/can't tolerate here. </h3>
               <div className="filter-foods">
                 <input
                   type="text"
@@ -79,20 +79,183 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
               </div>
               <div
                 className="delete-foods-btn btn"
-                onClick={() => setEditMode(true)}>
-                Edit Foods
+                onClick={() => {
+                  if (editMode) {
+                    deleteFoodItems();
+                  } else {
+                    setEditMode(true);
+                  }
+                }}>
+                {editMode ? "Save" : "Remove Food"}
               </div>
             </div>
           </div>
           <div className="food-list-div">
-            <div>
-              {editMode && <button onClick={deleteFoodItems}>Save</button>}
+            <div className="foods-btns-container ok-foods-div">
+              <div className="foods-div-header">
+                <div className="feeling-cells food-cell good-cell"></div>Always
+                OK
+              </div>
+              <div className="foods-btns-div">
+                {searchedFood.length === 0
+                  ? foods
+                      .filter((item) => item.status === "ok")
+                      .map((food, ind) => {
+                        return (
+                          <div className="food-btn-delete-div" key={ind}>
+                            <FoodItem
+                              food={food}
+                              setFoodView={setFoodView}
+                              editMode={editMode}
+                              setFoods={setFoods}
+                              setFoodsToDelete={setFoodsToDelete}
+                            />
+                          </div>
+                        );
+                      })
+                  : foods
+                      .filter((item) => item.status === "ok")
+                      .filter((item) => item.food.includes(searchedFood))
+                      .map((food, ind) => {
+                        return (
+                          <div className="food-btn-delete-div" key={ind}>
+                            <FoodItem
+                              food={food}
+                              setFoodView={setFoodView}
+                              editMode={editMode}
+                              setFoods={setFoods}
+                              setFoodsToDelete={setFoodsToDelete}
+                            />
+                          </div>
+                        );
+                      })}
+              </div>
             </div>
-            <div className="foods-btns-div">
+            <div className="foods-btns-container mod-foods-div">
+              <div className="foods-div-header">
+                <div className="feeling-cells food-cell ok-cell"></div>OK In
+                Moderation
+              </div>
+              <div className="foods-btns-div">
+                {searchedFood.length === 0
+                  ? foods
+                      .filter((item) => item.status === "mod")
+                      .map((food, ind) => {
+                        return (
+                          <div className="foot-btn-delete-div" key={ind}>
+                            <FoodItem
+                              food={food}
+                              setFoodView={setFoodView}
+                              editMode={editMode}
+                              setFoods={setFoods}
+                              setFoodsToDelete={setFoodsToDelete}
+                            />
+                          </div>
+                        );
+                      })
+                  : foods
+                      .filter((item) => item.status === "mod")
+                      .filter((item) => item.food.includes(searchedFood))
+                      .map((food, ind) => {
+                        return (
+                          <div className="foot-btn-delete-div" key={ind}>
+                            <FoodItem
+                              food={food}
+                              setFoodView={setFoodView}
+                              editMode={editMode}
+                              setFoods={setFoods}
+                              setFoodsToDelete={setFoodsToDelete}
+                            />
+                          </div>
+                        );
+                      })}
+              </div>
+            </div>
+            <div className="foods-btns-container avoid-foods-div">
+              <div className="foods-div-header">
+                <div className="feeling-cells food-cell bad-cell"></div>Avoid
+              </div>
+              <div className="foods-btns-div">
+                {searchedFood.length === 0
+                  ? foods
+                      .filter((item) => item.status === "avoid")
+                      .map((food, ind) => {
+                        return (
+                          <div className="foot-btn-delete-div" key={ind}>
+                            <FoodItem
+                              food={food}
+                              setFoodView={setFoodView}
+                              editMode={editMode}
+                              setFoods={setFoods}
+                              setFoodsToDelete={setFoodsToDelete}
+                            />
+                          </div>
+                        );
+                      })
+                  : foods
+                      .filter((item) => item.status === "avoid")
+                      .filter((item) => item.food.includes(searchedFood))
+                      .map((food, ind) => {
+                        return (
+                          <div className="foot-btn-delete-div" key={ind}>
+                            <FoodItem
+                              food={food}
+                              setFoodView={setFoodView}
+                              editMode={editMode}
+                              setFoods={setFoods}
+                              setFoodsToDelete={setFoodsToDelete}
+                            />
+                          </div>
+                        );
+                      })}
+              </div>
+            </div>
+            <div className="foods-btns-container uncat-foods-div">
+              <div className="foods-div-header">
+                <div className="feeling-cells food-cell uncat-cell"></div>
+                Uncategorized/Unknown{" "}
+              </div>
+              <div className="foods-btns-div">
+                {searchedFood.length === 0
+                  ? foods
+                      .filter((item) => !item.status)
+                      .map((food, ind) => {
+                        return (
+                          <div className="foot-btn-delete-div" key={ind}>
+                            <FoodItem
+                              food={food}
+                              setFoodView={setFoodView}
+                              editMode={editMode}
+                              setFoods={setFoods}
+                              setFoodsToDelete={setFoodsToDelete}
+                            />
+                          </div>
+                        );
+                      })
+                  : foods
+                      .filter((item) => !item.status)
+                      .filter((item) => item.food.includes(searchedFood))
+                      .map((food, ind) => {
+                        return (
+                          <div className="foot-btn-delete-div" key={ind}>
+                            <FoodItem
+                              food={food}
+                              setFoodView={setFoodView}
+                              editMode={editMode}
+                              setFoods={setFoods}
+                              setFoodsToDelete={setFoodsToDelete}
+                            />
+                          </div>
+                        );
+                      })}
+              </div>
+            </div>
+          </div>
+          {/* <div className="foods-btns-div">
               {searchedFood.length === 0
                 ? foods.map((food, ind) => {
                     return (
-                      <div className="foot-btn-delete-div" key={ind}>
+                      <div className="food-btn-delete-div" key={ind}>
                         <FoodItem
                           food={food}
                           setFoodView={setFoodView}
@@ -107,7 +270,7 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
                     .filter((item) => item.food.includes(searchedFood))
                     .map((food, ind) => {
                       return (
-                        <div className="foot-btn-delete-div" key={ind}>
+                        <div className="food-btn-delete-div" key={ind}>
                           <FoodItem
                             food={food}
                             setFoodView={setFoodView}
@@ -118,8 +281,8 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
                         </div>
                       );
                     })}
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </>
       ) : (
         <div className="food-item-view-container">

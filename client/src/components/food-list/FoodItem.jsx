@@ -1,11 +1,11 @@
 export const foodStatusToColor = (status) => {
   switch (status) {
     case "ok":
-      return "#309F77";
+      return "#829566";
     case "avoid":
-      return "#C41817";
+      return "#A83027";
     case "mod":
-      return "#f9e04f";
+      return "#DB8D35";
     default:
       return "#FFF";
   }
@@ -37,6 +37,7 @@ const FoodItem = ({
           backgroundColor: `${
             food.status ? foodStatusToColor(food?.status) : "#FFF"
           }`,
+          color: !food.status && "black",
         }}>
         <p>{food.food}</p>
       </div>

@@ -15,14 +15,9 @@ Secondary text: #9D968B
  */
 /* --------------------- App --------------------- */
 :root {
-  /* 1 */
-  /* --bg-color: #FFF3E0;
-  --darker-bg-color: #D39738; */
-
-  /* 2 */
-  --bg-color: #FEFBF7;
+  /* Prev:  */
+  /* --bg-color: #FEFBF7;
   --darker-bg-color: #FDF2E2;
-
   --alt-darker-bg-color: #FDF2E2;
   --text-color: #2D2B2B;
   --accent-color: #D39738;
@@ -32,29 +27,64 @@ Secondary text: #9D968B
   --title-font: 'Battambang';
   --text-font: 'Jost';
   --h3-font: 'Jost';
+  --h3-font-weight: 300; */
+  /* New:  */
+  --bg-color: #EFE9E4;
+  --darker-bg-color: #EFE9E4;
+  --alt-darker-bg-color: #FDF2E2;
+  --text-color: #2D2B2B;
+  --accent-color: #DB8D35;
+  --accent-color-hover: #D39738e3;
+  --accent-text-color: #FFF;
+  --secondary-text-color: #9D968B;
+  --title-font: 'Battambang';
+  --text-font: 'Jost';
+  --h3-font: 'Jost';
   --h3-font-weight: 300;
+  --green: #829566;
+  --orange: #DB8D35;
+  --red: #A83027;
+  --white: #FFF;
 
+  /* Dark Mode*/
+  --dark-bg-color: #464647;
+  --dark-green: #829566;
+  --dark-red: #C24940;
+  --dark-orange: #DB8D35;
+  --dark-white: #FFF;
+
+}
+
+.home-container h1 {
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 50px;
 }
 
 h1 {
-  font-family: var(--title-font);
-  font-weight: 700;
-  font-size: 40px;
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 45px;
 }
 
 h2 {
-  font-family: var(--h3-font);
-  font-weight: var(--h3-font-weight);
+  /* font-family: var(--h3-font);
+  font-weight: var(--h3-font-weight); */
+  font-family: 'Jost';
+  font-weight: 400;
   font-size: 30px;
   /* line-height: 10%; */
+}
+
+h3 {
+  font-family: 'Jost';
+  font-weight: 300;
+  font-size: 25px;
 }
 div {
   font-family: 'Jost';
 }
 
-h1 {
-  font-family: 'Battambang';
-}
 
 html,
 body, :root {
@@ -67,22 +97,25 @@ body, :root {
   flex-direction: column;
   justify-content: space-around */
 }
-/* 
+
 .app-header {
-  border-bottom: .5px solid var(--secondary-text-color);
-  background-color: var(--darker-bg-color);
-} */
+  /* border-bottom: .5px solid var(--secondary-text-color); */
+  /* background-color: var(--darker-bg-color); */
+    /* background-color: var(--text-color); */
+  color: #EFE9E4;
+}
 
 header {
   border-bottom: .5px solid var(--secondary-text-color);
-  background-color: var(--darker-bg-color);
+  background-color: var(--dark-bg-color);
   margin: -27px;
   padding: 10px;
+  color: #EFE9E4;
   /* width: 100%; */
 }
 
 .logo {
-  background-color: var(--darker-bg-color);
+  /* background-color: var(--darker-bg-color); */
   margin-left: 28px;
 }
 
@@ -100,11 +133,12 @@ header {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   margin-top: 1rem;
   padding-top: 2rem;
   padding-bottom: 100px;
   padding-left: 4rem;
+  /* width: 100%; */
 }
 
 /* Logo */
@@ -136,19 +170,29 @@ header {
   flex-direction: row;
   justify-content: space-around;
   padding: 10px;
+  color: #EFE9E4;
 }
 
 .nav-link {
   font-family: 'Jost';
-  color: var(--text-color);
+  color: var(--bg-color);
   font-weight: 400;
   text-decoration: none;
   font-size: 20px;
 }
 
-.nav-link:hover {
-  color: var(--accent-color);
+.nav-link a:link,
+a:visited,
+a:hover,
+a:active, .router-link-exact-active {
+  color: var(--bg-color);
+  text-decoration:none;
+  font-size: 15px;
 }
+
+/* .nav-link:hover {
+  color: var(--accent-color);
+} */
 /* --------------------- AUTH0 --------------------- */
 .spinner {
   position: absolute;
@@ -213,6 +257,9 @@ header {
 
 /* --------------------- HOME PAGE --------------------- */
 
+.home-container {
+  width: 1000px;
+}
 /* Meal Check-In Section of home page */
 /* First section of the home page: menu buttons and top 5 recipes */
 .home-section-1 {
@@ -223,9 +270,11 @@ header {
 .home-section-left {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin-right: 40px;
 }
 .user-diet-info {
-  border-bottom: 1px black solid;
+  border-bottom: 1px var(--text-color) solid;
   margin-bottom: 10px;
   padding: 20px;
   width: 425px;
@@ -240,39 +289,57 @@ header {
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* max-width: 500px; */
-  /* overflow-x: scroll; */
   padding-left: 20px;
 }
 
 /* A Single Card */
 .recent-card {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  justify-content: center;
-  /* min-width: 200px; */
-  /* min-height: 270px; */
+  background-color: var(--white);
+  color: (var(--text-color));
+  max-height: 200px;
+  margin-bottom: 1rem;
   padding: 15px;
   border-radius: 15px;
   margin-bottom: 25px;
-  border-bottom:1px solid var(--secondary-text-color);
-  border-right: 2px solid var(--secondary-text-color);
-  /* box-shadow: 1px 1px var(--secondary-text-color); */
-  /* font-weight: 500; */
-  background-color: var(--accent-color);
-  color: var(--accent-text-color);
-  min-width: 100%;
+  min-width: 100%; */
+  display: flex;
+  flex-direction: row;
+  background-color: var(--white);
+  color: (var(--text-color));
+  max-height: 150px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  width: 450px;
+  border-radius: 10px;
+  align-items: center;
 }
 
 .recent-card:hover {
   cursor: pointer;
+  border: 2px solid var(--accent-color);
 }
 
 .five-recent-info {
-  padding: 10px;
+  /* padding: 10px; */
 }
-.recent-card img {
-  max-height: 100px;
+
+.recipe-list-card-title {
+  /* margin-top: 20px; */
+}
+.recent-card-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.recent-card-img img {
+  min-width: 100px;
+  max-width: 200px;
+  height: auto;
 }
 
 /* Section 2: Current dietary preferences, restrictions, allergies */
@@ -288,32 +355,126 @@ header {
   padding-right: 20px;
 }
 
+.filter-foods input, .log-meal-input, .log-meal-notes, .recipe-search-input, input {
+  font-size: 20px;
+  margin-bottom: 14px;
+  border: 1px solid var(--secondary-text-color);
+  font-family: var(--text-font);
+  font-weight: 300;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+
 .selectedEntry {
-  background-color: yellow;
+  background-color: var(--orange);
 }
 
 .check-in-text {
-  font-size: 20px;
+  font-size: 28px;
   font-family: var(--text-font);
   font-weight: 300;
+  margin-bottom: 30px;
 }
 
+.log-submit-btn, .recipes-form-btn {
+  width: 40%;
+  height: 35px;
+  background-color: var(--accent-color);
+}
+
+.log-submit-btn:hover, .recipes-form-btn:hover, .add-new-collection-btn:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.add-new-collection-btn {
+  margin-top: 12px;
+  background-color: var(--accent-color);
+}
 .check-in-btns-p {
   text-align: center;
 }
+
 .check-in-btn {
   font-size: 50px;
   line-height: 30%;
 }
 
+.check-in-btn:hover {
+  cursor: pointer;
+  background-color: #d3973892;
+}
+
+.select-one-text {
+  color: var(--secondary-text-color);
+}
 .logs-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   max-height: 500px;
   overflow-y: scroll;
 }
 
 .diet-entry {
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 230px;
+  margin-right: 15px;
+  border-radius: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-bottom: 10px;
+  overflow:hidden;
+  color: var(--text-color);
+}
+
+.logs-div .good-entry {
+  background-color: #8295667c;
+}
+
+.logs-div .ok-entry {
+  background-color: #d3973892;
+}
+
+.logs-div .bad-entry {
+  background-color: #a8302767;
+}
+
+.diet-entry-date {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.diet-entry .feeling-icon {
+  font-size: 50px;
+  line-height: 0px;
+  text-align: center;
+}
+
+.good-date {
+  color: var(--green);
+  font-family: var(--text-font);
+  font-weight: 400;
+}
+
+.ok-date {
+  color: var(--orange);
+  font-family: var(--text-font);
+  font-weight: 400;
+}
+
+.bad-date {
+  color: var(--red);
+  font-family: var(--text-font);
+  font-weight: 400;
+}
+
+.diet-entry-notes {
+  max-height: 75px;
+  overflow-y: scroll;
 }
 
 .feeling-cells-div {
@@ -331,21 +492,27 @@ header {
 }
 
 .good-cell {
-  background-color: green;
+  background-color: var(--green);
 }
 .ok-cell {
-    background-color: yellow;
+  background-color: var(--orange);
 }
 .bad-cell {
-  background-color: red;
+  background-color: var(--red);
+}
+
+.uncat-cell {
+    background-color: var(--white);
 }
 /* --------------------- FOOD LIST --------------------- */
 .food-list-header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
+  width: 1000px;
   justify-content: space-between;
+
+
 }
 
 .nutrition-label-div {
@@ -357,28 +524,49 @@ header {
   border-radius: 10px;
 }
 
+.foods-div-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.food-cell {
+  margin-right: 5px;
+}
 .food-list-div {
   /* border: 1px solid black; */
   /* background-color: #fde4bd; */
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  margin-top: 40px;
+  justify-content: center;
 }
 
-.foot-btn-delete-div {
+.food-btn-delete-div {
   display: flex;
  flex-direction: row;
 }
 
 .food-item-div {
   display: flex;
-  flex-direction: column;
-  width: 300px;
+  flex-direction: row;
+  justify-content: center;
   font-family: var(--text-font);
   font-weight: 500;
   font-size: 20px;
   position: relative;
+  color: #FFF;
+  /* text-shadow: 1px 1px black; */
+  width: 200px;
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.food-item-div:hover {
+  cursor: pointer;
+  opacity: .9;
 }
 
 .delete-food-item-btn {
@@ -386,13 +574,14 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  background-color: var(--red);
   height: 15px;
   width: 15px;
   padding: 2px;
   float: right;
   bottom: 0%;
   margin-left: -10px;
+  margin-top: -7px;
   z-index: 1;
   border-radius: 100%;
   color: white;
@@ -401,13 +590,19 @@ header {
   right: 0; */
 }
 
+.foods-btns-container {
+ min-width: 200px;
+}
 .foods-btns-div {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  min-width: 50%;
-  max-width: 700px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* min-width: 100%; */
+  /* max-width: 700px; */
+  max-height: 400px;
+  overflow-y: scroll;
+  /* flex-wrap: wrap; */
+
 }
 
 /* Single Food View */
@@ -415,18 +610,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.food-item-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  font-family: 'Jost';
-  color: var(--accent-text-color);
-  text-shadow: 1px 1px var(--text-color);
-  width: 200px;
-  margin: 10px;
-  border-radius: 4px;
 }
 
 .health-labels-list {
@@ -545,11 +728,17 @@ header {
 
 
 /* --------------------- MY RECIPE COLLECTIONS PAGE --------------------- */
+.recipes-collections-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
 .recipes-collections-div {
   display: flex;
   flex-direction: row;
-  /* align-items: flex-start; */
+  max-width: 1000px;
 }
 
 /* COLLECTIONS SECTION ---------------------*/
@@ -557,7 +746,8 @@ header {
 .collections-div {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 400px;
+  /* max-width: 75%; */
 }
 
 .recipes-btn {
@@ -567,8 +757,7 @@ header {
 }
 /* Collections Search Scroll */
 .collections-searchbar {
-  border: solid black;
-  border-width: px 2px 0px 2px;
+  border: 1px solid var(--text-color);
   padding: 10px;
 }
 .collections-searchbar input {
@@ -576,21 +765,35 @@ header {
   border: none;
   width: 100%;
   height: 100%;
+  font-size: 15px;
 }
 .collections-scroll-section {
-  border: 1px solid black;
+  border-left: 1px solid var(--text-color);
+  border-right: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
   max-height: 170px;
   overflow-y: scroll;
 }
 .collection-bar {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--text-color);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 7px;
+  padding-right: 7px;
+  background-color: var(--white);
+}
+
+.collection-bar:hover {
+  cursor: pointer;
+  background-color: var(--accent-color-hover);
+  color: var(--white);
 }
 
 /* RECIPES SECTION ---------------------*/
 .recipes-div {
-  border: 2px solid black;
-  width: 120%;
-  min-width: 800px;
+  /* border: 2px solid black; */
+  width: 100%;
+  /* min-width: 800px; */
   margin-left: 3rem;
   margin-right: 3rem;
 }
@@ -599,7 +802,7 @@ header {
 .recipes-search-form-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -607,58 +810,109 @@ header {
   display: flex;
   flex-direction: column;
   padding: 3px;
-  width: 80%;
-  border:dotted;
-  background-color: white;
+  width: 30%;
   border-radius: 4px;
+  margin-left: 20px;
 }
 
-.recipes-form-btn, .new-food-btn, .btn  {
+
+.recipes-form-btn, .btn  {
   display: flex;
   flex-direction: column;
-  width: 20%;
-  min-width: 100px;
-  border: 1px var(--accent-text-color) solid;
+  /* border: 1px var(--accent-text-color) solid; */
   align-items: center;
   justify-content: center;
-  background-color: var(--accent-color);
-  color: white;
+  /* background-color: var(--accent-color); */
+  /* color: white; */
   border-radius: 4px;
   padding: 10px;
 }
 
-.recipes-form-btn:hover, .new-food-btn:hover, .btn:hover, .btn:hover {
+.recipes-form-btn,
+.new-food-btn {
+  width: 20%;
+  min-width: 100px;
+}
+
+.new-food-btn, .delete-foods-btn {
+  background-color: var(--dark-bg-color);
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.new-food-btn:hover {
+  color: var(--green);
+}
+.delete-foods-btn:hover {
+  color: var(--red);
+}
+
+.recipes-form-btn:hover  {
   cursor: pointer;
   background-color: var(--accent-color-hover);
 }
 
-
 /* Recipe List Card Section  */
+.recipe-list-cards-div {
+  max-height: 700px;
+  overflow-y: scroll;
+}
 .recipe-list-card-container {
   display: flex;
   flex-direction: row;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  background-color: var(--alt-darker-bg-color)
+  background-color: var(--white);
+  color: (var(--text-color));
+  max-height: 200px;
+  margin-bottom: 1rem;
+}
+
+.recipe-list-card-icon-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+.cook-icon, .prep-icon {
+  font-size: 20px;
 }
 
 .recipe-list-card-container:hover {
   cursor: pointer;
-  background-color: rgb(246, 213, 117);
+  /* border: 2px solid var(--accent-color); */
+  /* color: white; */
+  /* background-color: #d3973892; */
+  background-color: #db8e3528;
+  /* color: black; */
+  opacity: .9;
+
 }
 
 .recipe-list-card-img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 10px;
-  /* margin-right: 10px; */
+  overflow: hidden;
 }
+
+.recipe-list-card-img img {
+  min-width: 300px;
+  max-width: 200px;
+  height: auto;
+}
+
+.recipe-icon {
+  width: 25px !important;
+  height: auto !important;
+}
+
 .recipe-list-card-details {
   display: flex;
   flex-direction: column; 
-  max-width: 70%;
-  margin-left: 20px;
+  margin-left: 50px;
+}
+
+.recipe-list-card-details p {
+  max-height: 100%;
 }
 
 .recipe-list-card-collection-div {
@@ -681,15 +935,17 @@ header {
 .single-recipe-container {
   display: flex;
   flex-direction: column;
-
   margin: 35px 10px 35px 10px;
   padding-bottom: 10px;
-  width: 80%;
-  max-width: 1000px;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  /* max-width: 1000px; */
 }
 
 .recipe-header {
   /* margin-top: 10px; */
+  width: 1000px;
 }
 
 .recipe-header span {
@@ -722,16 +978,18 @@ header {
   display: flex; 
   flex-direction: row;
   margin: 25px 0px 25px 0px;
+  width: 1000px;
 }
 
 .recipe-body-left {
     border-top: 1px solid var(--secondary-text-color);
-    border-bottom: 1px solid var(--secondary-text-color);
+    /* border-bottom: 1px solid var(--secondary-text-color); */
     width: 70%;
 }
 
 .recipe-instructions {
   padding: 5px 25px 5px 25px;
+  padding-bottom: 45px;
 }
 
 .recipe-instructions img {
@@ -744,22 +1002,34 @@ header {
   border-radius: 10px;
 }
 
+.recipe-body-right button {
+  border: 1px var(--darker-bg-color);
+  background-color: var(--accent-color);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: -15px;
+}
 .recipe-servings-info {
   border: 1px var(--darker-bg-color);
-  background-color: var(--darker-bg-color);
-  color: var(--text-color);
+  background-color: var(--accent-color);
+  color: var(--white);
   padding: 5px 25px 25px 25px;
   border-radius: 10px;
+  font-weight: 400;
 }
 
+.recipe-servings-info h2 {
+  font-weight: 400;
+}
 .recipe-ingredients {
-  border-top: 3px #D39738 solid;
+  border-top: 3px var(--dark-green) solid;
+  padding: 10px;
 }
 
 .recipe-nutrition-label-container {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   background-color: white;
-  margin-top: 10%;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -770,14 +1040,14 @@ header {
 }
 
 .recipe-nutrition-label-container {
-  margin-left: 5px;
-  margin-right: 5px;
+  /* margin-left: 5px; */
+  /* margin-right: 5px; */
   padding: 20px 20px 20px 20px;
   font-size: 20px;
   max-height: 500px;
   overflow-y: scroll;
   /* min-width: 50%; */
-  max-width: 75%;
+  max-width: 100%;
 }
 
 .recipe-nutrition-label-container {
@@ -810,30 +1080,40 @@ header {
 /* RECIPE-COLLECTIONS MULTIPLE SELECTION ---------------------*/
 
 /* From the New Recipe Form: */
+.new-recipe-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+}
 .new-recipe-form-div {
   display: flex;
   flex-direction: row;
-  /* border: 1px solid black; */
+  max-width: 1000px;
+  justify-content: space-evenly;
 }
-
-.collections-selection {
-  /* border: 1px solid black; */
-  max-width: 60%;
+.small-recipe-inputs{
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-
-/* .recipe-form-input-div-container {
-
-} */
-
+.required-asterisk {
+  font-weight: 300;
+  color: var(--red)
+}
 /* Inputs */
 .recipe-name-input {
-  font-size: 25px;
+  font-size: 50px;
   font-family: var(--title-font);
 }
 
 .recipe-form-input-divs input {
   font-family: var(--text-font);
   font-size: 17px;
+  margin-bottom: 15px;
 }
 
 textarea {
@@ -843,19 +1123,54 @@ textarea {
   font-size: 17px;
 }
 
-
 .recipe-description-input {
-  font-size: 20px;
   font-family: var(--text-font);
   width: 300px;
   height: 100px;
 }
+
+.submit-div {
+  /* display: flex; */
+  /* justify-content: center; */
+}
+.form-submit-btn  {
+  margin-top: 20px;
+  width: 400px;
+  background-color: var(--accent-color);
+
+}
+
+.form-submit-btn:hover {
+  cursor: pointer;
+  color: #FFF;
+}
+
+.collections-selection {
+  width: 450px;
+}
+.collections-selection-container {
+  max-width: 100%;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+.collections-selection-header {
+ height: 30px;
+}
+
 .selected-collections-btns-div {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border: 1px solid black;
+  border: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
   max-width: 100%;
+  min-height: 20px;
+  background-color: white;
+  padding: 5px;
+}
+.selected-collections-btns-div em {
+  color: var(--secondary-text-color);
 }
 
 .selected-collection-btn {
@@ -867,6 +1182,7 @@ textarea {
   padding-left: 10px;
   padding-right: 10px;
   margin: 2px;
+  max-height: auto;
 }
 
 .remove-collection-btn {
@@ -875,23 +1191,28 @@ textarea {
   font-size: 11px;
 }
 .collections-selections-div {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   /* height: 100%; */
   display: flex;
   flex-direction: column;
   max-height: 200px;
   overflow-y: scroll;
+  border-bottom: 1px solid var(--text-color);
 }
 
 .collection-select {
+  border-left: 1px solid var(--text-color);
+  border-right: 1px solid var(--text-color);
   border-bottom: 1px solid var(--text-color);
   /* background-color: black; */
   padding: 2px;
+  background-color:var(--white);
+  color: var(--text-color);
 }
 
 /* From the Single Recipe View: */
 .recipe-collections-list-div {
-    border-top: .5px solid black;
+  border-top: 1px solid var(--secondary-text-color);
 }
 
 .recipe-collections-list-cards-div {
@@ -917,8 +1238,8 @@ textarea {
 
 /* --------------------- FOOTER --------------------- */
 footer {
-    border-bottom: .5px solid var(--secondary-text-color);
+    /* border-bottom: .5px solid var(--secondary-text-color); */
     background-color: var(--darker-bg-color);
-    margin: -27px;
+    /* margin: -27px; */
     padding-top: 150px;
 }
