@@ -33,7 +33,7 @@ const FiveRecCards = ({siteUser}) => {
                 <div className="">
                   {card.prep_time && (
                     <span>
-                      <span class="material-symbols-outlined prep-icon">
+                      <span className="material-symbols-outlined prep-icon">
                         timer
                       </span>{" "}
                       <span>{card.prep_time}</span>

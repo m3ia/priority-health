@@ -173,7 +173,7 @@ header {
   color: #EFE9E4;
 }
 
-.nav-link {
+.nav-a {
   font-family: 'Jost';
   color: var(--bg-color);
   font-weight: 400;
@@ -181,13 +181,11 @@ header {
   font-size: 20px;
 }
 
-.nav-link a:link,
-a:visited,
-a:hover,
-a:active, .router-link-exact-active {
-  color: var(--bg-color);
+.navbar-nav a:hover,
+.navbar-nav a:active
+{
+  color: var(--accent-color);
   text-decoration:none;
-  font-size: 15px;
 }
 
 /* .nav-link:hover {

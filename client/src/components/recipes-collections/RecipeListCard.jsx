@@ -41,7 +41,7 @@ const RecipeListCard = ({
           <br />
           {recipe?.prep_time && (
             <span className="recipe-list-card-icon-div">
-              <span class="material-symbols-outlined prep-icon">timer</span>
+              <span className="material-symbols-outlined prep-icon">timer</span>
               <span>{recipe?.prep_time} </span>
             </span>
           )}

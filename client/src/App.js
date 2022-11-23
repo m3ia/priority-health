@@ -23,7 +23,7 @@ const App = () => {
     await fetch("/api/me")
       .then((res) => res.json())
       .then((res) => {
-        console.log('res: ', res);
+        // console.log('res: ', res);
         setSiteUser((prev) => ({ ...prev, userId: res[0]?.id }))
       });
   };
