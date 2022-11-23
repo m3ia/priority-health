@@ -83,7 +83,7 @@ const RecipeNutritionLabel = ({ingredients, selectedRecipe}) => {
         !loadExpired ? (
           <ReactSVG src={spinner} />
         ) : (
-          "No nutritional info was fetched, sorry =/."
+          "No nutritional info is available for this item at this time."
         )
       ) : (
         <>

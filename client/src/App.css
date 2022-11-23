@@ -657,6 +657,9 @@ a:active, .router-link-exact-active {
   width: 220px;
   min-height: 150px;
   background-color: #FFF;
+  padding: 20px;
+  max-height: 150px;
+  overflow-y: scroll;
 }
 /* Nutrition label */
 
