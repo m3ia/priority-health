@@ -18,9 +18,10 @@
 [priorityHealth](https://server-vu8f.onrender.com/) (pH) is a health tracking app for folks with special dietary needs. Users can track and view nutritional info for foods categorized by their tolerance levels, log their wellness journeys, and add recipes to different collections.
 
 [Check out the website!](https://server-vu8f.onrender.com/)
-Try it out yourself: 
-Test account: priorityhealth2022@gmail.com
-Password: [the name of the program I built this for! (all lowercase)][the current year]
+
+**Try it out yourself:**
+<br />Test account: priorityhealth2022@gmail.com
+<br />Password: [the name of the program I built this for! all lowercase][the current year]
 
 ## Features
 ### Food Tolerance List 
