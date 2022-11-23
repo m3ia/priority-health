@@ -10,7 +10,7 @@
   - [Features](#features)
   - [Tech Stack](#tech-stack)
   - [DB Schema](#db-schema)
-  - [Shoutouts!](#shoutouts)
+  - [Shoutouts](#shoutouts)
 
 ## About
 [priorityHealth](https://server-vu8f.onrender.com/) (pH) is a health tracking app for folks with special dietary needs. Users can track and view nutritional info for foods categorized by their tolerance levels, log their wellness journeys, and add recipes to different collections.
