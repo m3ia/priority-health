@@ -227,6 +227,8 @@ header {
   color:white;
   font-family: 'Jost';
   font-weight: 700px;
+  width: 200px;
+  height: 75px;
 }
 
 .login-btn span {
@@ -404,7 +406,7 @@ header {
   line-height: 30%;
 }
 
-.check-in-btn:hover {
+.check-in-btn:hover, .ing-btn:hover {
   cursor: pointer;
   background-color: #d3973892;
 }

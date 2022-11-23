@@ -131,6 +131,7 @@ const SingleRecipeView = ({siteUser}) => {
             </div>
             <div className="recipe-body-right">
               <button
+                className="ing-btn"
                 onClick={() => setIngView(ingView === true ? false : true)}
                 style={{
                   backgroundColor: `${ingView === false ? "#FFF" : "#DB8D35"}`,
@@ -155,7 +156,8 @@ const SingleRecipeView = ({siteUser}) => {
                         <h3 key={ind}>{ing.description}</h3>
                       ) : (
                         <li key={ind}>
-                          {ing.quantity} {ing.quantity2 && `- ${ing.quantity2}`}
+                          {ing.quantity}{" "}
+                          {ing?.quantity2 && `- ${ing?.quantity2}`}
                           {ing.unitOfMeasure} {ing.description}
                         </li>
                       );
