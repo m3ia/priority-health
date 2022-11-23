@@ -28,55 +28,44 @@ const RecipeListCard = ({
   useEffect(() => {
     getRecipeCollections(recipe.id, setCollectionsList);
   }, [recipe]);
-  console.log("recipe", recipe);
   return (
     <div
       className={`recipe-list-card-container ${index}`}
       onClick={() => navToSingleRecipeView(recipe.id)}>
       <div className="recipe-list-card-img ">
-        {recipe.image && (
-          <img
-            src={recipe.image}
-            alt="recipe-icon"
-            // height="80"
-            // className={!recipe.image && "recipe-icon"}
-            // style={{width: !recipe.image && "100px !important"}}
-          />
-        )}
+        {recipe?.image && <img src={recipe.image} alt="recipe-icon" />}
       </div>
       <div className="recipe-list-card-details">
         <p>
-          <strong>{recipe.name}</strong>
+          <strong>{recipe?.name}</strong>
           <br />
-          {recipe.prep_time && (
+          {recipe?.prep_time && (
             <span className="recipe-list-card-icon-div">
               <span class="material-symbols-outlined prep-icon">timer</span>
-              <span>{recipe.prep_time} </span>
+              <span>{recipe?.prep_time} </span>
             </span>
           )}
-          {/* <br /> */}
-          {recipe.cook_time && (
+          {recipe?.cook_time && (
             <span className="recipe-list-card-icon-div">
               <span className="material-symbols-outlined cook-icon">
                 cooking
               </span>
-              <span>{recipe.cook_time} </span>
+              <span>{recipe?.cook_time} </span>
             </span>
           )}
-          {/* <br /> */}
-          {recipe.yield !== "0" && recipe.yield !== 0 && (
+          {recipe?.yield !== "0" && recipe.yield !== 0 && (
             <span>
-              <strong>Yields:</strong> {recipe.yield}
+              <strong>Yields:</strong> {recipe?.yield}
             </span>
           )}
         </p>
         <div>
           <div className="recipe-list-card-collection-div">
-            {collectionsData.length === 0
+            {collectionsData?.length === 0
               ? "None"
-              : collectionsList.map((item, ind) => (
+              : collectionsList?.map((item, ind) => (
                   <div key={ind} className="recipe-list-card-collection-item">
-                    {item.name}
+                    {item?.name}
                   </div>
                 ))}
           </div>

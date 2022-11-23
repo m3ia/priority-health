@@ -6,7 +6,7 @@ const FiveRecCards = ({siteUser}) => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`/api/recent-recipes/${siteUser.userId}`)
+    fetch(`/api/recent-recipes/${siteUser?.userId}`)
       .then((res) => res.json())
       .then((res) => {
         setRecentFive([...res]);

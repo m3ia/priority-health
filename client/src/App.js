@@ -19,12 +19,14 @@ const App = () => {
   const [siteUser, setSiteUser] = useState({ userId: 3 });
 
   // TODO: Find out if I need this
-  // const getUser = async (siteUser) => {
-  //   // setSiteUser(prev => ({ ...prev, ...user }))
-  //   await fetch("/api/me")
-  //     .then((res) => res.json())
-  //     .then((res) => setSiteUser((prev) => ({...prev, userId: res.id})));
-  // };
+  const getUser = async (siteUser) => {
+    await fetch("/api/me")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('res: ', res);
+        setSiteUser((prev) => ({ ...prev, userId: res[0]?.id }))
+      });
+  };
   const [foodView, setFoodView] = useState("");
 
   // useEffect for combining userId info from auth0 with userId from DB 
@@ -34,10 +36,10 @@ const App = () => {
   }, [user, isAuthenticated]);
 
   // TODO: Find out if I need this
-  // useEffect(() => {
-  //   console.log('siteuser l;akdsjfl;akjsdf;lasjkf', siteUser)
-  //   getUser();
-  // }, [user]);
+  useEffect(() => {
+    console.log('siteuser l;akdsjfl;akjsdf;lasjkf', siteUser)
+    getUser();
+  }, [user]);
 
   if (isLoading) {
     return <Loading />;

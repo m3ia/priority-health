@@ -38,7 +38,7 @@ const CollectionsSearchScroll = ({
           onChange={(e) => setCollectionFilter(e.target.value)}></input>
       </div>
       <div className="collections-scroll-section">
-        {collectionFilter.length === 0
+        {collectionFilter?.length === 0
           ? collectionsData.map((collection, ind) => {
               return (
                 <div
@@ -50,7 +50,7 @@ const CollectionsSearchScroll = ({
               );
             })
           : collectionsData
-              .filter((collection) =>
+              ?.filter((collection) =>
                 collection.name
                   .toLowerCase()
                   .includes(collectionFilter.toLowerCase())
@@ -61,7 +61,7 @@ const CollectionsSearchScroll = ({
                     className="collection-bar"
                     key={ind}
                     onClick={() => setSelectedCollection(collection.name)}>
-                    {collection.name}
+                    {collection?.name}
                   </div>
                 );
               })}

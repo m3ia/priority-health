@@ -41,7 +41,7 @@ const CollectionSelect = ({
             checked={isChecked}
             onChange={(e) => checkUncheck(e, collection.name)}
           />
-          {collection.name}
+          {collection?.name}
         </label>
       </div>
     </>

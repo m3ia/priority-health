@@ -365,7 +365,6 @@ a:active, .router-link-exact-active {
   margin-top: 10px;
 }
 
-
 .selectedEntry {
   background-color: var(--orange);
 }
@@ -810,11 +809,15 @@ a:active, .router-link-exact-active {
   display: flex;
   flex-direction: column;
   padding: 3px;
-  width: 30%;
+  width: 100%;
   border-radius: 4px;
   margin-left: 20px;
 }
 
+.recipe-search-input {
+  width: 50%;
+  margin-right: 20px;
+}
 
 .recipes-form-btn, .btn  {
   display: flex;

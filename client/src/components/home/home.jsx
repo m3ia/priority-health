@@ -43,10 +43,11 @@ const Home = ({user, siteUser}) => {
         return res.json();
       })
       .then((res) => {
-        console.log("res", res[0].feeling);
+        console.log("siteUserId: ", siteUser.userId);
+        console.log("res", res[0]?.feeling);
         let feelings = [];
         for (let i = 0; i < Math.min(60, res.length); i++) {
-          if (res[i].feeling) {
+          if (res[i]?.feeling) {
             feelings.push(res[i].feeling);
           }
         }

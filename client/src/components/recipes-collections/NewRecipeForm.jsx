@@ -58,7 +58,7 @@ const NewRecipeForm = ({
 
         // getRecipes();
         setNewRecipe({
-          userId: siteUser.userId,
+          userId: siteUser?.userId,
           name: "",
           summary: "",
           ingredients: "",
