@@ -15,6 +15,7 @@ import NewCollectionForm from "./components/recipes-collections/NewCollectionFor
 
 const App = () => {
   const { user, isLoading, isAuthenticated } = useAuth0();
+  console.log(user);
   // TODO: figure out logic to avoid having to hard-code userId
   const [siteUser, setSiteUser] = useState({ userId: 3 });
 
@@ -56,10 +57,6 @@ const App = () => {
           <div className="container flex-grow-1">
             <Routes>
             <Route path="/" element={<Home user={user} siteUser={siteUser} />} />
-              <Route
-                path="/profile"
-                element={<Profile siteUser={siteUser} />}
-              />
               <Route
                 path="/recipes"
                   element={<Collections siteUser={siteUser} />}

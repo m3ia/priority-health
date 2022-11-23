@@ -48,11 +48,11 @@ const FoodList = ({siteUser, foodView, setFoodView}) => {
     }
   };
   useEffect(() => {
-    setUserId(siteUser.userId);
+    setUserId(siteUser?.userId);
   }, [siteUser]);
   // GET request that fetches everything from http://localhost:8080/api/myFoods
   useEffect(() => {
-    getFoods(siteUser.userId);
+    getFoods(siteUser?.userId);
   }, [siteUser]);
 
   return (
