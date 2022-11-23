@@ -1,5 +1,5 @@
 # priorityHealth (pH)
-<img width="656" alt="image" src="https://user-images.githubusercontent.com/38749469/203641830-020e9367-b56e-4a11-90db-7c6b267527dd.png">
+<div align="center"><img width="656" alt="image" src="https://user-images.githubusercontent.com/38749469/203641830-020e9367-b56e-4a11-90db-7c6b267527dd.png"></div>
 
 <div align="center">
   
