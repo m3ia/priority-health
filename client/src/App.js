@@ -58,10 +58,6 @@ const App = () => {
             <Routes>
             <Route path="/" element={<Home user={user} siteUser={siteUser} />} />
               <Route
-                path="/profile"
-                element={<Profile siteUser={siteUser} />}
-              />
-              <Route
                 path="/recipes"
                   element={<Collections siteUser={siteUser} />}
                   

@@ -21,7 +21,7 @@ jest.mock("@auth0/auth0-react");
 
 const mockedUseAuth0 = mocked(useAuth0, false);
 
-describe("Login page displays if not logged in", () => {
+describe("Nutrition Label component renders", () => {
   beforeEach(() => {
     mockedUseAuth0.mockReturnValue({
       isAuthenticated: false,

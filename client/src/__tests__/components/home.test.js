@@ -1,9 +1,8 @@
-import {render} from "@testing-library/react";
-import FoodList from "../../components/food-list/FoodList";
+import {render, screen} from "@testing-library/react";
 import {BrowserRouter as Router} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
 import {mocked} from "jest-mock";
-import App from "../../App";
+import Home from "../../components/home/home";
 
 const user = {
   email: "mtestetestitestatest@gmail.com",
@@ -22,7 +21,7 @@ jest.mock("@auth0/auth0-react");
 
 const mockedUseAuth0 = mocked(useAuth0, false);
 
-describe("Food List component renders", () => {
+describe("Login page displays if not logged in", () => {
   beforeEach(() => {
     mockedUseAuth0.mockReturnValue({
       isAuthenticated: false,
@@ -36,19 +35,25 @@ describe("Food List component renders", () => {
       isLoading: false,
     });
   });
-  test("Login renders", () => {
-    render(
-      <Router>
-        <App user={user} />
-      </Router>
-    );
+
+  test("greeting appears", () => {
+    setTimeout(() => {
+      render(
+        <Router>
+          <home user={user} />
+        </Router>
+      );
+      const greeting = screen.getByText(/welcome, mmm/i);
+      expect(greeting).toMatch('Welcome, mmm');
+    }, 5000);
+    
   });
 
-  test("render the button to add a food", () => {
-    render(
+  test("renders home component", async () => {
+      render(
       <Router>
-        <FoodList user={user} />
+        <Home user={user} />
       </Router>
-    );
-  });
+      );
+    });
 });

@@ -5,7 +5,7 @@ import LogEntry from "./LogEntry";
 
 const Home = ({user, siteUser}) => {
   const [dietInfo, setDietInfo] = useState({
-    userId: siteUser.userId,
+    userId: siteUser?.userId,
     allergies: "",
     dietPref: "",
     dietRest: "",
@@ -14,7 +14,7 @@ const Home = ({user, siteUser}) => {
   const [editAllergies, setEditAllergies] = useState(false);
   const [entryFeeling, setEntryFeeling] = useState("");
   const [logEntry, setLogEntry] = useState({
-    userId: siteUser.userId,
+    userId: siteUser?.userId,
     feeling: entryFeeling,
     meal: "",
     notes: "",
@@ -38,16 +38,16 @@ const Home = ({user, siteUser}) => {
   };
   // GET for log entries
   const getLogEntries = async () => {
-    await fetch(`/api/logs/${siteUser.userId}`)
+    await fetch(`/api/logs/${siteUser?.userId}`)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        console.log("res", res[0].feeling);
+        console.log("res", res[0]?.feeling);
         let feelings = [];
         for (let i = 0; i < Math.min(60, res.length); i++) {
-          if (res[i].feeling) {
-            feelings.push(res[i].feeling);
+          if (res[i]?.feeling) {
+            feelings.push(res[i]?.feeling);
           }
         }
         setLatestFeelings([...feelings]);
@@ -74,7 +74,7 @@ const Home = ({user, siteUser}) => {
       });
 
       setLogEntry({
-        userId: siteUser.userId,
+        userId: siteUser?.userId,
         feeling: "",
         meal: "",
         notes: "",
@@ -85,7 +85,7 @@ const Home = ({user, siteUser}) => {
   // POST for updating user diet info
   const updateDietInfo = async () => {
     const dietBody = {
-      userId: siteUser.userId,
+      userId: siteUser?.userId,
       allergies: dietInfo.allergies,
       dietPref: dietInfo.dietPref,
       dietRest: dietInfo.dietRest,
@@ -250,7 +250,8 @@ const Home = ({user, siteUser}) => {
                     }}>
                     😔
                   </span>
-                  <p className="select-one-text">Select one</p>
+                  <br />
+                  <span className="select-one-text">Select one</span>
                 </p>
               </div>
               <div>
