@@ -865,7 +865,7 @@ header {
   display: flex;
   flex-direction: row;
   background-color: var(--white);
-  color: (var(--text-color));
+  color: var(--text-color);
   max-height: 200px;
   margin-bottom: 1rem;
 }
@@ -885,7 +885,7 @@ header {
   /* border: 2px solid var(--accent-color); */
   /* color: white; */
   /* background-color: #d3973892; */
-  background-color: #db8e3528;
+  background-color: #9d968b48;
   /* color: black; */
   opacity: .9;
 
