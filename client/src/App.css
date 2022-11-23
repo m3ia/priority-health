@@ -316,11 +316,17 @@ header {
 
 .recent-card:hover {
   cursor: pointer;
-  border: 2px solid var(--accent-color);
+  background-color: #9d968b48;
 }
 
 .five-recent-info {
   /* padding: 10px; */
+}
+
+.five-card-times {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .recipe-list-card-title {
@@ -838,12 +844,16 @@ header {
   min-width: 100px;
 }
 
-.new-food-btn, .delete-foods-btn {
+.new-food-btn, .delete-foods-btn, .recipes-view-info button {
   background-color: var(--dark-bg-color);
   color: var(--white);
   margin-bottom: 20px;
 }
 
+.recipes-view-info button:hover {
+  cursor: pointer;
+  color: var(--accent-color);
+}
 .new-food-btn:hover {
   color: var(--green);
 }
@@ -972,8 +982,12 @@ header {
   font-size: 12px;
 }
 
+.recipe-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .recipe-name {
-  background-color: #FFF;
   width: auto;
   font-size: 26px;
 }

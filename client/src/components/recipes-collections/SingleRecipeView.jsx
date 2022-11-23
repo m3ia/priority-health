@@ -72,7 +72,9 @@ const SingleRecipeView = ({siteUser}) => {
       ) : (
         <>
           <div className="recipe-header">
-            <span className="recipe-name">{selectedRecipe.name}</span>
+            <div className="recipe-title">
+              <span className="recipe-name">{selectedRecipe.name}</span>
+            </div>
             <div className="recipe-header-details">
               <div className="recipe-photo">
                 {" "}

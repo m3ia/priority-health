@@ -32,7 +32,7 @@ const FiveRecCards = ({siteUser}) => {
                 </div>
                 <div className="">
                   {card.prep_time && (
-                    <span>
+                    <span className="five-card-times">
                       <span className="material-symbols-outlined prep-icon">
                         timer
                       </span>{" "}
@@ -42,7 +42,7 @@ const FiveRecCards = ({siteUser}) => {
                 </div>
                 <div className="">
                   {card.cook_time && (
-                    <span>
+                    <span className="five-card-times">
                       <span className="material-symbols-outlined cook-icon">
                         cooking
                       </span>
