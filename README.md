@@ -56,7 +56,7 @@ Every time the user signs in, they can track how their latest meal made them fee
 
 ## Shoutouts: 
 - [Techtonica](https://techtonica.org/) for the opportunity, lessons, and resources to build my passion project
-- [Techtonica's Fall 2022](https://techtonicaorg.medium.com/) cohort for all the help, love, and support to build it
+- [Techtonica's Fall 2022](https://medium.com/techtonica/techtonicas-2022-h2-cohort-is-ready-for-swe-placements-1a94f2898ad9) cohort for all the help, love, and support to build it
 - [@jbriseno13](https://github.com/jbriseno13) for her great eye that helped me make this project pretty!
 
 ## Installation
