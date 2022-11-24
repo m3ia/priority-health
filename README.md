@@ -29,11 +29,11 @@ Users can track foods in color-coded cards according to what they can tolerate. 
 <div align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/38749469/203640724-a20998e6-eaa1-4571-8fab-df926646d4a4.png"></div>
 
 ### Recipe Collections
-When users log new recipes, they can also add them to multiple collections.
+Once a users logs a new recipe, they can also add them to multiple collections.
 <div align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/38749469/203648672-ac495f78-929b-4bcf-a0b7-b618bd7745dd.png"></div>
 
 ### Meal Wellness Log
-Every time the user signs in, they can track how their latest meal made them feel. This is especially useful for folks who are learning what foods are okay vs. not okay in the early stages of a flare-up, or understanding their restrictions.
+Every time the user signs in, they can track how their latest meal made them feel. This is especially useful for folks who are learning what foods are okay/not okay in the early stages of a flare-up or in understanding their restrictions.
 <div align="center"><img width="457" alt="image" src="https://user-images.githubusercontent.com/38749469/203652705-8720dffc-3773-4986-815a-339ffb8b2c31.png">
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/38749469/203652886-1bcd76fa-2a4a-4317-a5c2-150f65e9ba10.png"></div>
 
