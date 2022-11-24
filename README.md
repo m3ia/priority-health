@@ -44,10 +44,10 @@ Every time the user signs in, they can track how their latest meal made them fee
 - **Node** - for the runtime environment
 - **auth0** - for user log-in, authentication, and authorization
 - **Docker** - to create a containerized image of the project for simpler deployment
-- [**Edamam**](https://developer.edamam.com/edamam-docs-nutrition-api)'s Nutrition Analysis API
+- [**Edamam's Nutrition Analysis API**](https://developer.edamam.com/edamam-docs-nutrition-api)
   -  Returns the nutrition data for the food tolerance cards
-  -  Returns nutritional information from recipe content. Can be used to show nutritional data after a user adds a new recipe
-- [**Edamam**](https://developer.edamam.com/edamam-docs-nutrition-api)'s Food Database API - Provides nutritional info for a list of recipe ingredients
+  -  Returns nutritional information from recipe content.
+- [**Edamam's Food Database API**](https://developer.edamam.com/food-database-api) - Provides nutritional info for a list of recipe ingredients
 - [**Interweave**](https://interweave.dev/) - a React library that allows users to add HTML styling to their instructions 
 
 ## DB Schema
