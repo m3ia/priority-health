@@ -18,7 +18,7 @@ const LogEntry = ({log, convFeeling, getLogEntries}) => {
       <span className={`diet-entry-date ${log.feeling}-date`}>
         {format(new Date(log.date), "MM/dd/yyyy")}
       </span>
-      <span>
+      <span className="diet-entry-meal">
         <strong>Meal:</strong> {log.meal}
       </span>
       <span className="diet-entry-notes">

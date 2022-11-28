@@ -438,7 +438,7 @@ header {
   display: flex;
   flex-direction: column;
   width: 200px;
-  height: 230px;
+  height: 300px;
   margin-right: 15px;
   border-radius: 10px;
   padding-left: 15px;
@@ -487,6 +487,14 @@ header {
   color: var(--red);
   font-family: var(--text-font);
   font-weight: 400;
+}
+
+.diet-entry-meal {
+  max-height: 50px;
+  overflow-y: scroll;
+  border-bottom: 1px solid var(--dark-bg-color);
+  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .diet-entry-notes {
