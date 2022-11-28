@@ -393,6 +393,18 @@ header {
   color: white;
 }
 
+.icon-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.icon-section:hover {
+  cursor: pointer;
+  color: var(--red);
+}
+
 .add-new-collection-btn {
   margin-top: 12px;
   background-color: var(--accent-color);

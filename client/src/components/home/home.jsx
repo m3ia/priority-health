@@ -307,7 +307,12 @@ const Home = ({user, siteUser}) => {
             {logs &&
               logs.map((log, ind) => {
                 return (
-                  <LogEntry log={log} key={ind} convFeeling={convFeeling} />
+                  <LogEntry
+                    log={log}
+                    key={ind}
+                    convFeeling={convFeeling}
+                    getLogEntries={getLogEntries}
+                  />
                 );
               })}
           </div>

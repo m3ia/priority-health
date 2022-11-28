@@ -173,6 +173,19 @@ app.get('/api/recent-recipes/:id', async (req, res) => {
     res.status(400).send({ e });
   }
 });
+
+// DELETE log
+app.delete('/api/log/:id', async (req, res) => {
+  const logId = req.params.id;
+
+  try {
+    await db.none('DELETE FROM diet_logs WHERE id = $1', [logId]);
+    res.send();
+  } catch (e) {
+    console.log('ERROR IN DELETE req handler for /api/log/:id: ', e);
+    res.status(400).send({ e });
+  }
+})
 //  ------- ------- ------- FOOD TOLERANCE LIST ------- ------- -------
 
 // GET Get all foods for 1 user:
