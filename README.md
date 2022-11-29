@@ -20,7 +20,7 @@
 [Check out the website!](https://server-vu8f.onrender.com/)
 
 **Try it out yourself:**
-<br />Test account: priorityhealth2022@gmail.com
+<br />Sign in with Chrome: priorityhealth2022@gmail.com
 <br />pass: `techtonica2022`
 
 ## Features
