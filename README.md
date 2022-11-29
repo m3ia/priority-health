@@ -21,7 +21,7 @@
 
 **Try it out yourself:**
 <br />Test account: priorityhealth2022@gmail.com
-<br />Password: [the name of the program I built this for--all lowercase][the current year in YYYY]
+<br />pass: `techtonica2022`
 
 ## Features
 ### Food Tolerance List 
