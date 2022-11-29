@@ -15,4 +15,4 @@ services:
 databases:
   - name: db
     plan: free
-    ipAllowList: []
+    ipAllowList: ['0.0.0.0/0']

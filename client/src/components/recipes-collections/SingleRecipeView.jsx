@@ -10,7 +10,6 @@ const parseIngredients = (recipeFromDB, setSelectedRecipe, setIngredients) => {
   const parsedIngredients = [...parseIngredient(recipeFromDB.ingredients)];
   const processedRecipe = {...recipeFromDB, ingredients: parsedIngredients};
   setSelectedRecipe(processedRecipe);
-  console.log("parsed ingredients: ", parsedIngredients);
   const filteredParsedIngredients = parsedIngredients
     .filter((item) => item.isGroupHeader === false)
     .map((ing) => {

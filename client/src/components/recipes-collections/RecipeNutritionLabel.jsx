@@ -20,7 +20,7 @@ const RecipeNutritionLabel = ({ingredients, selectedRecipe}) => {
     const getNutritionLabelData = async () => {
       try {
         await fetch(
-          `https://api.edamam.com/api/nutrition-details?app_id=857e0f4a&app_key=ca9c276c15994bdbdcb18952aabaf50d`,
+          `https://api.edamam.com/api/nutrition-details?app_id=${process.env.REACT_APP_NUTRITIONAL_ANALYSIS_APP_ID}&app_key=${process.env.REACT_APP_NUTRITIONAL_ANALYSIS_API_KEY}`,
           {
             method: "POST",
             headers: {
