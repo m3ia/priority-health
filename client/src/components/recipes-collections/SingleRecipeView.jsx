@@ -5,6 +5,7 @@ import {parseIngredient} from "parse-ingredient";
 import spinner from "./spinner.svg";
 import {ReactSVG} from "react-svg";
 import RecipeNutritionLabel from "./RecipeNutritionLabel";
+import IngListInput from "./IngListInput";
 
 const parseIngredients = (recipeFromDB, setSelectedRecipe, setIngredients) => {
   const parsedIngredients = [...parseIngredient(recipeFromDB.ingredients)];
@@ -155,9 +156,7 @@ const SingleRecipeView = ({siteUser}) => {
                         <h3 key={ind}>{ing.description}</h3>
                       ) : (
                         <li key={ind}>
-                          {ing.quantity}{" "}
-                          {ing?.quantity2 && `- ${ing?.quantity2}`}
-                          {ing.unitOfMeasure} {ing.description}
+                          <IngListInput ing={ing} index={ind} />
                         </li>
                       );
                     })}

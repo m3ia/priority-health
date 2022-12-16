@@ -1067,6 +1067,14 @@ header {
   padding: 10px;
 }
 
+.recipe-ingredients li {
+  list-style: none;
+}
+
+.recipe-ingredients li:hover, input:hover {
+  cursor: pointer;
+}
+
 .recipe-nutrition-label-container {
   /* border: 1px solid black; */
   background-color: white;
