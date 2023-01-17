@@ -21,7 +21,7 @@
 
 **Try it out yourself:**
 <br />Sign in with Chrome: priorityhealth2022@gmail.com
-<br />pass: `techtonica2022`
+<br />pass: the name of the program (all lowercase) + the year I graduated the program
 
 ## Features
 ### Food Tolerance List 
