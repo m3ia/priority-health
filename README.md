@@ -19,6 +19,13 @@
 
 [Check out the website!](https://server-vu8f.onrender.com/)
 
+|Image                                  |Description|
+|:-------------------------------------:|:-------------------------------------:|
+| ![](https://github.com/m3ia/priority-health/assets/38749469/f68daa8a-8e3a-44df-b498-8f105d2b3f76 "Landing Page gif") | Filling out the wellness log on the landing page |
+| ![](https://github.com/m3ia/priority-health/assets/38749469/3e429471-267b-4d84-a20d-43ee8997adfd "Food Tolerance Page gif") | Track foods you're able to tolerate/not tolerate. Click on the food item, and open a card to check notes and nutritional value |
+| ![](https://github.com/m3ia/priority-health/assets/38749469/9bcf5e16-7195-4194-a0c9-91b0263a2907 "Recipe Collections gif") | Add or check out your recipe collections. |
+| ![](https://github.com/m3ia/priority-health/assets/38749469/153c7f55-49c1-404a-b2c7-00304459c439 "Recipe gif") | View your recipes and mark each step as "done" along the way. Find a nutritional label for your recipe. |
+
 **Try it out yourself:**
 <br />Sign in with Chrome: priorityhealth2022@gmail.com
 <br />pass: the name of the program (all lowercase) + the year I graduated the program
@@ -36,6 +43,7 @@ Once a users logs a new recipe, they can also add them to multiple collections.
 Every time the user signs in, they can track how their latest meal made them feel. This is especially useful for folks who are learning what foods are okay/not okay in the early stages of a flare-up or in understanding their restrictions.
 <div align="center"><img width="457" alt="image" src="https://user-images.githubusercontent.com/38749469/203652705-8720dffc-3773-4986-815a-339ffb8b2c31.png">
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/38749469/203652886-1bcd76fa-2a4a-4317-a5c2-150f65e9ba10.png"></div>
+
 
 ## Tech Stack
 - **Postgres** - to manage the database
