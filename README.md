@@ -94,7 +94,8 @@ Every time the user signs in, they can track how their latest meal made them fee
 - Add API tests
 - Add E2E tests
 - Add Integration tests
+
 **Improvements**
-  - Make it prettier
-  - Catch and fix bugs
-  - Add edit/delete functionality to components where missing
+- Make it prettier
+- Catch and fix bugs
+- Add edit/delete functionality to components where missing
